@@ -1,0 +1,158 @@
+<div class="cal-send-message-call send-ull-message-call undrGrpMulti maximizeScreen call-wrap" style="overflow:visible;"
+  [ngClass]="maximizeScreen ? 'maximize-screen' : '' || minimizeScreen ? 'minimize-screen' : ''">
+  <div class="send-header djc">
+    <h3>
+      {{callid ? "Edit" : "Create"}}: Subscription Product
+    </h3>
+    <h6 class="unitText">
+      {{(calenderData && calenderData.sold_units) ? calenderData.sold_units.length : 0}} Unit
+      {{(calenderData && calenderData.sold_units && calenderData.sold_units.length > 1) ? 's' : ''}} Sold
+    </h6>
+    <div class="minus">
+      <ul>
+        <li class="mr-0">
+          <img (click)="closeCalendarMethod(false)" src="../../../assets/images/pop-icon/close.svg" alt="Close" />
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="send-body">
+    <form [formGroup]="subscriptionService.productsDataForm">
+      <div class="Listing calendar-list-wrapper">
+        <div class="row user-data" style="padding-top:15px;">
+          <div class="col-sm-12">
+            <div class="form-group user-field selected-contact-data">
+              <ion-label class="label d-block align-item-center">
+                Product Name<span class="required">*</span>
+              </ion-label>
+              <div class="add_ico">
+                <ion-input formControlName="product_name" class="user-input" type="text" autocomplete="off"
+                  placeholder="Enter Product Name">
+                </ion-input>
+              </div>
+              <ng-container
+                *ngIf="subscriptionService.productsDataForm.controls['product_name'].invalid &&  (subscriptionService.productsDataForm.controls['product_name'].dirty || subscriptionService.productsDataForm.controls['product_name'].touched)">
+                <p class="vaiidate-field"
+                  *ngIf="subscriptionService.productsDataForm.controls['product_name'].errors.required">
+                  Product name is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ul style="padding:0 15px" class="tabbing-location tabbing-accordians d-flex">
+          <li [ngClass]="activeCategory==1?'active':''" (click)="changeactiveCategoryFunction(1)"><a>
+              General Information</a></li>
+          <li [ngClass]="activeCategory==2?'active':''" (click)="changeactiveCategoryFunction(2)">
+            <a>Sales</a>
+          </li>
+        </ul>
+        <div class="tab-content min-scroll" *ngIf="activeCategory==1">
+          <div class="Listing calendar-list-wrapper">
+            <div class="row">
+              <div class="col-md-12">
+              </div>
+            </div>
+            <div class="row p-0 user-data list-meeting-wrapper attendee-edit-section calendar-change"
+              style="margin:0 0px; margin-top: 6px; border-bottom:1px solid #ccc;">
+              <div class="col-sm-4">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Product Type
+                  </ion-label>
+                  <p-dropdown [options]="productTypeOption" formControlName="product_type" placeholder="Select"
+                    [filter]="false"></p-dropdown>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Sales Price
+                  </ion-label>
+                  <ion-input formControlName="sales_price" class="user-input" type="number" autocomplete="off">
+                  </ion-input>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <ion-label class="label align-item-center">Customer Taxes
+                </ion-label>
+                <div class="multi">
+                  <p-dropdown [filter]="true" [options]="listTax" formControlName="customer_tax" placeholder="Select"
+                    appendTo="body">
+                  </p-dropdown>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">HSN/SAC Code
+                  </ion-label>
+                  <ion-input formControlName="hsn_code" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">
+                    HSN/SAC Description
+                  </ion-label>
+                  <textarea formControlName="hsn_description" style="margin-top: 6px;width: 100%;border: 1px solid #dedede;"
+                    maxlength="1500" [rows]="2" [cols]="34" autoResize="autoResize">
+                  </textarea>
+                </div>
+              </div>
+              <div style="margin-bottom: 15px;" class="col-sm-12">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Internal Notes
+                  </ion-label>
+                  <textarea formControlName="internal_notes" style="margin-top: 6px;width: 100%;border: 1px solid #dedede;"
+                    maxlength="1500" [rows]="2" [cols]="34" autoResize="autoResize">
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-scroll" *ngIf="activeCategory==2">
+        <div class="Listing calendar-list-wrapper">
+          <div class="row">
+            <div class="col-md-12">
+            </div>
+          </div>
+          <div class="row p-0 user-data list-meeting-wrapper attendee-edit-section calendar-change"
+            style="margin:0 0px; border-bottom:1px solid #ccc;">
+            <div class="col-sm-12">
+              <div class="user-field selected-contact-data">
+                <ion-label class="label align-item-center">Subscription Plan
+                </ion-label>
+                <p-dropdown [options]="listSubscriptionPlan" formControlName="plan" placeholder="Select"
+                  [filter]="true"></p-dropdown>
+              </div>
+            </div>
+            <div style="margin-bottom: 15px;" class="col-sm-12">
+              <div class="user-field selected-contact-data">
+                <ion-label class="label align-item-center">Sales Description
+                </ion-label>
+                <textarea formControlName="sales_description" style="margin-top: 6px;width: 100%;border: 1px solid #dedede;"
+                  maxlength="1500" [rows]="2" [cols]="34" autoResize="autoResize">
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="send-footer">
+    <div class="send-footer-inner">
+      <ul>
+        <li>
+          <button type="button" (click)="sendMessages()" class="btn-email">
+            {{uuid ? "Update" : "Save"}}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="mail-overlay"></div>

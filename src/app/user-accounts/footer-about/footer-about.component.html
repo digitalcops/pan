@@ -1,0 +1,71 @@
+<div class="page-wrapper about-footer comment-section contact-page-wrapper">
+  <div class="table-wrapper">
+    <ul class="top-menu"></ul>
+    <div class="main-content footer-content main-setting">
+     <div class=" d-flex flex-wrap align-items-center justify-content-between" style="margin-bottom:40px">
+      <div class="form-wrapper">
+        <div class="content-alignment">
+          <h1 class="header-modified">Premier Agent Network, Inc.</h1>
+          <p class="header-para">
+            Premier Agent Network, Inc. is an online real estate company in and we are absolutely committed to the success of our agents. We provide several different commission plans to choose from including a popular flat fee 100% commission real estate program. Once signed up, our agents get exclusive access to one of the best virtual real estate offices in the industry and more tools they will ever use to be successful. They get to choose the best plan that works for them. We are a full-service real estate firm in and we provide outstanding services to our clients.
+          </p>
+          <ul class="policy-menu">
+            <li>100% real estate commission programs available.</li>
+           <li>Unlimited broker support, real estate training & marketing tools.</li>
+           <li>Get paid directly from escrow & optional transaction coordinator available.</li>
+           <li>Real estate website with MLS & CRM integration, blog and email campaigns.</li>
+           <li>No franchise fees, signup fees, office rent, and no desk fees.</li>
+         </ul>
+        </div>
+      </div>
+      <div class="right-side-section">
+        <figure class="mb-0">
+          <img
+            src="../../../assets/images/contact-footer.svg"
+            alt="contact-footer"/>
+        </figure>
+      </div>
+    </div>
+    <div class="slider-wrapper">
+      <p-carousel  [value]="propertyImageSlider"
+      styleClass="custom-carousel" [numVisible]="6" [numScroll]="3"
+      [circular]="true" [responsiveOptions]="responsiveOptions">
+      <ng-template *ngFor="let item of propertyImageSlider" pTemplate="item">
+          <div class="p-grid p-nogutter">
+              <div class="p-col-12">
+                  <img [src]="item.image" alt="">
+              </div>
+          </div>
+      </ng-template>
+  </p-carousel>
+    </div>
+    <div class="important-policies">
+      <h3>Our Real Estate Company Benefits & Services</h3>
+      <p>Broker support is our top priority and providing agents with the tools they need to give their clients the best customer service experience possible.</p>
+     </div>
+     <div class="d-flex justify-content-between flex-wrap" style="padding-top:12px;">
+     <div class="services-wrapper">
+       
+       <div  class="service-right">
+         <h4>Provide our services</h4>
+         <p>We reserve the right to use or disclose your Personal Data if required by law or if we reasonably believe that use or disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or comply with a law, court order, or legal process.</p>
+       </div>
+     </div>   
+     <div class="services-wrapper">
+      
+      <div  class="service-right">
+        <h4>Association of REALTORS® Memberships</h4>
+        <p>Become a REALTOR® in to gain access to the MLS, standard real estate contracts, lockboxes, supra keys and take advantage of in person trainings provided by the Association of REALTORS®. Build your business going to local meetings and networking with other real estate agents in the area.</p>
+      </div>
+    </div>
+    <div class="services-wrapper">
+      <div  class="service-right">
+        <h4>Our Values & What We Offer</h4>
+        <p>Broker support is our top priority. Our goal is to provide a solid foundation for our agents to rely on and give them the resources they need for a successful career in real estate. By keeping our agents happy, we can provide a better customer service experience for our clients.</p>
+      </div>
+    </div>
+  </div>
+    </div>
+  
+  </div>
+</div>

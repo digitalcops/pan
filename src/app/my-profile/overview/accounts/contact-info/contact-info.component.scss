@@ -1,0 +1,108 @@
+.customCountryInfo ::ng-deep.flag-container {
+  top: 8px !important;
+  cursor: pointer;
+  left: 5px !important;
+}
+.customCountryInfo ::ng-deep.iti-arrow {
+  position: relative;
+  top: -4px;
+}
+.customCountryInfo ::ng-deep.country-input {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  margin-top: 6px;
+  padding-left: 67px !important;
+  border-radius: 5px;
+  max-width: 234px;
+  width: 234px;
+  font-size: 12px;
+  height: 28px;
+}
+.customCountryInfo ::ng-deep .selected-dial-code {
+  position: relative;
+  left: 3px;
+  font-size: 12px;
+  top: -2px;
+}
+.customCountryInfo {
+  position: relative;
+  top: -6px;
+}
+
+.company-info ::ng-deep.country-dropdown {
+  width: 380px !important;
+  left: -5px !important;
+}
+.company-info ::ng-deep .intl-tel-input input#country-search-box {
+  font-size: 13px;
+}
+.company-info {
+  ion-item {
+    --inner-padding-end: 0px;
+    --padding-start: 0px;
+    --font-size: 13px;
+    --min-height: 25px;
+    height: 25px;
+    --background-activated: #fff;
+    --background-focused: #fff;
+    --background-hover: #fff;
+    --background-activated-opacity: #fff;
+    --background-focused-opacity: #fff;
+    --background-hover-opacity: #fff;
+    &:hover {
+      --background-activated: #fff;
+      --background-focused: #fff;
+      --background-hover: #fff;
+      --background-activated-opacity: #fff;
+      --background-focused-opacity: #fff;
+      --background-hover-opacity: #fff;
+    }
+
+    ion-label {
+      font-size: 13px;
+      color: #404040;
+      margin: 0px 0 0 0;
+    }
+    ion-checkbox {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      --border-width: 1px;
+      --border-style: solid;
+      --border-color: rgba(var(--ion-text-color-rgb, 216, 216, 216), 0.51);
+      --background-checked: #207ebb;
+      --border-color-checked: #cbe3f3;
+      border-radius: 2px;
+      margin: 0px 6px 0 0px;
+      .checkbox-icon path{
+        stroke-width: 3px important;
+        stroke-dasharray: 15 important;
+      }
+    }
+  }
+  .alignVertical {
+    top: -4px !important;
+  }
+}
+.right-side-content.company-info{
+    height: calc(100vh - 219px);
+    overflow-y: auto;
+}
+.heading{
+   text-align: left;
+    font-size: 20px;
+    color: #404040;
+    padding: 0 0 12px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+span.required {
+    color: red;
+    font-size: 14px;
+}
+.setting-para{
+  margin-top: 5px;
+  margin-left: -8px;
+  color: #495057;
+  font-size: 12px;
+}

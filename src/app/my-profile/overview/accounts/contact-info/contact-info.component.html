@@ -1,0 +1,450 @@
+<div class="main-content company-info right-side-content">
+  <form [formGroup]="contactEditForm" style="padding-left:10px;"  #f="ngForm" (ngSubmit)="updateContact()" #cotactInfoForm="ngForm">
+    <div class="form-group">
+      <h5 class="heading">Contact Information</h5>
+      <div class="row">
+        <div class="col-md-6" style="padding:0 15px;">
+          <label>
+            Role/Groups_Id
+          </label>
+          <p-dropdown name="groups" formControlName="groups" [disabled]="true" placeholder="Select"
+            [options]="roleList">
+          </p-dropdown>
+        </div>
+        <div class="col-md-6" style="padding:0 15px;">
+          <label>
+            First Name<span class="required">*</span>
+          </label>
+          <input class="form-control not-editable" type="text" placeholder="" maxlength="100" disabled
+            formControlName="first_name" name="first_name">
+            
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Middle Name
+          </label>
+          <input class="form-control not-editable" type="text" placeholder="" maxlength="100" disabled
+            name="middle_name" formControlName="middle_name">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Last Name<span class="required">*</span>
+          </label>
+          <input class="form-control not-editable" type="text" placeholder="" maxlength="100" disabled name="last_name"
+            formControlName="last_name">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Primary Email<span class="required">*</span>
+          </label>
+          <div class="row">
+            <div class="col-8">
+              <input class="form-control primary not-editable" type="text" placeholder="" disabled
+                formControlName="email" name="email">
+            </div>
+            <div class="col-4">
+              <p-dropdown name="email_label" formControlName="email_label" [disabled]="true" placeholder="Select"
+                [options]="EmailList">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Secondary Email
+          </label>
+          <div class="row">
+            <div class="col-8">
+              <input class="form-control primary" type="text" formControlName="secondary_email" name="secondary_email">
+            </div>
+            <div class="col-4">
+              <p-dropdown name="secondary_email_label" formControlName="secondary_email_label"
+                [(ngModel)]="userDetails.secondary_email_label" placeholder="Select" [options]="EmailList">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Other Email
+          </label>
+          <div class="row">
+            <div class="col-8">
+              <input class="form-control primary" type="text" formControlName="other_email" name="other_email">
+            </div>
+            <div class="col-4">
+              <p-dropdown name="other_email_label" formControlName="other_email_label"
+                [(ngModel)]="userDetails.other_email_label" placeholder="Select" [options]="EmailList">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Gender
+          </label>
+          <p-dropdown name="gender" formControlName="gender" [(ngModel)]="userDetails.gender" placeholder="Select"
+            [options]="genderList">
+          </p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Primary Mobile<span class="required">*</span>
+          </label>
+          <div class="row">
+            <div class="col-8 customCountryInfo">
+              <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                [selectedCountryISO]="countryISO.UnitedStates" [phoneValidation]="true" [separateDialCode]="true"
+                name="primary_mobile" formControlName="primary_mobile" autocomplete="nope"
+                (input)="updateLabel($event, mobileOptions[0], 'mobileExist')">
+              </ngx-intl-tel-input>
+              <ng-container *ngIf="f.form.controls['primary_mobile'].errors">
+                <p class="vaiidate-field">
+                  Please enter a valid number!</p>
+              </ng-container>
+              <!-- <input class="form-control primary" type="number" formControlName="primary_mobile" name="primary_mobile"> -->
+            </div>
+            <div class="col-4">
+              <p-dropdown name="primary_mobile_label" formControlName="primary_mobile_label"
+                [(ngModel)]="userDetails.primary_mobile_label" placeholder="Select" [options]="PhoneList">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Secondary Mobile
+          </label>
+          <div class="row">
+            <div class="col-8 customCountryInfo">
+              <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                [selectedCountryISO]="countryISO.UnitedStates" [phoneValidation]="true" [separateDialCode]="true"
+                name="secondary_mobile" formControlName="secondary_mobile" autocomplete="nope"
+                (input)="updateLabel($event, mobileOptions[1], 'mobileExist')">
+              </ngx-intl-tel-input>
+              <ng-container *ngIf="f.form.controls['secondary_mobile'].errors">
+                <p class="vaiidate-field">
+                  Please enter a valid number!</p>
+              </ng-container>
+            </div>
+            <div class="col-4">
+              <p-dropdown name="secondary_mobile_label" formControlName="secondary_mobile_label"
+                [(ngModel)]="userDetails.secondary_mobile_label" placeholder="Select" [options]="PhoneList">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Other Mobile
+          </label>
+          <div class="row">
+            <div class="col-8 customCountryInfo">
+              <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                [selectedCountryISO]="countryISO.UnitedStates" [phoneValidation]="true" [separateDialCode]="true"
+                name="other_mobile" formControlName="other_mobile" autocomplete="off"
+                (input)="updateLabel($event, mobileOptions[2], 'mobileExist')">
+              </ngx-intl-tel-input>
+              <ng-container *ngIf="f.form.controls['other_mobile'].errors">
+                <p class="vaiidate-field">
+                  Please enter a valid number!</p>
+              </ng-container>
+            </div>
+            <div class="col-4">
+              <p-dropdown name="other_mobile_label" formControlName="other_mobile_label"
+                [(ngModel)]="userDetails.other_mobile_label" placeholder="Select" [options]="PhoneList">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Fax
+          </label>
+          <input class="form-control" type="text" formControlName="fax" name="fax">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Skype Username
+          </label>
+          <input class="form-control" type="text" formControlName="skype_user_name" name="skype_user_name">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Home Address<span class="required">*</span>
+          </label>
+          <input class="form-control" maxlength="500" type="text" formControlName="home_address" name="home_address">
+          <ng-container
+            *ngIf="contactEditForm.controls['home_address'].errors && ( contactEditForm.controls['home_address'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['home_address'].errors.required">
+              Home Address is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+      
+        <div class="col-md-6">
+          <label>
+            City<span class="required">*</span>
+          </label>
+          <input class="form-control" maxlength="100" type="text" formControlName="city" name="city">
+          <ng-container
+            *ngIf="contactEditForm.controls['city'].errors && ( contactEditForm.controls['city'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['city'].errors.required">
+              City is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6 pr-4 selected-contact-data">
+          <label>
+            State<span class="required">*</span>
+          </label>
+
+          <p-dropdown [options]="statesList" placeholder="Select" formControlName="state" name="state"
+            filter="true"></p-dropdown>
+            <ng-container
+            *ngIf="contactEditForm.controls['state'].invalid && 
+                            (contactEditForm.controls['state'].dirty || contactEditForm.controls['state'].touched)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['state'].errors.required">
+              State is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+      
+        <div class="col-md-6">
+          <label>
+            Zip code<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="zip_code" name="zip_code">
+          <ng-container
+            *ngIf="contactEditForm.controls['zip_code'].errors && ( contactEditForm.controls['zip_code'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['zip_code'].errors.required">
+              Zip code is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6">
+          <label>
+            County
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="county" name="county">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+       
+        <div class="col-md-6 selected-contact-data">
+          <label>
+            Country<span class="required">*</span>
+          </label>
+          <!-- <p-dropdown name="country_code" formControlName="country_code" placeholder="Select" [options]="countriesData"
+            filter="true" [(ngModel)]="userDetails.country_code" (onChange)="getStates($event)">
+          </p-dropdown> -->
+          <p-dropdown  [options]="countriesData" formControlName="country" placeholder="Select" filter="true"
+          (onChange)="getStates($event)" name="country" [(ngModel)]="userDetails.country_code">
+        </p-dropdown>
+          <ng-container
+          *ngIf="contactEditForm.controls['country_code'].invalid && 
+                          (contactEditForm.controls['country_code'].dirty || contactEditForm.controls['country_code'].touched)">
+          <p class="vaiidate-field" *ngIf="contactEditForm.controls['country_code'].errors.required">
+            Country is required!
+          </p>
+        </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- <ion-item class="last-border-remove alignVertical">
+            <ion-label class="agree-terms">Same as home address</ion-label>
+            <ion-checkbox slot="start" (ionChange)="modifyAddressFields()" formControlName="same_as_home_address"
+              name="same_as_home_address"   [(checked)]="userDetails.same_as_home_address"></ion-checkbox>
+          </ion-item> -->
+        
+          <div class="d-flex form-group">
+                  <p-checkbox class="setting-checks"></p-checkbox>
+                  <p class="mb-0 setting-para">Same as home address.</p>
+           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Mailing Address<span class="required">*</span>
+          </label>
+          <input class="form-control" [attr.disabled]="userDetails.same_as_home_address ? '' : null" type="text"
+            maxlength="500" formControlName="mailing_address" name="mailing_address">
+          <ng-container
+            *ngIf="contactEditForm.controls['mailing_address'].errors && ( contactEditForm.controls['mailing_address'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['mailing_address'].errors.required">
+              Mailing Address is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6">
+          <label>
+            City<span class="required">*</span>
+          </label>
+          <input class="form-control" [attr.disabled]="userDetails.same_as_home_address ? '' : null" type="text"
+            formControlName="mailing_city" name="mailing_city">
+          <ng-container
+            *ngIf="contactEditForm.controls['mailing_city'].errors && ( contactEditForm.controls['mailing_city'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['mailing_city'].errors.required">
+              City is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6  selected-contact-data">
+          <label>
+            State<span class="required">*</span>
+          </label>
+          <p-dropdown name="mailing_state" [disabled]="userDetails.same_as_home_address" formControlName="mailing_state"
+            [(ngModel)]="userDetails.mailing_state" placeholder="Select" [options]="mailingStatesList" filter="true">
+          </p-dropdown>
+          <ng-container
+          *ngIf="contactEditForm.controls['mailing_state'].invalid && 
+                          (contactEditForm.controls['mailing_state'].dirty || contactEditForm.controls['mailing_state'].touched)">
+          <p class="vaiidate-field" *ngIf="contactEditForm.controls['mailing_state'].errors.required">
+            State is required!
+          </p>
+        </ng-container>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Zip Code<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" [attr.disabled]="userDetails.same_as_home_address ? '' : null"
+            formControlName="mailing_zip_code" name="mailing_zip_code">
+          <ng-container
+            *ngIf="contactEditForm.controls['mailing_zip_code'].errors && ( contactEditForm.controls['mailing_zip_code'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['mailing_zip_code'].errors.required">
+              Zip Code is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+      
+        <div class="col-md-6">
+          <label>
+            County
+          </label>
+          <input class="form-control" type="text" [attr.disabled]="userDetails.same_as_home_address ? '' : null"
+            formControlName="mailing_county" name="mailing_county">
+        </div>
+        <div class="col-md-6  selected-contact-data">
+          <label>
+            Country<span class="required">*</span>
+          </label>
+          <p-dropdown name="mailing_country_code" [disabled]="userDetails.same_as_home_address"
+            formControlName="mailing_country_code" [(ngModel)]="userDetails.mailing_country_code" placeholder="Select"
+            [options]="countriesData" filter="true" (onChange)="getMailingStates($event)">
+          </p-dropdown>
+          <ng-container
+            *ngIf="contactEditForm.controls['mailing_country_code'].errors && ( contactEditForm.controls['mailing_country_code'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['mailing_country_code'].errors.required">
+              Country is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        
+        <div class="col-md-6">
+          <label>
+            License No.<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" formControlName="licence_no" name="licence_no">
+          <ng-container
+            *ngIf="contactEditForm.controls['licence_no'].errors && ( contactEditForm.controls['licence_no'].touched || cotactInfoForm.submitted)">
+            <p class="vaiidate-field" *ngIf="contactEditForm.controls['licence_no'].errors.required">
+              License No. is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Website URL
+          </label>
+          <input class="form-control" type="text" placeholder="http://www.mywebsite.com" formControlName="website_url_1"
+            name="website_url_1">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">       
+         <div class="col-md-6">
+          <label>
+            Website 2 URL
+          </label>
+          <input class="form-control" type="text" placeholder="http://www.mywebsite.com" formControlName="website_url_2"
+            name="website_url_2">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn-cancel" type="button" (click)="cancelButtonClicked()">Cancel</button>
+      <button class="btn-save">Save</button>
+    </div>
+  </form>
+</div>

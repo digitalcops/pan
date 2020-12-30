@@ -1,0 +1,109 @@
+<div class="page-wrapper billing-history">
+  <div class="table-wrapper">
+    <div class="container-main contact-main-page ng-star-inserted" style="overflow-x: hidden;">
+      <div class="row">
+        <div class="col-12 col-sm-12">
+          <div class="port no-pad">
+            <div class="port-header-contact pixel-width">
+              <div class="title">
+                <div class="contact ml-1">
+                  <span [routerLink]="['/users/billing-main-page']" class="contact-redirect common-color" tabindex="0">Billing History &nbsp;&gt;</span>
+                  <span class="name common-color ml-2">Details</span></div>
+              </div>
+            </div>
+            <div class="port-body">
+              <div class=" custom-body user-details contact-third">
+                <ul class="left-commision">
+                  <li>
+                    <figure class="logo-pan"><img src="../../../assets/images/logo-black.png"></figure>
+                  </li>
+                  <li>27315 Jefferson Ave Suite J10, Temecula, CA 92590</li>
+                  <li> P: <a href="#">(877) 663-9366</a></li>
+
+                  <li>F: (951) 571-1340</li>
+                  <li>E: <a href="#" style="color:#207EBB">info@premieragentnetwork.com</a></li>
+                </ul>
+                <div class="right-commision">
+                  <h2>INVOICE</h2>
+                  <h3>Invoice No.: # 45</h3>
+                </div>
+
+              </div>
+              <div class="date-wrapper">
+                <div class="bill-text-left">
+                  <h3>Bill To</h3>
+                  <p class="mb-0">Arlene Chavez
+                    <span class="d-block">3254 Cornish Road Temecula, CA 92590</span>
+                  </p>
+                </div>
+                <div class="bill-text-right">
+                  <div style="margin-right:121px;" class="bill-date">
+                    <h3>Data Date</h3>
+                    <span class="date"> 11/22/2013</span>
+                  </div>
+                  <div class="bill-date right-bill">
+                    <h3>Due Date</h3>
+                    <span class="date"> 11/22/2013</span>
+                  </div>
+                </div>
+              </div>
+              <div class="page-wrapper tableheight-wrapper">
+                <div class="table-wrapper search-pagination payment-table mapScrollToTable pb-0">
+                  <p-table [columns]="billingColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                    [paginator]="false" [value]="billingData">
+                    <ng-template pTemplate="colgroup" let-columns>
+                      <colgroup>
+                        <col *ngFor="let col of billingColoumns">
+                      </colgroup>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                      <tr class="activity-rows">
+                        <th *ngFor="let col of billingColoumns ">
+                          <ng-container>
+                            {{col.header}}
+                          </ng-container>
+                        </th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-activity>
+                      <tr class="activity-data">
+                        <td *ngFor="let col of billingColoumns">
+                          <ng-container *ngIf="col.field === 'date'">
+                            {{activity.date}}
+                          </ng-container>
+                          <ng-container *ngIf="col.field === 'description'">
+                            <p class=" mb-0 common-properties"> {{activity.description}}</p>
+                          </ng-container>
+                          <ng-container *ngIf="col.field === 'commision'">
+                            <p class=" mb-0 common-properties"> {{activity.commision}}</p>
+                          </ng-container>
+                          <ng-container *ngIf="col.field === 'sales'">
+                            <p class=" mb-0 common-properties"> {{activity.sales}}</p>
+                          </ng-container>
+                          <ng-container *ngIf="col.field === 'sub'">
+                            <p class="mb-0 common-properties">{{activity.sub}}</p>
+                          </ng-container>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </div>
+              <div class="grand-total text-right">
+                <div class="grand-total-text">
+                  <h3>Grand Total</h3>
+                <span>$20,800,000</span>
+              </div>
+              <button class="print-btn mt-0 payment-btn">Make Payment</button>
+              </div>
+              <div>
+              <button class="print-btn" style="margin-right:10px;">Print Invoice</button>
+              <button class="print-btn download-btn">Download Invoice</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

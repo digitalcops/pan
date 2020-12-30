@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="3.155" viewBox="0 0 12 3.155">
+    <defs>
+        <style>.a{fill:#959cb6;}</style>
+    </defs>
+    <g transform="translate(-0.1 -0.036)">
+        <circle class="a" cx="1.5" cy="1.5" r="1.5" transform="translate(0.1 0.036)" />
+        <ellipse class="a" cx="1.555" cy="1.555" rx="1.555" ry="1.555" transform="translate(4.558 0.08)" />
+        <circle class="a" cx="1.5" cy="1.5" r="1.5" transform="translate(9.1 0.036)" />
+    </g>
+</svg>

@@ -1,0 +1,129 @@
+.privay-policy{
+.main-setting{
+    height: calc(100vh - 118px);
+    overflow: auto;
+    overflow-x: hidden;
+    background: white;
+    margin: 0 15px;
+    padding:20px 35px 20px 20px;
+}
+
+.top-menu {
+  display: flex;
+  background: white;
+  padding: 0 15px;
+    li{
+        margin-right:30px;
+         a {
+    color: #404040;
+    font-size: 13px;
+    display: inline-block;
+    padding: 10px 0;
+    position: relative;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+   
+    }
+    a.active{
+      border-bottom: 2px solid #207ebb;
+      color:#207ebb;
+    }
+  }
+}
+.heading{
+    text-align: left;
+    font-size: 20px;
+    color: #404040;
+    padding: 0 0 12px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+.main-content .ui-dropdown{
+    height: 30px;
+}
+.header-modified{
+  color:#808080;
+  font-size: 12px;
+}
+.header-para{
+  margin-bottom:20px;
+  color:#404040;
+  font-size:13px ;
+}
+.form-wrapper{
+  width:67%;
+}
+.right-side-section{
+  width:30%;
+  figure{
+    height:262px;
+    margin-bottom:21px;
+  }
+}
+.description-wrapper{
+  h2{
+    color:#404040;
+    font-size:20px;
+    margin-bottom:20px;
+  }
+
+.important-policies{
+  h3{
+    font-size:16px;
+    color:#404040;
+    font-weight:400;
+    margin-bottom:10px;
+  }
+  p{
+    color:#404040;
+    font-size: 13px;
+    margin-bottom:10px;
+    line-height: 22px;
+  }
+  .policy-menu{
+    margin-bottom: 10px ;
+    li{
+     font-size: 13px;
+     color:#404040;
+     padding-left:13px;
+     position: relative;
+     margin-bottom:10px;
+     &:after{
+      position: absolute;
+      content:"";
+      width:7px;
+      left:0;
+      top:5px;
+      height: 7px;
+      background: #707070;
+      border-radius: 50%;
+     }
+    }
+  }
+     }
+  }
+  .services-wrapper{
+    width:50%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:30px;
+    h4{
+      font-size:16px;
+      color:#404040;
+      margin-bottom:10px;
+    }
+    p{
+      color:#404040;
+      font-size:13px;
+      margin-bottom:0;
+    }
+    figure{
+      width:40px;
+      height:40px;
+      margin-right:24px;
+    }
+    .service-right{
+      width:75%;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+
+<!-- page layout popup -->
+<p-dialog position="center" [draggable]="false" [visible]="openColumnsPopUp" 
+    class="popup-element custom-popup 
+    contact-colums-popup add-contact-wrapper" [modal]="true">
+    <p-header>Customize Columns
+        <span class="close-pop" (click)="openColumnsPopUp=false"><img src="assets/images/close.svg"
+                alt="close" /></span>
+    </p-header>
+    <div class="col-12 pt-3 pl-0 pr-0">
+        <div class="popup-wrapper">
+          <p-pickList [responsive]="true"  filterBy="values"
+          sourceFilterPlaceholder="Search" targetFilterPlaceholder="Search"  dragdrop="true" [source]="list1" [target]="list2">
+            <ng-template let-listItems pTemplate="item" >
+                    <div class="customiseField">
+                      {{listItems.values}}
+                    </div>
+            </ng-template>
+        </p-pickList> 
+            </div>
+    </div>
+    <p-footer class="btns" style="margin:-10px 0 0 0">
+        <ion-button class="btn-save">Save
+        </ion-button>
+        <ion-button class="btn-cancel" (click)="openColumnsPopUp=false">Cancel</ion-button>
+    </p-footer>
+</p-dialog>
+
+<!-- page layout popup ends -->

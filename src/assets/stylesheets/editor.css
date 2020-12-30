@@ -1,0 +1,28 @@
+.mce-content-body {
+  margin: 0;
+  font-size: 14px;
+  padding: 10px;
+  font-family: "Helvetica Neue";
+  color: #404040;
+}
+
+.mce-content-body p {
+  margin: 0;
+}
+
+.mce-content-readonly {
+  background: #f8f8f8;
+  color: #495057;
+}
+
+.mce-content-body:not([dir="rtl"])[data-mce-placeholder]:not(.mce-visualblocks)::before {
+  left: 10px;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("../fonts/HelveticaNeue.ttf") format("truetype");
+}
+.task-editor{
+  left: 12px;
+}

@@ -1,0 +1,74 @@
+<h5 class="heading">Service Areas</h5>
+<div style="border-bottom:1px solid #dedede; padding-bottom:10px">
+  <button class="add-btn" (click)="openAddNewModal()">Add New</button>
+</div>
+<div class="table-wrapper">
+  <p-table [resizableColumns]="true" [columns]="serviceCols" scrollWidth="100%" [scrollable]="true" [value]="data"
+    styleClass="service-table custom-dataTable table-striped">
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col *ngFor="let col of columns">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          <span class="d-flex align-items-center">
+            <ng-container *ngIf="col.field === 'country'">
+              <p-checkbox styleClass="custom-checkbox"></p-checkbox>
+            </ng-container>
+            <ng-container>
+              <span class="header_data">{{col.header}}</span>
+            </ng-container>
+          </span>
+        </th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          <ng-container *ngIf="col.field === 'country'">
+            <span class="d-flex align-items-center">
+              <p-checkbox styleClass="custom-checkbox"></p-checkbox>
+              <span>
+                {{rowData.country}}
+              </span>
+            </span>
+          </ng-container>
+          <ng-container *ngIf="col.field === 'state'">
+            {{rowData.state}}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'county'">
+            {{rowData.county}}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'city'">
+            {{rowData.city}}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'zip_code'">
+            {{rowData.zip_code}}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'community'">
+            {{rowData.community}}
+          </ng-container>
+        </td>
+        <td>
+          <span class="edit-wrapper">
+            <span class="edit-tooltip" pTooltip="Edit" tooltipPosition="top">
+              <img src="../../assets/images/edit.svg" class="edit-icons" alt="edit icon" />
+            </span>
+            <span class="more-tooltip" pTooltip="More" tooltipPosition="top">
+              <img src="../../assets/images/more.svg" class="more-icon" alt="edit icon" />
+            </span>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<div class="confirmation">
+  <button class="btn-cancel" type="button" (click)="cancelButtonClicked()">Cancel</button>
+  <button class="btn-save">Save</button>
+</div>
+
+<app-add-area *ngIf="modal" (modalState)="updateModalState()" (updateServiceData)="updateServiceData()"></app-add-area>

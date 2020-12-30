@@ -1,0 +1,358 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="user-sidebar">
+        <li>
+          <div class="profile-data profile-inner">
+            <img [src]="userAllDetails.user_imageInfo.image_url" class="profile-pic">
+          </div>
+        </li>
+        <li class="content-list-left active">View Public Profile</li>
+        <li class="content-list-left">Edit Profile</li>
+        <li class="content-list-left">My Calendar</li>
+        <li class="content-list-left">My Tasks</li>
+        <li class="content-list-left">My Goals</li>
+        <li class="content-list-left">Contacts</li>
+        <li class="content-list-left">Listings</li>
+        <li class="content-list-left">Transactions</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="user-name">
+            {{userAllDetails.first_name ? userAllDetails.first_name : ''}}
+            {{userAllDetails.middle_name ? userAllDetails.middle_name : ''}}
+            {{userAllDetails.last_name ? userAllDetails.last_name : ''}}
+          </h1>
+          <span class="user-profile">
+            {{userAllDetails.groups}}
+          </span>
+        </div>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6 middle-data">
+          {{userAllDetails.is_active ? "Active" : "Not Active"}}
+        </div>
+        <div class="col-md-6 middle-data-right">Profile ID:{{userAllDetails.id}}</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 middle-data">
+          <h6>Commission Plan:</h6>
+          <span></span>
+        </div>
+        <div class="col-md-6 middle-data-right">
+          <h6>Managing Broker:</h6>
+          <span></span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 middle-data">
+          <h6>Branch:</h6>
+          <span>
+
+          </span>
+        </div>
+        <div class="col-md-6 middle-data-right licenses-hr">
+          <h6></h6>
+          <h6>License Type: <span></span></h6>
+          <h6>License #: <span>{{userAllDetails.user_profileInfo.licence_no}}</span></h6>
+          <h6>License Expiration: <span></span></h6>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 middle-data"  id="naid">
+          <h6>NAID #: <span> {{userAllDetails.user_realtorInfo.national_association_realtor_id}}</span></h6>
+          <h6>MLS Public ID : <span>{{userAllDetails.user_realtorInfo.mls_public_id}}</span></h6>
+          <div>
+            {{ userAllDetails.user_realtorInfo.local_association_realtor }}
+          </div>
+          <span>
+          </span>
+        </div>  
+        <!-- <div class="col-md-6 middle-data"  *ngIf = "true">
+          <h6>NAID #: <span> {{userAllDetails.user_realtorInfo.national_association_realtor_id}}</span></h6>
+          <h6>MLS Public ID : <span>{{userAllDetails.user_realtorInfo.mls_public_id}}</span></h6>
+          <div>
+            {{ userAllDetails.user_realtorInfo.local_association_realtor }}
+          </div>
+          <span>
+          </span>
+        </div> -->
+        <div class="col-md-6 middle-data-right">
+          <h6>Cell Phone: <span>{{userAllDetails.user_profileInfo.secondary_mobile}}</span></h6>
+          <h6>Home Phone: <span>{{userAllDetails.user_profileInfo.other_mobile}}</span></h6>
+          <h6>Office Phone: <span>{{userAllDetails.user_profileInfo.primary_mobile}}</span></h6>
+          <h6>Fax: <span>{{userAllDetails.user_profileInfo.fax}}</span></h6>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 middle-data">
+          <h6>Skype ID: <span>{{userAllDetails.user_profileInfo.skype_user_name}}</span></h6>
+          <h6>Languages: <span>{{userAllDetails.user_publicInfo.language}}</span></h6>
+          <h6>Team Name: <span> {{userAllDetails.user_publicInfo.team_name}} </span></h6>
+        </div>
+        <div class="col-md-6 middle-data-right">
+          <a href="#">{{userAllDetails.email}}</a>
+          <br>
+          <a href="#">{{userAllDetails.user_profileInfo.secondary_email}}</a>
+          <br>
+          <a href="#">{{userAllDetails.user_profileInfo.other_email}}</a>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 middle-data">
+          <h6>Home Address:</h6>
+          <span>
+            {{userAllDetails.user_profileInfo.home_address}}
+            {{userAllDetails.user_profileInfo.city}}
+            {{userAllDetails.user_profileInfo.state}}
+            {{userAllDetails.user_profileInfo.zip_code}}
+            {{userAllDetails.user_profileInfo.country}}
+          </span>
+        </div>
+        <div class="col-md-6 middle-data-right">
+          <h6>Mailing Address:</h6>
+          <span>
+            {{userAllDetails.user_profileInfo.mailing_address}}
+            {{userAllDetails.user_profileInfo.mailing_city}}
+            {{userAllDetails.user_profileInfo.mailing_state}}
+            {{userAllDetails.user_profileInfo.mailing_zip_code}}
+            {{userAllDetails.user_profileInfo.mailing_country}}
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 middle-data">
+          <h6>Time Zone: <span>{{userAllDetails.user_generalSettingInfo.time_zone}}</span></h6>
+          <h6><span></span></h6>
+        </div>
+        <div class="col-md-6 middle-data-right licenses-hr">
+          <h6>Agent Company Name:</h6>
+          <span>{{userAllDetails.user_companyInfo.company_name}}</span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 middle-data">
+          <h6>EIN #:
+            <span>
+              {{userAllDetails.user_companyInfo.ein}}
+            </span>
+          </h6>
+          <h6>Type: <span>{{userAllDetails.user_companyInfo.company_type}}</span></h6>
+        </div>
+        <div class="col-md-6 middle-data-right licenses-hr">
+          <h6>Agent Company Address:</h6>
+          <span>
+            {{userAllDetails.user_companyInfo.mailing_address}}
+            {{userAllDetails.user_companyInfo.mailing_city}}
+            {{userAllDetails.user_companyInfo.mailing_zip_code}}
+            {{userAllDetails.user_companyInfo.mailing_state}}
+            {{userAllDetails.user_companyInfo.mailing_country}}
+          </span>
+        </div>
+      </div>
+      <hr>
+
+      <div class="content-middle">
+        <span>Biography:</span>
+        <br>
+        <span>
+          {{userAllDetails.user_publicInfo.biography}}
+        </span>
+      </div>
+      <div class="content-middle">
+        <span>Experience:</span>
+        <br>
+        <span>
+          {{userAllDetails.user_publicInfo.language}}
+        </span>
+      </div>
+      <div class="content-middle">
+        <span>Awards, Specialities and Education:</span>
+        <br>
+        <span>
+          {{userAllDetails.user_publicInfo.awards}}
+          <br>
+          {{userAllDetails.user_publicInfo.specialties}}
+          <br>
+          {{userAllDetails.user_publicInfo.experience}}
+        </span>
+      </div>
+      <div class="content-middle" *ngIf = "(group_name == 'HR') || (group_name == 'HR-Recruiter')">
+        <span>Service Areas:</span>
+        <br>
+        <span>
+
+        </span>
+      </div>
+      <div class="content-middle">
+        <span>Public Profile URL:<a href="#">http://premieragentnetwork.com/agent-name</a></span>
+        <br>
+        <span>Network Profile URL:<a href="#">http://crm.premieragentnetwork.com/agent-name</a></span>
+      </div>
+      <div class="content-middle">
+        <span>Website URL: <a href="#">{{userAllDetails.user_profileInfo.website_url_1}}</a></span>
+        <br>
+        <span>Website URL: <a href="#">{{userAllDetails.user_profileInfo.website_url_2}}</a></span>
+        <br>
+        &nbsp;
+      </div>
+      <div class="content-middle">
+        <ul class="social-media-wrapper">
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.facebook_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper"><img class="icon-middle"
+                  src="../../../assets/images/social media/facebook.svg" pTooltip="Facebook"
+                  tooltipPosition="top"></span></li>
+          </a>
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.twitter_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper"><img class="icon-middle"
+                  src="../../../assets/images/social media/twitter.svg" pTooltip="Twitter" tooltipPosition="top"></span>
+            </li>
+          </a>
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.linkedin_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper"><img class="icon-middle"
+                  src="../../../assets/images/social media/linkedin.svg" pTooltip="Linkedin"
+                  tooltipPosition="top"></span></li>
+          </a>
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.youtube_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper"><img class="icon-middle"
+                  src="../../../assets/images/social media/youtube.svg" pTooltip="Youtube" tooltipPosition="top"></span>
+            </li>
+          </a>
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.pinterest_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper"><img class="icon-middle"
+                  src="../../../assets/images/social media/pinterest.svg" pTooltip="Pinterest"
+                  tooltipPosition="top"></span></li>
+          </a>
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.instagram_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper"><img class="icon-middle"
+                  src="../../../assets/images/social media/instagram.svg" pTooltip="Instagram"
+                  tooltipPosition="top"></span></li>
+          </a>
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.google_plus_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper"><img class="icon-middle"
+                  src="../../../assets/images/social media/google-plus.svg" pTooltip="Google Plus"
+                  tooltipPosition="top"></span></li>
+          </a>
+          <a target="_blank" href="{{userAllDetails.user_socialmediaInfo.wordpress_url}}">
+            <li class="social-media"><span class="icon-middle-wrapper">
+                <img class="icon-middle-edit" src="../../../assets/images/edit.svg" pTooltip="Wordpress"
+                  tooltipPosition="top"></span>
+              <!-- <span class="reviews">Reviews(15)</span> -->
+            </li>
+          </a>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-9">
+          <h5>Business Summary</h5>
+        </div>
+        <div class="col-md-3 text-right"><img class="refresh-icon" src="../../../../assets/images/refresh.svg"></div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">ACTIVE LISTINGS</div>
+        <div class="col-md-4 right-data">23</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">OPEN TRANSACTIONS</div>
+        <div class="col-md-4 right-data">87</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">CLOSED TRANSACTIONS</div>
+        <div class="col-md-4 right-data">77</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">OFFERS OUT</div>
+        <div class="col-md-4 right-data">77</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">OFFERS IN</div>
+        <div class="col-md-4 right-data">77</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">REFERRALS OUT</div>
+        <div class="col-md-4 right-data">77</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">REFERRALS IN</div>
+        <div class="col-md-4 right-data">77</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">LEASES OUT</div>
+        <div class="col-md-4 right-data">77</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">LEASED PROPERTY</div>
+        <div class="col-md-4 right-data">77</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">TOTAL REAL ESTATE (PAST 12 MONTHS)</div>
+        <div class="col-md-4 right-data">$5.2M</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">TOTAL NET COMMISSION (PAST 12 MONTHS)</div>
+        <div class="col-md-4 right-data">$75,000</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">TOTAL # OF CONTACTS</div>
+        <div class="col-md-4 right-data">852</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">CONTACT REQUESTS</div>
+        <div class="col-md-4 right-data">852</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">WEBSITE VISITORS (PAST 30 DAYS)</div>
+        <div class="col-md-4 right-data">852</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">ONLINE PUBLIC REVIEWS</div>
+        <div class="col-md-4 right-data">40</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">ONLINE PUBLIC RATING</div>
+        <div class="col-md-4 right-data">4.9 Stars</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">TOTAL # OF BLOGS WRITTEN</div>
+        <div class="col-md-4 right-data">852</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8 content-right">TOTAL # OF QUESTIONS ANSWERED</div>
+        <div class="col-md-4 right-data">852</div>
+      </div>
+    </div>
+  </div>
+</div>

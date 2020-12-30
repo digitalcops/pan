@@ -1,0 +1,51 @@
+.realtor-member {
+  .modifiedMsg {
+    top: 6px !important;
+    left: 13px;
+    line-height: 1.25;
+    font-size: 0.85rem;
+  }
+  .modifiedMultiselect ::ng-deep .c-btn {
+    min-height: 28px !important;
+    border: 1px solid #dedede !important;
+    padding: 0.375rem 0.75rem !important;
+    border-radius: 4px;
+  }
+
+  .modifiedMultiselect ::ng-deep .c-btn .c-angle-up,
+  .modifiedMultiselect ::ng-deep .c-btn .c-angle-down {
+    top: 10px !important;
+  }
+  .modifiedMultiselect ::ng-deep .list-area {
+    padding: 0px !important;
+  }
+  .modifiedMultiselect ::ng-deep .dropdown-list {
+    padding-top: 3px !important;
+    bottom: auto !important;
+    width: 350px !important;
+    margin:0;
+  }
+  .custom-multiselect ::ng-deep.selected-list .c-btn .c-angle-up:after,
+  .custom-multiselect ::ng-deep.selected-list .c-btn .c-angle-down:after {
+    content: "\e902";
+    font-family: "primeicons" !important;
+    font-size: 12px;
+    right: -3px;
+    position: absolute;
+    top: 3px;
+    color: #2079eb;
+  }
+}
+
+.heading{
+  text-align: left;
+  font-size: 20px;
+  color: #404040;
+  padding: 0 0 12px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+}
+.right-side-content{
+  height: calc(100vh - 219px);
+  overflow-y: auto;
+}

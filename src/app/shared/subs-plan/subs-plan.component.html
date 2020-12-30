@@ -1,0 +1,180 @@
+<div class="cal-send-message-call send-ull-message-call undrGrpMulti maximizeScreen call-wrap" style="overflow:visible;"
+  [ngClass]="maximizeScreen ? 'maximize-screen' : '' || minimizeScreen ? 'minimize-screen' : ''">
+  <div class="send-header djc">
+    <h3>
+      {{uuid ? "Edit" : "Create"}}: Subscription Plan
+    </h3>
+    <h6 class="unitText">
+      {{(calenderData && calenderData.assigned_products_count) ? calenderData.assigned_products_count : 0}} Product
+      {{(calenderData && calenderData.assigned_products_count && calenderData.assigned_products_count > 1) ? 's' : ''}}
+      Assigned
+    </h6>
+    <div class="minus">
+      <ul>
+        <li class="mr-0">
+          <img (click)="closeCalendarMethod(false)" src="../../../assets/images/pop-icon/close.svg" alt="Close" />
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="send-body">
+    <form [formGroup]="subscriptionService.plansDataForm">
+      <div class="Listing calendar-list-wrapper">
+        <div class="row user-data" style="padding-top:15px;">
+          <div class="col-sm-12">
+            <div *ngIf="subscriptionService.plansDataForm" class="popRmRow staWrap form-group user-field selected-contact-data">
+                <ion-button [disabled]="activeIndex >= i" (click)="changeStatusSub(item)" 
+                    [ngClass]="{'stHighlight': subscriptionService.plansDataForm.value.status === item.value,
+                    disbBtn: (activeIndex >= i), modStatusBtn: !(activeIndex >= i)}" 
+                  *ngFor="let item of planOptions; let i=index" class="btn-save-status" type="button">
+                  {{item.label}}
+                </ion-button>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group user-field selected-contact-data">
+              <ion-label class="label d-block align-item-center">
+                Name<span class="required">*</span>
+              </ion-label>
+              <div class="add_ico">
+                <ion-input formControlName="name" class="user-input" type="text" autocomplete="off"
+                  placeholder="Enter Plan Name">
+                </ion-input>
+              </div>
+              <ng-container *ngIf="subscriptionService.plansDataForm.controls['name'].invalid &&  (subscriptionService.plansDataForm.controls['name'].dirty 
+                || subscriptionService.plansDataForm.controls['name'].touched)">
+                <p class="vaiidate-field" *ngIf="subscriptionService.plansDataForm.controls['name'].errors.required">
+                  Plan name is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ul style="padding:0 15px" class="tabbing-location tabbing-accordians d-flex">
+          <li [ngClass]="activeCategory==1?'active':''" (click)="changeactiveCategoryFunction(1)"><a>
+              Invoicing</a></li>
+          <li [ngClass]="activeCategory==2?'active':''" (click)="changeactiveCategoryFunction(2)">
+            <a>Terms and Conditions</a>
+          </li>
+          <li [ngClass]="activeCategory==3?'active':''" (click)="changeactiveCategoryFunction(3)">
+            <a>Roles and Plans</a>
+          </li>
+        </ul>
+        <div class="tab-content min-scroll" *ngIf="activeCategory==1">
+          <div class="Listing calendar-list-wrapper">
+            <div class="row">
+              <div class="col-md-12">
+              </div>
+            </div>
+            <div class="row p-0 user-data list-meeting-wrapper attendee-edit-section calendar-change"
+              style="margin:0 0px; border-bottom:1px solid #ccc;">
+              <div class="col-sm-4">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Invoicing Period<span class="required">*</span>
+                  </ion-label>
+                  <div class="add_ico d-flex">
+                    <div class="col-md-6 p-0" style="width:50;margin-right:5px">
+                      <ion-input formControlName="invoicing_period_value" class="user-input" type="number"
+                        autocomplete="off" placeholder="Invoicing Period">
+                      </ion-input>
+                    </div>
+                    <div class="col-md-6 p-0" style="width:50%;margin-left:5px">
+                      <p-dropdown [options]="durationTypeOption" formControlName="invoicing_period_type"
+                        placeholder="Select" [filter]="false"></p-dropdown>
+                    </div>
+                  </div>
+                    <ng-container *ngIf="subscriptionService.plansDataForm.controls['invoicing_period_value'].invalid &&  (subscriptionService.plansDataForm.controls['invoicing_period_value'].dirty 
+                    || subscriptionService.plansDataForm.controls['invoicing_period_value'].touched)">
+                    <p class="vaiidate-field" *ngIf="subscriptionService.plansDataForm.controls['invoicing_period_value'].errors.required">
+                      Invoicing Period Value is required!
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="subscriptionService.plansDataForm.controls['invoicing_period_type'].invalid &&  (subscriptionService.plansDataForm.controls['invoicing_period_type'].dirty 
+                  || subscriptionService.plansDataForm.controls['invoicing_period_type'].touched)">
+                  <p class="vaiidate-field" *ngIf="subscriptionService.plansDataForm.controls['invoicing_period_type'].errors.required">
+                    Invoicing Period Type is required!
+                  </p>
+                </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Duration
+                  </ion-label>
+                  <ion-input formControlName="duration" [readonly]="true" class="user-input" type="text"
+                    autocomplete="off">
+                  </ion-input>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">
+                    Closable by Customer
+                  </ion-label>
+                  <div class="check-box-wrapper">
+                    <p-inputSwitch formControlName="customer_closable"></p-inputSwitch>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Payment Terms<span class="required">*</span>
+                  </ion-label>
+                  <p-dropdown [options]="termsTypeOption" formControlName="payment_terms" placeholder="Select"
+                    [filter]="false"></p-dropdown>
+                    <ng-container *ngIf="subscriptionService.plansDataForm.controls['payment_terms'].invalid &&  (subscriptionService.plansDataForm.controls['payment_terms'].dirty 
+                    || subscriptionService.plansDataForm.controls['payment_terms'].touched)">
+                    <p class="vaiidate-field" *ngIf="subscriptionService.plansDataForm.controls['payment_terms'].errors.required">
+                      Payment Terms is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div style="margin-bottom: 15px;" class="col-sm-4">
+                <div class="user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Code
+                  </ion-label>
+                  <ion-input formControlName="code" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-scroll" *ngIf="activeCategory==2">
+        <div class="Listing calendar-list-wrapper">
+          <div class="row user-data">
+            <div class="form-group message-box mar-btm" style="border-top:none">
+              <div class="editor-section" style="z-index:1">
+                <div id=“TinyMCE” style="margin: 0px 15px;" class="tiny">
+                  <editor formControlName="terms_and_conditions" cloudChannel="5" [disabled]="false" id="notes"
+                    [init]="config" initialValue="" [inline]="false" plugins="" tagName="p" toolbar=""></editor>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="min-scroll" *ngIf="activeCategory==3">
+
+      </div>
+    </form>
+
+  </div>
+  <div class="send-footer">
+    <div class="send-footer-inner">
+      <ul>
+        <li>
+          <button type="button" (click)="sendMessages()" class="btn-email">
+            {{uuid ? "Update" : "Save"}}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="mail-overlay"></div>

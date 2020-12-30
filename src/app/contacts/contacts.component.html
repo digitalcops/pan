@@ -1,0 +1,220 @@
+<div class="page-wrapper contact-page-wrapper contact-icon-drop">
+  <div class="table-wrapper">
+    <app-filter [filter]="'contact'" (removeTransactions)="removeTableData()"
+      (contactBulkOperation)="contactBulkOperation($event)" (selectedFilters)="getFilterData($event)"
+      (showAllContacts)="showAllContacts($event)" [contactStatus]="statusOptions" [groupOption]="groupOption">
+    </app-filter>
+    <div class="more-filter">
+      <div class="row">
+        <div class="col-md-6 pr-0">
+          <div class="more-filter-left">
+            <p><a (click)="Filter();"><img src="../../assets/images/noun_filter.svg" alt="more filter">More Filters
+                +</a></p>
+          </div>
+        </div>
+        <div class="desktop-filter pr-0 col-md-6 text-right d-flex justify-content-end">
+          <div class="dropdown-column position-relative">
+            <a [ngClass]="{'rotate': active == true}" (click)="appService.openColumnsPopUp(true)"
+              class="cols-btn">Columns</a>
+          </div>
+          <ul class="more-filter-right">
+            <li [ngClass]="activeTabbing==1?'active':''" (click)="tabbingFunction(1)">
+              <img src="../../assets/images/table_chart.svg" class="default-image" alt="table-chart" />
+              <img src="../../assets/images/table_chart_white.svg" class="active-image" alt="table-chart" />
+            </li>
+            <li [ngClass]="activeTabbing==2?'active':''" (click)="tabbingFunction(2)">
+              <img src="../../assets/images/line_view.svg" class="default-image" alt="table-chart" />
+              <img src="../../assets/images/line_view_white.svg" class="active-image" alt="table-chart" />
+            </li>
+            <li [ngClass]="activeTabbing==3?'active':''" (click)="tabbingFunction(3)">
+              <img src="../../assets/images/map_view.svg" class="default-image" alt="map_view">
+              <img src="../../assets/images/map_view_white.svg" class="active-image" alt="map_view">
+            </li>
+          </ul>
+        </div>
+        <div class="mobile-filter pl-0 col-md-6 text-right d-flex justify-content-end">
+          <span style="font-size:14px;color:#404040;margin-right:12px">Sorted By</span>
+          <span class="position-relative filter-name" style="font-size:14px;font-weight:700;color:#404040;">First
+            name</span>
+        </div>
+      </div>
+    </div>
+    <div class="desktop-contact-table" *ngIf="activeTabbing==1">
+      <p-table [resizableColumns]="true" columnResizeMode="expand" [columns]="contactCols" scrollWidth="100%"
+        scrollHeight="100%" [paginator]="true" (onLazyLoad)="loadContacts($event)" [rows]="rows"
+        [rowsPerPageOptions]="[10,25,50, 100]" [lazy]="true" [resetPageOnSort]="false" [totalRecords]="total"
+        [value]="contactdata" [scrollable]="true" styleClass="contact-table custom-dataTable table-striped">
+        <ng-template pTemplate="colgroup" let-columns>
+          <colgroup>
+            <col *ngFor="let col of columns">
+          </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" class="main-header-col" [pSortableColumn]="col.field">
+              <ng-container *ngIf="col.field === 'contact_status'">
+                <p-checkbox styleClass="custom-checkbox" name="selectContacts" id="selectAllChkBx" binary="true"
+                  [ngModel]="selectAllCheckbox" (ngModelChange)="isCheckEnable($event)">
+                </p-checkbox>
+              </ng-container>
+              {{col.header}}
+              <p-sortIcon *ngIf="col.field !== 'details'" class="sort-filter-icon" [field]="col.field"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex" let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              <ng-container *ngIf="col.field !== 'contact_status' && col.field !== 'name' 
+                        && col.field !== 'created_on' && col.field !== 'details' && col.field !== 'actions' && col.field !== 'action'
+                        && col.field !== 'activity' && col.field !== 'group'  && col.field !== 'assigned_to'
+                        && col.field !== 'note'">{{rowData[col.field]}}
+              </ng-container>
+              <ng-container *ngIf="col.field === 'contact_status'">
+                <div class="d-flex align-items-center t-body-wrap">
+                  <span>
+                    <p-checkbox styleClass="custom-checkbox" name="selectContact" binary="true"
+                      [ngModel]="checkboxArr[i-rows*page + rows]" (onChange)="recipientsData($event, rowData,i)">
+                    </p-checkbox>
+                  </span>
+                  <span class="custom-drop-menu">
+                    <p-dropdown class="select-dropdown" [options]="statusOptions" placeholder="Status"
+                      [(ngModel)]="rowData.is_active"
+                      appendTo="body">
+                    </p-dropdown>
+                  </span>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="col.field === 'name'">
+                <span class="d-flex">
+                  <img alt="" 
+                    *ngIf="rowData.image" class="md-avatar rounded-circle" [src]="rowData.image" />
+                  <img *ngIf="!rowData.image"
+                    class="md-avatar rounded-circle" src="../../assets/images/avatar.svg" alt="Avatar" />
+                  <div class="name_text">
+                    <a>
+                      {{rowData.full_name || ""}}
+                    </a>
+                    <span>{{rowData.phone}}</span>
+                    <span class="email-text">
+                      <span data-toggle="tooltip" class="email-id" data-placement="top"
+                        title="{{rowData.email}}">{{rowData.email}}</span>
+                    </span>
+                  </div>
+                </span>
+              </ng-container>
+              <ng-container *ngIf="col.field === 'details'">
+                <div class="name_text name_texs">
+                  <span class="address-wrapper white-space-warp">
+                    Invoice Count: {{rowData.invoice_count}}
+                  </span>
+                  <span *ngIf="rowData.mobile">Mobile: {{rowData.mobile}}</span>
+                  <span *ngIf="rowData.website_link">Website: {{rowData.website_link}}</span>
+                  <span *ngIf="rowData.internal_notes">Notes: {{rowData.internal_notes}}</span>
+                  </div>
+              </ng-container>
+              <ng-container *ngIf="col.field === 'actions'">
+                <span *ngIf="rowData.sales_person">
+                  {{rowData.sales_person.name}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="col.field === 'activity'">
+                  <span *ngIf="rowData.sales_team">
+                    {{rowData.sales_team.name}}
+                  </span>
+              </ng-container>
+              <ng-container *ngIf="col.field === 'group'">
+                <span class="d-flex group">
+                 
+                </span>
+              </ng-container>
+              <ng-container *ngIf="col.field === 'created_on'">
+                <div class="name_text d-block w-100">
+                  <span *ngIf="rowData.created_at"
+                    class="name-create-warp date-wrapper-section w-100 d-block own-date-width">{{rowData.created_at.date}}</span>
+                    <span *ngIf="rowData.created_at"
+                    class="name-create-warp date-wrapper-section w-100 d-block own-date-width">{{rowData.created_at.time | uppercase}}</span>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="col.field === 'note'">
+                <span>{{rowData.contact_type | titlecase}}</span>
+              </ng-container>
+            </td>
+            <td>
+              <div class="edit-wrapper" id="edit-contcat-wrap">
+                <span class="edit-tooltip" pTooltip="Edit" tooltipPosition="top">
+                  <img (click)="onEditContactData(rowData)" class="edit-icons" src="../../assets/images/edit.svg"
+                    alt="">
+                </span>
+                <span class="position-relative" (click)="clickedInside($event)">
+                  <span class="more-tooltip" pTooltip="More" tooltipPosition="top">
+                    <img (click)="showMoreNotificationPop(i-rows*page + rows)" src="../../assets/images/more.svg"
+                      class="more-icon" alt="more icon" />
+                  </span>
+                  <span *ngIf="showMoreNotification[i-rows*page + rows]"
+                    class="show-more-notification more-filtering-options">
+                    <ul class="delete-playbook-wrapper mb-0">
+                      <li>
+                        <img alt="" src="../../assets/images/edit.svg">
+                        <span>Edit Contact</span>
+                      </li>
+                      <li>
+                        <img alt="" src="../../../assets/images/Activity.svg" class="light-opc-icon">
+                        <span>Add Activity</span>
+                      </li>
+                      <li (click)="openAddPopUp()">
+                        <img alt="" src="../../../.../../assets/images/more/Task.svg">
+                        <span>Add Task</span>
+                      </li>
+                      <li>
+                        <img alt="" src="../../../assets/images/Campaign.svg" class="light-opc-icon">
+                        <span>Add Drip Compaign</span>
+                      </li>
+                      <li>
+                        <img alt="" src="../../../assets/images/List.svg" class="light-opc-icon">
+                        <span>Add to List</span>
+                      </li>
+                      <li (click)="sendMailPopUp()">
+                        <img alt="" src="../../../assets/images/Mail-big.svg">
+                        <span>Send Direct Mail</span>
+                      </li>
+                      <li>
+                        <img alt="" class="delete-icon" src="../../assets/images/print.svg">
+                        <span>Manage DotLoops</span>
+                      </li>
+                      <li>
+                        <img src="../../../assets/images/Interaction-bar/group.svg" alt="task">
+                        <span>Refreh Contact</span>
+                      </li>
+                      <li>
+                        <img src="../../../assets/images/Interaction-bar/merge.svg" alt="task">
+                        <span>Merge Contact</span>
+                      </li>
+                      <li (click)="deleteContactStatus(rowData.id, i)">
+                        <img src="../../../assets/images/select-icons/Delete.svg" alt="Delete" class="more-light">
+                        <span>Delete Contact</span>
+                      </li>
+                    </ul>
+                  </span>
+                </span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr class="no-data">
+            <td [attr.colspan]="columns.length">
+              <ng-container>
+                <span>No customer found</span>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p class="paginate_data">
+        Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of {{total}} </p>
+    </div>
+  </div>
+</div>
+<app-contact-profile (contactBulkOperation)="contactBulkOperation($event)"></app-contact-profile>

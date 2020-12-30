@@ -1,0 +1,194 @@
+<div class="view-page-wrapper view-checklist-wrapper ">
+  <div class="view-template-wrapper checklist-wrapper">
+    <div class="menu-link">
+      <div class="row">
+        <div class="col-md-10 d-flex align-items-center">
+          <ul>
+            <li [routerLink]="['/customer/all-customers']" class="default">All Customers</li>
+            <li class="active"> {{(saleOrderId === 0) ? 'Add' : 'Edit'}} Customer
+            </li>
+          </ul>
+        </div>
+        <div class="head-btn-wrap col-md-2 save_right_move">
+          <ion-button [routerLink]="['/customer/all-customers']" class="btn-cancel btn-cancel-head" type="button">
+            Cancel
+          </ion-button>
+          <ion-button (click)="addUpdateChecklist()" class="btn-save btn-save-head" type="button">
+            {{(saleOrderId === 0) ? 'Save' : 'Update'}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="Office-listing">
+        <form *ngIf="customerService.customerDataForm" [formGroup]="customerService.customerDataForm">
+          <div class="Listing">
+            <div class="row user-data">
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">First Name<span class="required">*</span></ion-label>
+                  <ion-input formControlName="first_name" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                  <ng-container *ngIf="customerService.customerDataForm.controls['first_name'].invalid &&  (customerService.customerDataForm.controls['first_name'].dirty
+                     || customerService.customerDataForm.controls['first_name'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="customerService.customerDataForm.controls['first_name'].errors.required">
+                      First Name is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Middle Name</ion-label>
+                  <ion-input formControlName="middle_name" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Last Name<span class="required">*</span></ion-label>
+                  <ion-input formControlName="last_name" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                  <ng-container *ngIf="customerService.customerDataForm.controls['last_name'].invalid &&  (customerService.customerDataForm.controls['last_name'].dirty
+                  || customerService.customerDataForm.controls['last_name'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="customerService.customerDataForm.controls['last_name'].errors.required">
+                      Last Name is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Email</ion-label>
+                  <ion-input formControlName="email" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Primary Mobile</ion-label>
+                  <div class="row col-12 email-section">
+                    <div class="email-field dropdown-top own-email-ngx contact-phone customCountry customCountrySec">
+                      <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                        [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                        [selectFirstCountry]="false" [selectedCountryISO]="countryISO.UnitedStates"
+                        [phoneValidation]="true" [separateDialCode]="true" name="phone" formControlName="phone"
+                        autocomplete="nope" required>
+                      </ngx-intl-tel-input>
+                      <ng-container *ngIf="customerService.showCustomerFormError 
+                        && customerService.customerDataForm.controls['phone'].errors">
+                        <p class="vaiidate-field">
+                          Please enter a valid number!</p>
+                      </ng-container>
+                    </div>
+                    <!-- <div class="col-4 email-field dropdown-field">
+                            <p-dropdown name="phone_label" [options]="phoneOption" formControlName="phone_label"
+                              [(ngModel)]="userDetails.phone_label" placeholder="Select"></p-dropdown>
+                          </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Secondary Mobile</ion-label>
+                  <div class="row col-12 email-section">
+                    <div class="email-field dropdown-top own-email-ngx contact-phone customCountry customCountrySec">
+                      <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                        [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                        [selectFirstCountry]="false" [selectedCountryISO]="countryISO.UnitedStates"
+                        [phoneValidation]="true" [separateDialCode]="true" name="mobile" formControlName="mobile"
+                        autocomplete="nope">
+                      </ngx-intl-tel-input>
+                      <ng-container *ngIf="customerService.showCustomerFormError && 
+                      customerService.customerDataForm.controls['mobile'].errors">
+                        <p class="vaiidate-field">
+                          Please enter a valid number!</p>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Contact Type<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [options]="isActiveList" formControlName="contact_type" placeholder="Select"
+                      appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="customerService.customerDataForm.controls['contact_type'].invalid &&  (customerService.customerDataForm.controls['contact_type'].dirty
+                  || customerService.customerDataForm.controls['contact_type'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="customerService.customerDataForm.controls['contact_type'].errors.required">
+                      Contact Type is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Sales Person<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [filter]="true" [options]="salesPersonList" formControlName="sales_person"
+                      placeholder="Select" appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="customerService.customerDataForm.controls['sales_person'].invalid &&  (customerService.customerDataForm.controls['sales_person'].dirty
+                  || customerService.customerDataForm.controls['sales_person'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="customerService.customerDataForm.controls['sales_person'].errors.required">
+                      Sales Person is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Sales Team<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [filter]="true" [options]="customerList" formControlName="sales_team"
+                      placeholder="Select" appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="customerService.customerDataForm.controls['sales_team'].invalid &&  (customerService.customerDataForm.controls['sales_team'].dirty
+                  || customerService.customerDataForm.controls['sales_team'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="customerService.customerDataForm.controls['sales_team'].errors.required">
+                      Sales Team is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Website Link</ion-label>
+                  <ion-input formControlName="website_link" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                </div>
+              </div>
+              <div class="col-sm-4">&nbsp;</div>
+              <div class="col-sm-8">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Internal Notes</ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <textarea formControlName="internal_notes" style="width: 100%;border: 1px solid #dedede;"
+                      maxlength="1500" [rows]="2" [cols]="34" autoResize="autoResize">
+                  </textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">&nbsp;</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,54 @@
+<div class="page-wrapper">
+  <div class="tabbing alert-wrapper">
+    <div class="row">
+      <div class="col-md-9">
+        <ul class="alert-inner">
+          <li routerLink="user" routerLinkActive="active">Overview</li>
+          <li routerLink="accounts" routerLinkActive="active">Accounts</li>
+        </ul>
+      </div>
+      <div class="col-md-3 text-right">
+        <ul class="interaction-bar-inner-right">
+          <li>
+            <div class="box">
+              <img src="../../../assets/images/print.svg" class="default print">
+              <img src="../../../assets/images/print-white.svg" class="white">
+            </div>
+          </li>
+          <li>
+            <div class="box download-box">
+              <img src="assets/images/download.svg" class="default">
+              <img src="../../../assets/images/download-white.svg" class="white">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="container-fluid">
+    <div class="menu-link">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <ul>
+            <li class="default">
+              Dashboard
+            </li>
+            <li class="active">
+              My Profile
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 text-right">
+          <button class="btn-head-cancel" type="button" (click)="cancelButtonClicked()"
+            [hidden]="buttonHidden">Cancel</button>
+          <button class="btn-head-save" (click)="saveButtonClicked()" [hidden]="buttonHidden">Save</button>
+        </div>
+      </div>
+    </div>
+    <div class="content-wrapper overview-content" style=" height: calc(100vh - 200px); overflow-y: scroll;
+    overflow-x: hidden;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

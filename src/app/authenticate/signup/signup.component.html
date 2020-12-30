@@ -1,0 +1,99 @@
+<form #signUpForm="ngForm" (ngSubmit)="signUpUser(signUpModel)" class="animated flipInX">
+  <div class="login">
+    <div class="login-header">
+      <img src="../../../assets/images/logo.png" alt="logo">
+      <h4>Sign Up </h4>
+      <p class="enter-your-detail">Enter your details to create your account:</p>
+    </div>
+    <div class="vaildation-area">
+      <ion-item>
+        <ion-label class="label" position="floating">First Name*</ion-label>
+        <ion-input type="text" required #first_name="ngModel" name="first_name" [(ngModel)]="signUpModel.first_name"></ion-input>
+      </ion-item>
+      <div class="vaiidate-field" *ngIf="first_name.errors && ( first_name.touched || signUpForm.submitted)">
+        <p [hidden]="!first_name.errors.required">First Name is required</p>
+      </div>
+    </div>
+    <div class="vaildation-area">
+      <ion-item>
+        <ion-label class="label" position="floating">Middle Name</ion-label>
+        <ion-input type="text" #middle_name="ngModel" name="middle_name" [(ngModel)]="signUpModel.middle_name"></ion-input>
+      </ion-item>
+    </div>
+    <div class="vaildation-area">
+      <ion-item>
+        <ion-label class="label" position="floating">Last Name*</ion-label>
+        <ion-input type="text" required #last_name="ngModel" name="last_name" [(ngModel)]="signUpModel.last_name"></ion-input>
+      </ion-item>
+      <div class="vaiidate-field" *ngIf="last_name.errors && ( last_name.touched || signUpForm.submitted)">
+        <p [hidden]="!last_name.errors.required">Last Name is required</p>
+      </div>
+    </div>
+    <div class="vaildation-area">
+      <ion-item>
+        <ion-label class="label" position="floating">Email*</ion-label>
+        <ion-input type="email" required #email="ngModel" name="email" [(ngModel)]="signUpModel.email"
+          pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+        </ion-input>
+      </ion-item>
+      <div class="vaiidate-field" *ngIf="email.errors && ( email.touched || signUpForm.submitted)">
+        <p [hidden]="!email.errors.required">Email is required</p>
+        <p [hidden]="!email.errors.pattern">Please enter a valid email</p>
+      </div>
+    </div>
+    <div class="vaildation-area">
+      <ion-item>
+        <ion-label class="label" position="floating">Password*</ion-label>
+        <ion-input type="password" required #password="ngModel" name="password" [(ngModel)]="signUpModel.password"
+          pattern="(?=^.{6,12}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$">
+        </ion-input>
+      </ion-item>
+      <div class="vaiidate-field" *ngIf="password.errors && ( password.touched || signUpForm.submitted)">
+        <p [hidden]="!password.errors.required">Password is required</p>
+        <p [hidden]="!password.errors.pattern">Password should have atleast 1 small-case letter,
+          1 Capital letter, 1 digit, 1 special character and the
+          length should be between 6-12 characters.</p>
+      </div>
+    </div>
+    <div class="vaildation-area">
+      <ion-item class="confirm-password">
+        <ion-label class="label" position="floating">Confirm Password*</ion-label>
+        <ion-input type="password" #confirmPassword="ngModel" name="confirmPassword"
+          [(ngModel)]="signUpModel.confirmPassword" required></ion-input>
+      </ion-item>
+      <div class="vaiidate-field" *ngIf="!password.errors && signUpModel.password !== signUpModel.confirmPassword">
+        <p>Password must match</p>
+      </div>
+    </div>
+    <ion-item class="last-border-remove">
+      <ion-label class="agree-terms">I Agree to the <strong>Terms and Conditions & Privacy Policy</strong> </ion-label>
+      <ion-checkbox id="agree_terms_condition" slot="start" required #terms="ngModel" name="terms" [(ngModel)]="signUpModel.terms"></ion-checkbox>
+    </ion-item>
+    <div class="center-dat">
+      <div class="capthcha">
+        <p-captcha #recaptcha siteKey="{{env.captcha}}" (onResponse)="onCaptchaSuccess($event)"
+          (onExpire)="onCaptchaExpire()"></p-captcha>
+      </div>
+    </div>
+    <div class="btn-wrapper">
+      <ion-button class="btn-default" [routerLink]="['/login']">Cancel</ion-button>
+      <ion-button class="btn-main" type="submit"
+        [disabled]="!signUpForm.valid || (signUpModel.password !== signUpModel.confirmPassword) || !signUpModel.terms || (env.production && !captchaEnabled)">
+        Sign
+        Up</ion-button>
+    </div>
+    <p class="already-have">Already have an account? <a class="sign-in-btn" [routerLink]="['/login']">Sign In!</a></p>
+  </div>
+</form>
+
+<p-dialog class="thank-popup" header="Thank you for Signing Up" position="top" [draggable]="false"
+  [(visible)]="signUpSuccess" *ngIf="signUpSuccess">
+  <div class="content">
+    <h5>Verify your email address</h5>
+    <p>Please click on the link that has been sent to your email account to verify
+      your email and complete the registration process.</p>
+  </div>
+  <p-footer>
+    <ion-button class="btn-main" (click)="signUpSuccess = false" [routerLink]="['/login']">Ok</ion-button>
+  </p-footer>
+</p-dialog>

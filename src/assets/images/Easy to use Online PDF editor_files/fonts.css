@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo:400,700|Droid+Serif:400,700|EB+Garamond:400,700|Lato:400,700|Noto+Sans:400,700|Open+Sans:400,700|Open+Sans+Condensed:300,700|Oranienbaum|PT+Sans:400,700|PT+Sans+Caption|PT+Sans+Narrow|PT+Serif:400,700|PT+Serif+Caption|Roboto:400,700');
+
+@font-face {
+    font-family: Carlito;
+    src: url("/fonts/carlito/carlito-regular-webfont.woff2") format("woff2"), url("/fonts/carlito/carlito-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Carlito;
+    src: url("/fonts/carlito/carlito-bold-webfont.woff2") format("woff2"), url("/fonts/carlito/carlito-bold-webfont.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Liberation Sans";
+    src: url("/fonts/liberation-sans/liberationsans-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Liberation Sans";
+    src: url("/fonts/liberation-sans/liberationsans-bold-webfont.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "DejaVu Sans";
+    src: url("/fonts/dejavusans-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    src: url("/fonts/dejavusans-bold-webfont.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+}

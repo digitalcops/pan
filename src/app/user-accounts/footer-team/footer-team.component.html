@@ -1,0 +1,159 @@
+<div class="page-wrapper comment-section contact-page-wrapper">
+  <div class="table-wrapper">
+    <app-filter [filter]="'team-main'"></app-filter>
+    <div class="row" style="padding: 7px 17px 0 1px;margin: 0px 0 7px 0px;">
+    <ul class="top-menu col-md-6">
+      <li class="more-filter-left">
+        <a (click)="filterTeam();"><img src="../../assets/images/noun_filter.svg" alt="more filter">More Filters +</a>
+      </li>
+    </ul>
+    <ul class="more-filter-right col-md-6 d-flex justify-content-end">
+      <li>
+        <img src="../../assets/images/table_chart.svg" class="default-image" alt="table-chart" />
+        <img src="../../assets/images/table_chart_white.svg" class="active-image" alt="table-chart" />
+      </li>
+      <li>
+        <img src="../../assets/images/line_view.svg" class="default-image" alt="table-chart" />
+        <img src="../../assets/images/line_view_white.svg"  class="active-image" alt="table-chart" />
+      </li>
+      <li>
+        <img src="../../assets/images/map_view.svg" class="default-image" alt="map_view">
+        <img src="../../assets/images/map_view_white.svg"  class="active-image" alt="map_view">
+
+      </li>
+    </ul>
+  </div>
+    <div class="main-content footer-team-content main-setting d-flex flex-wrap justify-content-between">
+      <div class="view-table-wrapper">
+        <div class="alpha-wrapper">
+          <div class="alpha-filter">
+          <h2 *ngFor="let alp of alpha">{{alp}}</h2>
+        </div>
+          </div>       
+        <div class="peoples-wrapper">
+            <div  class="profile-items">
+                <div class="profile-image-wrapper">
+                    <figure  class="figure-image">
+                    <img  src="../../../assets/images/jeffuser.png"  alt="jeff">
+                </figure>
+                <span class="website-wrapper"><a>Website</a> | <a>Profile</a></span>
+            </div>
+                <div  class="agent-info">
+                    <h1 class="profile-name">Rahul Bora</h1>
+                    <h2>REALTOR</h2>
+                    <span  class="number-agent">Huntington Beach ,CA 92566</span>
+                    <span  class="number-agent"> English , French</span>
+                    <span  class="number-agent">Mobile:(904) 302-6215</span>
+                    <span  class="number-agent">Office:(904) 302-6215</span>
+                    <span  class="number-agent">Fax:(904) 302-6215</span>
+                    <span  class="number-agent">jeff_cullen@pennetwork.com</span>
+                    <span  class="number-agent">License # 017232</span>
+                </div>
+            </div>
+            <div  class="profile-items">
+                <div class="profile-image-wrapper">
+                    <figure  class="figure-image">
+                    <img  src="../../../assets/images/jeffuser.png"  alt="jeff">
+                </figure>
+                <span class="website-wrapper"><a>Website</a> | <a>Profile</a></span>
+            </div>
+                <div  class="agent-info">
+                    <h1 class="profile-name">Twinkle</h1>
+                    <h2>REALTOR</h2>
+                    <span  class="number-agent">Huntington Beach ,CA 92566</span>
+                    <span  class="number-agent"> English , French</span>
+                    <span  class="number-agent">Mobile:(904) 302-6215</span>
+                    <span  class="number-agent">Office:(904) 302-6215</span>
+                    <span  class="number-agent">Fax:(904) 302-6215</span>
+                    <span  class="number-agent">jeff_cullen@pennetwork.com</span>
+                    <span  class="number-agent">License # 017232</span>
+                </div>
+            </div>
+            <div  class="profile-items">
+                <div class="profile-image-wrapper">
+                    <figure  class="figure-image">
+                    <img  src="../../../assets/images/jeffuser.png"  alt="jeff">
+                </figure>
+                <span class="website-wrapper"><a>Website</a> | <a>Profile</a></span>
+            </div>
+                <div  class="agent-info">
+                    <h1 class="profile-name">Himanshu Bhatia</h1>
+                    <h2>REALTOR</h2>
+                    <span  class="number-agent">Huntington Beach ,CA 92566</span>
+                    <span  class="number-agent"> English , French</span>
+                    <span  class="number-agent">Mobile:(904) 302-6215</span>
+                    <span  class="number-agent">Office:(904) 302-6215</span>
+                    <span  class="number-agent">Fax:(904) 302-6215</span>
+                    <span  class="number-agent">jeff_cullen@pennetwork.com</span>
+                    <span  class="number-agent">License # 017232</span>
+                </div>
+            </div>
+            <div  class="profile-items">
+                <div class="profile-image-wrapper">
+                    <figure  class="figure-image">
+                    <img  src="../../../assets/images/jeffuser.png" alt="jeff">
+                </figure>
+                <span class="website-wrapper"><a>Website</a> | <a>Profile</a></span>
+            </div>
+                <div  class="agent-info">
+                    <h1 class="profile-name">Rahul Bora</h1>
+                    <h2>REALTOR</h2>
+                    <span  class="number-agent">Huntington Beach ,CA 92566</span>
+                    <span  class="number-agent"> English , French</span>
+                    <span  class="number-agent">Mobile:(904) 302-6215</span>
+                    <span  class="number-agent">Office:(904) 302-6215</span>
+                    <span  class="number-agent">Fax:(904) 302-6215</span>
+                    <span  class="number-agent">jeff_cullen@pennetwork.com</span>
+                    <span  class="number-agent">License # 017232</span>
+                </div>
+            </div>
+            <div  class="profile-items">
+              <div class="profile-image-wrapper">
+                  <figure  class="figure-image">
+                  <img  src="../../../assets/images/jeffuser.png" alt="jeff-user">
+              </figure>
+              <span class="website-wrapper"><a>Website</a> | <a>Profile</a></span>
+          </div>
+              <div  class="agent-info">
+                  <h1 class="profile-name">Shikha Bisht</h1>
+                  <h2>REALTOR</h2>
+                  <span  class="number-agent">Huntington Beach ,CA 92566</span>
+                  <span  class="number-agent"> English , French</span>
+                  <span  class="number-agent">Mobile:(904) 302-6215</span>
+                  <span  class="number-agent">Office:(904) 302-6215</span>
+                  <span  class="number-agent">Fax:(904) 302-6215</span>
+                  <span  class="number-agent">jeff_cullen@pennetwork.com</span>
+                  <span  class="number-agent">License # 017232</span>
+              </div>
+          </div>
+          <div  class="profile-items">
+              <div class="profile-image-wrapper">
+                  <figure  class="figure-image">
+                  <img  src="../../../assets/images/jeffuser.png"  alt="jeff">
+              </figure>
+              <span class="website-wrapper"><a>Website</a> | <a>Profile</a></span>
+          </div>
+              <div  class="agent-info">
+                  <h1 class="profile-name">Rahul Bora</h1>
+                  <h2>REALTOR</h2>
+                  <span  class="number-agent">Huntington Beach ,CA 92566</span>
+                  <span  class="number-agent"> English , French</span>
+                  <span  class="number-agent">Mobile:(904) 302-6215</span>
+                  <span  class="number-agent">Office:(904) 302-6215</span>
+                  <span  class="number-agent">Fax:(904) 302-6215</span>
+                  <span  class="number-agent">jeff_cullen@pennetwork.com</span>
+                  <span  class="number-agent">License # 017232</span>
+              </div>
+          </div>
+        </div>
+        <p-table class="abc" [resizableColumns]="true" columnResizeMode="expand"  [rows]="rows" [rowsPerPageOptions]="[10,25,50,100]"
+        [lazy]="true" [totalRecords]="total"        
+        [paginator]="true"></p-table>
+        <p class="paginate_data">
+                    Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of {{total}} </p>
+      
+    </div>
+    </div>
+  </div>
+</div>
+<app-filter-team-sidebar></app-filter-team-sidebar>

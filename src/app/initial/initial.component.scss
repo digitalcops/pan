@@ -1,0 +1,9 @@
+.app-content {
+    width: 100%;
+    transition: all ease 0.5s;
+    padding-left: 58px;
+}
+
+.full-view .app-content {
+    padding-left: 215px;
+}

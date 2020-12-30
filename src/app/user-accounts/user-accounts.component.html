@@ -1,0 +1,150 @@
+<div class="page-wrapper user-accounts">
+  <div class="table-wrapper">
+    <app-filter [filter]="'user'" (userBulkOperation)="userBulkOperation($event)" (selectedFilters)="getFilterData($event)"></app-filter>
+    <p-table 
+    [columns]="userCols"
+    [resizableColumns]="true"
+    [value]="usersData"
+    columnResizeMode="expand"
+    [paginator]="true"
+    (onLazyLoad)="loadUsers($event)" 
+    [rows]="rows"
+    scrollWidth="100%"
+    [rowsPerPageOptions]="[10,25,50, 100]"
+    [lazy]="true"
+    [totalRecords]="total"
+    [resetPageOnSort]="false"
+    [scrollable]="true"
+      styleClass="user-account-modify custom-dataTable table-striped">
+      <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+          <col *ngFor="let col of columns">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            <ng-container *ngIf="col.field === 'emp_status'">
+              <p-checkbox styleClass="custom-checkbox" binary="true" [(ngModel)]="selectAll" (onChange)="updateAll($event)"></p-checkbox>
+            </ng-container>
+              {{col.header}}
+              <p-sortIcon class="sort-filter-icon" [field]="col.field"></p-sortIcon>
+            
+          </th>
+          <th>
+            <ng-container>
+            </ng-container>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body"  let-i="rowIndex" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            <ng-container *ngIf="col.field === 'user_gen_id'">
+              {{rowData.user_gen_id}}
+            </ng-container>
+            <ng-container *ngIf="col.field === 'emp_status'">
+              <span class="d-flex align-items-center t-body-wrap">
+                <p-checkbox styleClass="custom-checkbox" binary="true" [ngModel]="checkboxArr[i-rows*page + rows]" (onChange)="recipientsData($event, rowData,i)"></p-checkbox>
+               
+                <ng-container>
+                  {{rowData.account_status | titlecase}}
+                </ng-container>
+              </span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'name'">
+             <span class="d-flex">
+              <span [queryParams]="{userId:rowData.user_id}" [routerLink]="['../emp-detail']" class="user-initial-emp cursorP"
+                      *ngIf="!(rowData.photo && rowData.photo.image_url)">
+                      {{rowData.first_name[0].toUpperCase()}}
+                      {{rowData.last_name[0].toUpperCase()}}
+                </span>
+                <img [queryParams]="{userId:rowData.user_id}" *ngIf="(rowData.photo && rowData.photo.image_url)" class="md-avatar rounded-circle " 
+                [routerLink]="['../../emp-detail']" src="{{rowData.photo.image_url}}">
+              <div class="name_text">
+                <div (click)="updateRowData(rowData, i); appService.updateSidebarState(true)">
+                  {{rowData.first_name}} {{rowData.middle_name ? rowData.middle_name : ''}} {{rowData.last_name}}</div>
+                <span>{{rowData.email}}</span>
+                </div>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'created_at'">
+              <span class="name_texts">
+                {{rowData.created_at | date: 'MM/dd/yyyy hh:mm a'}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'last_login'">
+              <span class="name_texts">
+                {{rowData.updated_at | date: 'MM/dd/yyyy hh:mm a'}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'group_name'">
+              {{rowData.is_staff ? "Yes" : "No"}}
+            </ng-container>
+          </td>
+          <td >          
+            <div class="edit-wrapper" >
+              <span class="edit-tooltip" pTooltip="Edit" tooltipPosition="top">
+                <img  class="edit-icons" src="../../assets/images/edit.svg" alt="">
+              </span>
+              <span class="position-relative" (click)="clickedInside($event)">
+                <span class="more-tooltip" pTooltip="More" tooltipPosition="top">
+                  <img (click)="showMoreNotificationPop(i-rows*page + rows)" src="../../assets/images/more.svg"
+                    class="more-icon" alt="more icon" />
+                </span>
+
+                <span *ngIf="showMoreNotification[i-rows*page + rows]" class="show-more-notification more-filtering-options">
+                  <ul class="delete-playbook-wrapper mb-0">
+                    <li>
+                      <img alt="" src="../../../assets/images/Activity.svg" class="light-opc-icon">
+                      <span>Add Activity</span>
+                    </li>
+
+                    <li (click)="openAddPopUp()">
+                      <img alt="" src="../../../.../../assets/images/more/Task.svg">
+                      <span>Add Task</span>
+                    </li>
+                    <li>
+                      <img alt="" src="../../../assets/images/Campaign.svg" class="light-opc-icon">
+                      <span>Add Drip Compaign</span>
+                    </li>
+                    <li>
+                      <img alt="" src="../../../assets/images/List.svg" class="light-opc-icon">
+                      <span>Add to List</span>
+                    </li>
+
+                    <li (click)="sendMailPopUp()">
+                      <img  alt="" src="../../../assets/images/Mail-big.svg">
+                      <span>Send Direct Mail</span>
+                    </li>
+                    <li>
+                      <img alt="" class="delete-icon" src="../../assets/images/print.svg">
+                      <span>Manage DotLoops</span>
+                    </li>
+                    <li>
+                      <img src="../../../assets/images/Interaction-bar/group.svg" alt="task">
+                      <span>Refreh User</span>
+                    </li>
+                    <li >
+                      <img src="../../../assets/images/select-icons/Delete.svg" alt="Delete" class="more-light">
+                      <span>Delete User</span>
+                    </li>
+                  </ul>
+                </span>
+              </span>
+            </div>
+        </td> 
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns styleClass="pagination">
+        <tr class="no-data">
+          <td [attr.colspan]="columns.length">
+            <span>No users found</span>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <p class="paginate_data">
+      Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of {{total}} </p> </div> </div>
+      

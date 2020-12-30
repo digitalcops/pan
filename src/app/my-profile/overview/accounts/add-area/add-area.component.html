@@ -1,0 +1,106 @@
+<p-dialog position="top" [draggable]="false" [visible]="true" class="add-service custom-popup common-popup-css"
+  [modal]="true">
+  <p-header>Add Service Area
+    <span class="close-pop" (click)="modalState.emit(false)"> <img src="../../../../assets/images/close.svg"
+        alt="close" /></span>
+  </p-header>
+  <form [formGroup]="serviceAreaInfoEditForm" style="padding-left:10px;" (ngSubmit)="updateServiceAreaInfo()" #myForm="ngForm">
+    <div class="content">
+      <div class="p-modal-content form-element">
+        <div class="vaildation-area p-dropdown-top selected-contact-data">
+          <ion-label class="label content-head" position="floating">Country*</ion-label>
+          <p-dropdown name="country_code" formControlName="country_code" placeholder="Select" [options]="countriesData"
+            filter="true" (onChange)="getStates($event)">
+          </p-dropdown>
+        </div>
+        <div class="vaildation-area p-dropdown-top selected-contact-data">
+          <ion-label class="label content-head" position="floating">State*</ion-label>
+          <p-dropdown name="state" formControlName="state" placeholder="Select" [options]="statesList" filter="true">
+          </p-dropdown>
+        </div>
+        <!-- <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label content-head" position="floating">County</ion-label>
+            <ion-input type="text" class="content-body" name="county" formControlName="county" required>
+            </ion-input>
+          </ion-item>
+        </div> -->
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label content-head" position="floating">County*</ion-label>
+            <ion-input type="text" class="content-body" name="county" formControlName="county" required>
+            </ion-input>
+          </ion-item>
+          <ng-container
+            *ngIf="serviceAreaInfoEditForm.controls['county'].invalid && 
+                            (serviceAreaInfoEditForm.controls['county'].dirty || serviceAreaInfoEditForm.controls['county'].touched)">
+            <p class="vaiidate-field" *ngIf="serviceAreaInfoEditForm.controls['county'].errors.required">
+              county is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label content-head" position="floating">City*</ion-label>
+            <ion-input type="text" class="content-body" name="city" formControlName="city" required>
+            </ion-input>
+          </ion-item>
+          <ng-container
+            *ngIf="serviceAreaInfoEditForm.controls['city'].invalid && 
+                            (serviceAreaInfoEditForm.controls['city'].dirty || serviceAreaInfoEditForm.controls['city'].touched)">
+            <p class="vaiidate-field" *ngIf="serviceAreaInfoEditForm.controls['city'].errors.required">
+              City is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label content-head" position="floating">Zip Code*</ion-label>
+            <ion-input type="text" class="content-body" name="zip_code" formControlName="zip_code" required>
+            </ion-input>
+          </ion-item>
+          <ng-container
+            *ngIf="serviceAreaInfoEditForm.controls['zip_code'].invalid && 
+                            (serviceAreaInfoEditForm.controls['zip_code'].dirty || serviceAreaInfoEditForm.controls['zip_code'].touched)">
+            <p class="vaiidate-field" *ngIf="serviceAreaInfoEditForm.controls['zip_code'].errors.required">
+              Zip Code is required!
+            </p>
+          </ng-container>
+        </div>
+        <!-- <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label content-head" position="floating">Community</ion-label>
+            <ion-input type="text" class="content-body">
+            </ion-input>
+          </ion-item>
+        </div> -->
+
+
+
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label content-head" position="floating">Community*</ion-label>
+            <ion-input type="text" class="content-body" name="community" formControlName="community" required>
+            </ion-input>
+          </ion-item>
+          <ng-container
+            *ngIf="serviceAreaInfoEditForm.controls['community'].invalid && 
+                            (serviceAreaInfoEditForm.controls['community'].dirty || serviceAreaInfoEditForm.controls['community'].touched)">
+            <p class="vaiidate-field" *ngIf="serviceAreaInfoEditForm.controls['community'].errors.required">
+              Community is required!
+            </p>
+          </ng-container>
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+    <p-footer>
+      <ion-button class="btn-cancel" (click)="modalState.emit()" type="button">Cancel</ion-button>
+      <ion-button class="btn-save" type="submit" [disabled]="!myForm.form.valid">Save</ion-button>
+    </p-footer>
+  </form>
+</p-dialog>

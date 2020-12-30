@@ -1,0 +1,121 @@
+<div class="page-wrapper comment-section contact-page-wrapper">
+  <div class="table-wrapper">
+      <app-filter [filter]="'billing-main'" [groupOption]="true"></app-filter>
+      <p-table [resizableColumns]="true" columnResizeMode="expand" scrollWidth="100%" [paginator]="true" [rows]="rows"
+          [rowsPerPageOptions]="[10,25,50, 100]" [lazy]="true" [totalRecords]="total" [value]="viewsAndActivityData"
+          [scrollable]="true" styleClass="tags-table custom-dataTable table-striped">
+          <ng-template pTemplate="colgroup" let-columns>
+              <colgroup>
+                  <col *ngFor="let col of viewsAndActivityColoumns">
+              </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr class="activity-rows">
+              <th id="tableHead" *ngFor="let col of viewsAndActivityColoumns">
+                <ng-container *ngIf="col.field === 'status'">
+                    <p-checkbox name="selectContacts" [(ngModel)]="selectAllCheckbox"  styleClass="custom-checkbox" binary="true"></p-checkbox>
+                </ng-container>
+                <ng-container>
+                    {{col.header}}
+                </ng-container>
+            </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex" let-activity>
+          <tr class="activity-data">
+              <td *ngFor="let col of viewsAndActivityColoumns">
+                <ng-container *ngIf="col.field === 'status'">
+                  <p-checkbox styleClass="custom-checkbox" name="selectContact" binary="true"></p-checkbox>
+                  <p-dropdown  class="select-dropdown"   optionLabel="label" [options]="status" placeholder="Status" appendTo="body"></p-dropdown>
+                </ng-container>  
+                <ng-container *ngIf="col.field === 'name'"><span> 
+                  <a class="blue-properties">
+                    {{activity.name}}
+                  </a>
+                  <span class="d-block"> {{activity.mailid}}</span>
+                </span>
+                </ng-container>
+                <ng-container *ngIf="col.field === 'detail'">
+                  <a [routerLink]="['/users/billing-history']" class="blue-properties"> {{activity.detail}}</a>
+                </ng-container>
+                <ng-container *ngIf="col.field === 'type'">
+                 <span  class="d-flex align-items-center">
+                  <div  class="name_text">
+                    {{activity.type}}
+                </div>
+              </span>
+                </ng-container>  
+                <ng-container *ngIf="col.field === 'date'"><span  class="d-block"> {{activity.date}}</span>
+                  <span class="d-block"> {{activity.time}}</span>
+                </ng-container>
+                <ng-container *ngIf="col.field === 'amount'"><span> {{activity.amount}}</span>
+                </ng-container>
+                    
+                   
+                    <ng-container  *ngIf="col.field === 'edit'">
+                        <div class="edit-wrapper">
+                          <a  class="edit-tooltip" pTooltip="Edit" tooltipPosition="top">
+                          <img class="edit-icons"  src="../../assets/images/edit.svg" alt="">
+                          </a>
+                          <span class="position-relative" (click)="clickedInside($event)">
+                            <span   class="more-tooltip" 
+                                 pTooltip="More"
+                                 tooltipPosition="top">
+                             <img  (click)="showMoreNotificationPop(i-rows*page + rows)" 
+                                   src="../../assets/images/more.svg" 
+                                   class="more-icon" 
+                                   alt="more icon" />
+                           </span>                             
+                           <span *ngIf="showMoreNotification[i-rows*page + rows]" class="show-more-notification more-filtering-options">
+                            <ul class="delete-playbook-wrapper mb-0">
+                              <li>
+                                <img alt="" src="../../../assets/images/Activity.svg" class="light-opc-icon">
+                                <span>Edit Comment</span>
+                              </li>
+                              <li>
+                                <img alt="" src="../../../assets/images/Activity.svg" class="light-opc-icon">
+                                <span>Add Activity</span>
+                              </li>
+            
+                              <li (click)="openAddPopUp()">
+                                <img alt="" src="../../../.../../assets/images/more/Task.svg">
+                                <span>Add Task</span>
+                              </li>
+                              <li>
+                                <img alt="" src="../../../assets/images/Campaign.svg" class="light-opc-icon">
+                                <span>Add Drip Compaign</span>
+                              </li>
+                              <li>
+                                <img alt="" src="../../../assets/images/List.svg" class="light-opc-icon">
+                                <span>Add to List</span>
+                              </li>
+            
+                              <li (click)="sendMailPopUp()">
+                                <img  alt="" src="../../../assets/images/Mail-big.svg">
+                                <span>Send Direct Mail</span>
+                              </li>
+                              <li>
+                                <img alt="" class="delete-icon" src="../../assets/images/print.svg">
+                                <span>Manage DotLoops</span>
+                              </li>
+                              <li>
+                                <img src="../../../assets/images/Interaction-bar/group.svg" alt="task">
+                                <span>Refreh comment</span>
+                              </li>
+                              <li >
+                                <img src="../../../assets/images/select-icons/Delete.svg" alt="Delete" class="more-light">
+                                <span>Delete comment</span>
+                              </li>
+                            </ul>
+                          </span>
+                         </span>
+                       </div>
+                     </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+      </p-table>
+      <p class="paginate_data">
+          Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of {{total}} </p>
+  </div>
+</div>

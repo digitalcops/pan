@@ -1,0 +1,261 @@
+.main-page-payment{
+    .port-header-contact {
+    height: 40px;
+    background: #ffffff;
+    border-radius: 3px 3px 0px 0px;
+    padding: 5px 13px 0px 9px;
+    border-bottom: 1px solid #dedede;
+    margin-top: -10px; 
+  }
+  .common-color{
+    font-size: 12px;
+    color:#404040;
+}
+  .contact-redirect {
+    cursor: pointer;
+    color: #207ebb;
+}
+.contact-main-page {
+    padding: 17px 15px 15px;
+}
+.custom-body{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.left-commision {
+    width:24%;
+    margin-bottom:0;
+    li{
+        color:#000;
+     font-size: 14px;
+     a{
+         font-size: 14px;
+         color:#000
+     }
+        .logo-pan{
+            width:228px;
+            img{
+                width:100%
+            }
+        }
+    }
+}
+
+.right-commision {
+    width:41%;
+    h2{
+        font-weight:700;
+        font-size:24px;
+        color:#000;
+        letter-spacing:2.4px;
+    }
+}
+.date-wrapper{
+    text-align:right;
+    margin-top: -18px;
+    border-bottom:1px solid #E5E5E5;
+    padding-bottom:25px;
+     .date{
+ color:#595D6E;
+ font-size:15px;
+}}
+.detail-commision{
+    width:78%;
+}
+.common-menu{
+    li{
+        margin-bottom:15px;
+        span{
+            color:#595D6E;
+            font-size:14px;
+            display: inline-block;
+            &:nth-child(1){
+                width:17%;
+                max-width:137px;
+                margin-right:50px;
+            }
+            &:nth-child(2){
+                width:76%;
+               
+            }
+        }
+        
+    }
+}
+.payment-options{
+    padding-bottom:10px;
+    margin:46px 0 20px;
+    border-bottom:1px solid #E5E5E5;
+    span{
+        font-weight:400;
+        color:#404040;
+        font-size:18px;
+        display: inline-block;
+        margin-right: 20px;
+    }
+    .print-btn{
+        color: #6a9f3a;
+        background: #f0f5eb;
+        font-size:10px;
+        font-weight:700;
+        width:92px;
+        height:24px;
+        border-radius:5px;
+        &:hover{
+            color: #f0f5eb;
+            background: #6a9f3a;
+        }
+}
+.signature-wrapper{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .sign-date{
+        width:40%;
+        border-top:1.5px solid #DEDEDE;
+        padding-top:10px;
+        font-size: 10px;
+        color:#595D6E;
+    }
+ }
+}
+.port-body {
+    height: calc(100vh - 153px);
+    overflow-y: scroll;
+    padding:20px 15px 30px;
+}
+.payment-btn{
+    color: #6a9f3a;
+    background: #f0f5eb;
+    font-size:16px;
+    font-weight:400;
+    margin-top:25px;
+    width:168px;
+    height:38px;
+    border-radius:40px;
+    &:hover{
+        color: #f0f5eb;
+        background: #6a9f3a;
+    }
+}
+.radio-wrapper {
+    display: block;
+    position: relative;
+    width:76%;
+    padding-left: 17px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color:#595D6E;
+    font-size:14px;
+  }
+  .credit-menu{
+      li{
+          display:flex;
+      }
+  }
+  .radio-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%);
+    left: 0;
+    height: 11px;
+    width: 11px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #D1D1D1;
+  }
+  
+  .radio-wrapper:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  .radio-wrapper input:checked ~ .checkmark {
+    background-color: #fff;
+    border: 1px solid #207ebb;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .radio-wrapper input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .radio-wrapper .checkmark:after {
+    top: 2px;
+    left: 2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2073bb;
+}
+.activity-data {
+    border-top: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 9px 10px 9px 17px;
+  }
+.activity-data:nth-child(even) {
+background: #FBFBFB !important;
+}
+
+.activity-data:nth-child(odd) {
+background: white !important;
+}
+
+
+.activity-data td:last-child {
+text-align: left !important;
+color: #808080
+}
+
+.activity-data td {
+padding: 15px 0px 15px 15px !important
+}
+
+.activity-data td {
+     font-size:12px;
+     color:#595D6E;
+vertical-align: middle !important;
+}
+
+.activity-rows th {
+padding-right: 0 !important;
+}
+
+.activity-rows th{
+width: 161px !important;
+color:#595D6E;
+    font-weight:700;
+    font-size:14px;
+}
+.input-box-wrapper{
+    padding-left:184px;
+    margin-top:-5px;
+    input{
+        border:1px solid #DEDEDE;
+        font-size:10px;
+        width:320px;
+        height:30px;
+        border-radius:3px;
+        padding:0 12px;
+         color:#808080;
+    }
+ }
+}

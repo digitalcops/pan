@@ -1,0 +1,108 @@
+  <div (click)="profileSection = !profileSection; overlay = !overlay;" [ngClass]="overlay?'overlay-block':'overlays'" [@moreFilterSectionEmp]="overlay"></div>
+  <div  class="personal-inner property-details filter-detail filter-contact-detail employee-details" [@moreFilterSectionEmp]="profileSection">
+ <div> 
+      <div class="top-header">
+        <span class="header-text"><img src="../../assets/images/noun_filter.svg" style="margin:-2px 2px 0 0 ;width:11px;" alt="more filter"> More Filters</span>
+        <span class="close-sidebar pointer" (click)="profileSection = !profileSection; overlay = !overlay;">
+          <img src="../../../assets/images/close.svg" alt="close" />
+        </span>
+      </div>
+      <div class="personal-wrapper filter-wrappers emp-filter-wrapper">
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Gender<span  class="required">*</span></ion-label>
+          <div class="search_ico filter-ico">
+            <p-dropdown class="dropdown-custom" placeholder="Select" [options]="true">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Country</ion-label>
+          <div class="search_ico filter-ico">
+            <p-dropdown  class="dropdown-custom" placeholder="Select" [options]="true">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">State</ion-label>
+          <div class="search_ico filter-ico">
+            <p-dropdown  class="dropdown-custom" placeholder="Select" [options]="true">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">City</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Budget Min</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Budget Max</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Min Time</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Max  Time</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Select Timeframe</ion-label>
+          <div class="search_ico filter-ico">
+            <p-dropdown  class="dropdown-custom" placeholder="Select" [options]="true">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Source</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+        <!-- <div class="form-group user-field selected-contact-data">
+          <ion-label class="dateLabel" style="margin-bottom:0px;">Follow up on</ion-label>
+          <p-calendar name="listing_start_date_form" selectionMode="range" [numberOfMonths]="1" #duedateRangeRef
+            [readonlyInput]="true" styleClass="p-calendar" class="filter-calendar top-margin"
+            [style]="{'width': '100%'}" [showIcon]="true">
+          </p-calendar>
+        </div> -->
+        <div class="form-group user-field selected-contact-data">
+          <ion-label class="label">Fax #</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+        <div class="form-group user-field mb-0 selected-contact-data">
+          <ion-label class="label">Company Name</ion-label>
+          <div class="search_ico filter-ico top-margin">
+            <input  type="text" class="common-input">
+          </div>
+        </div>
+      </div>
+      <div class="save-reset" style="bottom: -30px !important;">
+       <div class="show-link">
+        </div> 
+        <div class="more-filterbtns">
+          <ion-button (click)="profileSection = !profileSection; overlay = !overlay" class="btn-cancel reset-btn btn-cancel-head" type="button">
+            Reset
+          </ion-button>
+          <ion-button (click)="profileSection = !profileSection; overlay = !overlay" class="btn-save save-btn btn-save-head" type="button">
+            Filter
+          </ion-button>
+        </div>
+      </div>
+    </div> 
+    </div>

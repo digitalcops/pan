@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31" height="16" viewBox="0 0 31 16">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="31" height="16" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect width="16" height="16" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="fill" clip-path="url(#clip-path)">
+    <rect id="rectangle" width="16" height="3" transform="translate(0 13)" opacity="0.54"/>
+    <g id="paint_bucket" data-name="paint bucket">
+      <rect id="rectangle-2" data-name="rectangle" width="16" height="16" fill="none"/>
+      <path id="path" d="M11.843,5.818,6.025,0,5.109.915,6.678,2.484,3.344,5.818a.948.948,0,0,0,0,1.373l3.6,3.6a.983.983,0,0,0,.719.262.983.983,0,0,0,.719-.262l3.6-3.6a1.1,1.1,0,0,0-.131-1.373ZM4.39,6.538,7.528,3.4l3.138,3.138Zm9.022.981S12.1,8.956,12.1,9.806a1.308,1.308,0,1,0,2.615,0c0-.85-1.308-2.288-1.308-2.288Z" transform="translate(-1.056)" fill-rule="evenodd" opacity="0.54"/>
+    </g>
+    <g id="Symbol_70_4" data-name="Symbol 70 – 4" transform="translate(15)" clip-path="url(#clip-path-2)">
+      <rect id="rectangle-3" data-name="rectangle" width="16" height="16" fill="none"/>
+      <path id="path-2" data-name="path" d="M7,10l3.269,3.269L13.538,10Z" transform="translate(-2.424 -3.462)" fill-rule="evenodd" opacity="0.54"/>
+    </g>
+  </g>
+</svg>

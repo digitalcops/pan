@@ -1,0 +1,590 @@
+.view-checklist-wrapper{
+
+::ng-deep.tox-sidebar-wrap {
+  padding-bottom: 20px !important;
+}
+.opac {
+  opacity: 0.5;
+}
+
+.checklist-wrapper ::ng-deep .ui-dropdown {
+  width: 300px !important;
+}
+
+.checklist-wrapper .table-wrapper ::ng-deep p-paginator .ui-dropdown{
+  width: 60px !important;
+}
+
+.table-wrapper{
+  position: relative;
+}
+
+.checklist-wrapper .form-control{
+  border-radius: 0.25rem;
+  font-size: 12px;
+  width: 300px !important;
+  height: 24px !important;
+  color: grey !important;
+  padding: 2px 36px 2px 7px;
+  text-align: left;
+}
+
+.view-template-wrapper ::ng-deep .ui-inputwrapper-focus {
+  border: none !important;
+}
+
+.edit-icon {
+  cursor: pointer;
+}
+.view-template-wrapper .custom-radio {
+  margin-bottom: 0px !important;
+}
+.lengthData {
+  font-size: 12px;
+  color: #404040;
+}
+
+::ng-deep
+    .transaction-table.custom-contactDataTable.ui-table
+    .ui-table-scrollable-wrapper
+    .ui-table-scrollable-view
+    .ui-table-scrollable-body
+    .ui-table-scrollable-body-table
+    .ui-table-tbody
+    > tr:nth-child(even)
+    .action-area
+    span
+    i {
+    background: #f9f9f9;
+  }
+
+  .checklist-wrapper ::ng-deep .ui-datatable table {
+    table-layout: auto !important;
+    overflow-y: scroll !important;
+  }
+
+  .checklist-wrapper ::ng-deep.transaction-table {
+    padding: 0 20px 20px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  
+  .checklist-wrapper ::ng-deep .ui-datatable-tablewrapper {
+    overflow-y: scroll !important;
+    width: auto !important;
+  }
+
+  ::ng-deep .ui-table table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  ::ng-deep .ui-datatable-resizable {
+    padding-bottom: 1px;
+    
+    width: auto !important;
+  }
+
+::ng-deep .transaction-table.ui-table .ui-table-thead > tr > th:nth-child(1),
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td:nth-child(1) {
+  width: 300px !important;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-thead > tr > th:nth-child(2),
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td:nth-child(2) {
+  width: 140px !important;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-thead > tr > th:nth-child(3),
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td:nth-child(3) {
+  width: 140px !important;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-thead > tr > th:nth-child(4),
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td:nth-child(4) {
+  width: 95px !important;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-thead > tr > th:nth-child(5),
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td:nth-child(5) {
+  width: 115px !important;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-thead > tr > th:nth-child(6),
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td:nth-child(6) {
+  width: 115px !important;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-thead > tr > th:nth-child(7),
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td:nth-child(7) {
+  width: 85px !important;
+}
+
+.checklist-wrapper ::ng-deep.ui-table-scrollable-body {
+  max-height: calc(100vh - 287px) !important;
+}
+.setInline{
+  display: inline !important;
+}
+.table-board {
+  button{
+  font-size:10px;
+  width:53px;
+  height: 24px;;
+  }
+  .table-btn{
+background: #207EBB;
+color:#fff;
+border-radius:3px 0 0 3px;
+  }
+
+  .board-btn{
+    background:#fff;
+    border-radius:0 3px 3px 0;
+    color: #808080
+  }
+}
+
+.btn-wrapper{
+  margin-top: 20px !important;
+}
+
+.user-field {
+  padding: 0 0px;
+  margin-bottom: 20px;
+
+  .label {
+    display: flex;
+    color: #404040 !important;
+    font-size: 13px;
+  }
+
+  .user-input {
+    background: #ffffff;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    margin-top: 6px;
+  }
+}
+
+.add_ico, .search_ico{
+  display: flex;
+  align-items: center;
+ }
+
+.checklist-wrapper .user-field .user-input {
+  width: 100%;
+  height: 28px;
+}
+
+.checklist-wrapper .user-field .user-input ::ng-deep input.native-input.sc-ion-input-md{
+  position: relative;
+  padding: 3px;
+  top: 0px;
+  left: 5px;
+  font-size: 12px;
+}
+
+.user-field .add_ico .user-input, .user-field .add_ico p-dropdown, .user-field .search_ico .user-input, .user-field .search_ico p-dropdown{
+  width: 100%;
+ }
+ .user-field .add_ico span{
+   width:28px;
+   height: 28px;
+   line-height:25px;
+   border-radius: 3px;
+   margin: 6px 0 0 1px;
+   text-align: center;
+   cursor: pointer;
+   background: url('../../../assets/images/add.svg')#F2F3F7 no-repeat center center;
+ }
+ .user-field .multi.add_ico span{
+  margin: 0px 0 0 1px;
+ }
+.user-field .search_ico span{
+  width:28px;
+  height: 28px;
+  line-height:25px;
+  border-radius: 3px;
+  margin: 6px 0 0 1px;
+  text-align: center;
+  cursor: pointer;
+  background: url('../../../assets/images/lisitng-search.svg')#F2F3F7 no-repeat center center;
+}
+ .user-field .add_ico span:hover, .user-field .add_ico span:active, .user-field .add_ico span:focus{
+  background: url('../../../assets/images/add_white.svg')#207EBB no-repeat center center;
+  }
+ .user-field .search_ico span:hover, .user-field .search_ico span:active, .user-field .search_ico span:focus{
+  background: url('../../../assets/images/lisitng-search_white.svg')#207EBB no-repeat center center;
+}
+.checklist-wrapper ::ng-deep .ui-dropdown {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  padding: 2px 1px;
+  width: 100% !important;
+  min-width: 100% !important;
+  .ui-dropdown-trigger {
+    padding: 0 13px 0 !important;
+
+    .ui-dropdown-trigger-icon {
+      &:before {
+        content: url(../../../assets/images/down-arrow.png);
+      }
+    }
+  }
+}
+
+.responsible-drpdwn ::ng-deep .ui-dropdown{
+  width: 100px !important; 
+}
+
+.drpdwn-wrap{
+  margin-top: 6px;
+}
+
+.btn-save-head {
+  margin-bottom: 0px;
+  width: 60px;
+  height: 26px;
+  font-size: 12px;
+  margin-top: 0px;
+  padding: 0px;
+  margin-left: 10px;
+}
+.multiselct-drpdwn ::ng-deep input.ui-inputtext {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 3px 10px;
+  color: #808080;
+  cursor: pointer;
+  width: 100% !important;
+}
+
+.btn-cancel-head {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  width: 60px;
+  height: 26px;
+  font-size: 12px;
+  margin-right: 0px;
+  padding: 0px;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td .d-flex span {
+  width: 100%;
+  display: block;
+}
+
+.activity-data td ion-input{
+  width: 88%;
+  height: 28px;
+  display: inline-block;
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 5px
+}
+.modify_top ::ng-deep input {
+  position: relative;
+  top: 0px;
+  padding: 5px;
+  font-size: 12px;
+}
+.activity-data td:nth-child(6) {
+  text-align: left !important;
+}
+
+.activity-data td:nth-child(6) ion-input {
+  width: 95%;
+}
+
+.activity-data td:nth-child(7) {
+  text-align: left !important;
+}
+
+.activity-data td:nth-child(7) ion-input {
+  width: 95%;
+}
+
+.activity-data td:nth-child(6) ion-input ::ng-deep input{
+  position: relative;
+  top: 0px;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.activity-data td:nth-child(2) ion-input ::ng-deep input{
+  position: relative;
+  top: 0px;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.activity-data td span p-checkbox{
+  margin-left: 25px;
+}
+
+.activity-rows th:nth-child(1) span{
+  padding-left: 25px;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td .d-flex span ion-input input{
+  position: relative;
+  top: 0px;
+  padding: 5px;
+  font-size: 12px;
+}
+
+::ng-deep .transaction-table.ui-table .ui-table-tbody > tr > td .d-flex span ion-button{
+  display: inline-block;
+  position: absolute;
+  top: 6px;
+  font-size: 12px;
+  height: 28px;
+}
+
+.add-item-btn{
+  height: 28px;
+  width: 75px;
+  font-size: 12px;
+}
+
+.attach-img{
+  padding-left: 10px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.attach-btn{
+  width: 75px;
+}
+}
+.btn-delete-all-enabled {
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 4px;
+  font-size: 10px;
+  margin-left: 10px;
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 5px 20px;
+  &:hover {
+    color: #fff;
+    background-color: #d23200;
+    font-weight: 600;
+  }
+}
+.mapHeight {
+  height: 73px;
+}
+.tabbing-location {
+  margin-bottom: 16px;
+  li{
+   margin-right:10px;
+  
+   a{
+    font-size:12px;
+    text-decoration: none;
+    color:#5d596e;
+    cursor:pointer;
+    padding:5px 10px 5px;
+  }
+ 
+   }
+   li.active{
+    background: #F3F6F9;
+    border-bottom:2px solid #207EBB;
+    border-radius: 5px;
+    padding-bottom: 3px;
+     }
+ }
+ .dflx{
+  display: flex !important;
+  justify-content: space-around !important;
+  padding-right: 40px !important;
+ }
+ .setlf{
+  display: flex  !important;
+  width: 100%  !important;
+  justify-content: flex-end  !important;
+ }
+ 
+::ng-deep .ui-inputswitch {
+  width: 34px;
+  height: 20px;
+}
+
+::ng-deep .ui-inputswitch-slider {
+  border: 2px solid #ebedf2;
+}
+
+::ng-deep.ui-inputswitch-slider:before {
+  background-color: #DFE2EA;
+  width: 14px !important;
+  height: 14px !important;
+  left: 2px !important;
+  top: 1px !important;
+}
+
+::ng-deep .ui-inputswitch-checked .ui-inputswitch-slider:before {
+  left: -4px !important;
+  bottom: 1px !important;
+  background-color: #207ebb;
+}
+.edit-wrapper{
+  position: relative;
+}
+.heading {
+  text-align: left;
+  font-size: 20px;
+  color: #404040;
+  padding: 0 0px 12px;
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 20px;
+}
+.fullcW{
+  width: 100%;
+}
+span.required {
+  color: red;
+  font-size: 14px;
+}
+.btns-sale {
+  position: absolute;
+  left: 79.5%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+
+::ng-deep.ui-multiselect{
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  padding: 2px 1px;
+  width: 100% !important;
+}
+::ng-deep.ui-multiselect .ui-multiselect-label{
+  border-radius: 0.25rem;
+  font-size: 12px;
+  height: 24px !important;
+  color: grey !important;
+  padding: 2px 36px 2px 7px;
+  text-align: left;
+}
+::ng-deep.panelSideConProduct.ui-multiselect-panel{
+  background: #fff;
+  width: 400px;
+  min-width: 200px !important;
+  .ui-multiselect-header
+  {
+    background: #fff;
+    .pi-check:nth-child(1)::before {
+      top: -4px !important;
+      position: relative;
+      left: 0px !important;
+    }  
+  }
+  .pi-check::before {
+    top: -1.3px !important;
+    position: relative;
+    left: 0px !important;
+  }
+}
+::ng-deep.panelSideConProduct.ui-chkbox .ui-chkbox-box.ui-state-active .pi {
+  color: #ffffff;
+  position: relative;
+  top: -1px;
+}
+::ng-deep.panelSideConProduct.ui-chkbox-icon.ui-clickable.pi.pi-check::before {
+  color: #ffffff;
+  top: -1px !important;
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-item{
+  color: #404040 !important;
+  font-size: 13px;
+}
+::ng-deep .panelSideConProduct .pi{
+  margin: 0;
+}
+::ng-deep.ui-chkbox .ui-chkbox-box:hover{
+  border: 1px solid #207ebb;
+}
+::ng-deep.ui-chkbox .ui-chkbox-box.ui-state-active{
+  border: 1px solid #207ebb;
+  background-color: #207ebb;
+  color: #ffffff;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+::ng-deep.ui-chkbox .ui-chkbox-box {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #d1d1d1;
+  &:hover {
+    border: 1px solid #207ebb;
+  }
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-item span{
+  margin:0;
+  text-align: center;
+}
+::ng-deep.ui-multiselect-header .ui-multiselect-filter-container .ui-multiselect-filter-icon{
+  position: absolute;
+    top: 0;
+    right: 10px;
+    bottom: 0;
+    margin: auto;
+    height: 9px;
+    line-height: 15px;
+    left: inherit;
+}
+::ng-deep.ui-multiselect-header .ui-multiselect-close{
+  display: none;
+}
+::ng-deep.ui-multiselect-header .ui-multiselect-filter-container{
+  width: 90%;
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-item{
+  color: #404040 !important;
+  font-size: 13px;
+  padding: 5px 6px;
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-items-wrapper{
+  max-height: 180px !important;
+}
+::ng-deep.ui-multiselect-filter-container input.ui-inputtext {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 3px 10px;
+  color: #808080;
+  cursor: pointer;
+  width: 100% !important;
+}
+.modStatusBtn:before{
+  right: -11px;
+  border-left-color: #dee2e6;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: auto;
+  bottom: auto;
+  border-top: 16px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-right: none;
+  border-left: 11px solid white;
+  transition: border 0.2s ease 0s;
+}

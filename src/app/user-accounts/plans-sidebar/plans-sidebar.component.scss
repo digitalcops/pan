@@ -1,0 +1,301 @@
+.main-upgrade{
+    height: calc(100vh - 120px);
+    overflow: auto;
+    overflow-x: hidden;
+    background: white;
+    margin: 0 15px;
+    padding:40px  0 0 0;
+    position:relative;
+    &:after{
+      position: absolute;
+      content:"";
+      background: url("../../../assets/images/plan-bg.png") 0 0 /cover no-repeat;
+      width:100%;
+      height:285px;
+      top:0;
+      left:0;
+      right:0;
+    }
+}
+.upgrade-wrapper{
+.top-menu {
+  display: flex;
+  background: white;
+  padding: 0 15px;
+   }
+   .buttons-wrapper{
+     text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+    z-index: 5;
+     .common-plans{
+       font-size:16px;
+       height: 38PX;
+       width: 130px;
+     }
+     .annual-btn{
+       border-radius:3px 0 0 3px;
+       border: 1px solid #ffffff;
+       background:white;
+       color:#207ebb;
+     }
+     .monthly-btn{
+       border-radius:0 3px 3px 0;
+      border: 1px solid #ffffff;
+      background:transparent;
+      color:#FFFFFF;
+     }
+   }
+   .plan-section{
+    width: 86%;
+    margin: 0 auto;
+   }
+   .plan-section-wrapper{
+     background:#fff;
+     border-radius: 3px;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #207EBB;
+    width:30%;
+    margin-right:15px;
+    padding:20px 25px 20px ;
+    margin-bottom:15px; 
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    .small-rate{
+      margin:0 5px 0 3px
+    }
+    .plan-button{
+      font-size:16px;
+      width: 158px;
+      height: 38px;
+      color:#fff;
+      background: #207ebb;
+      border-radius:40px;
+      border:1px solid transparent;
+      &:hover{
+        background: transparent;
+       color:#207ebb;
+       border:1px solid #207ebb;
+      }
+    }
+    &:after{
+      position: absolute;
+      content:"";
+      border-left:22px solid #207ebb;
+      border-top:22px solid #207ebb;
+      border-right:22px solid transparent;
+      border-bottom:22px solid transparent;
+      top:0;
+      left:0;
+      transition: all 0.3s ease-in-out;
+    }
+    &:nth-child(2) , &:nth-child(3)  , &:nth-child(5) , &:nth-child(6){
+      .small-rate{
+        margin:0 0 0 -5px ;
+      }
+    }
+      &:nth-child(2) , &:nth-child(3) ,  &:nth-child(4) , &:nth-child(5) , &:nth-child(6){
+        border:1px solid #DEDEDE;
+        transition: all 0.3s ease-in-out;
+        &:after{
+         position: absolute;
+         content:"";
+         border-left:22px solid #417D1A;
+         border-top:22px solid #417D1A;
+         border-right:22px solid transparent;
+         border-bottom:22px solid transparent;
+         top:0;
+         left:0;
+        display: none;
+       }
+       &:hover{
+         border:1px solid #417D1A;
+         &:after{
+           display: block;
+           top: -1px;
+           left:-1px;
+         }
+       }
+       .plan-button{
+        background: transparent;
+        border:1px solid #417D1A;
+        color:#417D1A;
+        &:hover{
+         background: #417D1A;
+         color:#fff;
+        }
+      }
+      
+      } 
+    .heading-plan{
+      color:#595D6E;
+      font-size:14px;
+      font-weight: 700;;
+    }
+    small{
+     font-size: 12px;
+     color:#808080;
+     display: block;
+     margin-bottom:20px;
+    }
+    .hexagon-wrapper{
+      text-align: center;
+      z-index: 43534;
+      position: relative;  
+      img{
+      z-index: 3243565;
+    position: relative;
+    top: 47px;
+     }
+   }
+    .hexagon {
+      width: 100px;
+      height: 55px;
+      position: relative;
+      transform:rotate(150deg);
+      margin:0 auto;
+    }
+    
+    .hexagon, 
+    .hexagon:before, 
+    .hexagon:after {
+      background: #FCFCFC;
+    }
+    
+    .hexagon:before,
+    .hexagon:after {
+      content: "";
+      position: absolute;
+      left: 22px;
+      width: 57px;
+      height: 57px;
+      transform: rotate(145deg) skew(22.5deg);
+    }
+    
+    .hexagon:before {
+      top: -29px;
+    }
+    
+    .hexagon:after {
+      top: 27px;
+    }
+    
+    .hexagon span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 55px;
+      background: #FCFCFC;
+      z-index: 1;
+    }
+    .less-text{
+      color:#808080;
+      font-size: 12px;
+      display: block;
+      margin-bottom:20px;
+    }
+  .price-wrapper{
+    font-size:28px;
+    color:#000;
+    margin-bottom: 4px;
+    font-weight:700;
+    margin-top:40px;
+    span{
+      font-size:22px;
+      color:#000;
+      font-weight:700;
+     
+    }
+   
+  }
+  .list-menu{
+    margin-bottom:18px;
+    li{
+      font-size: 10px;
+      margin-bottom:10px;
+      position: relative;
+      &:before{
+        content: "\2022";
+        color: #9EA0B4;
+        position: absolute;
+        left:-12px;
+        top:0px;
+      }
+    }
+  }
+  .learn-more-text{
+    color:#808080;
+    font-size:10px;
+    margin-bottom:10px;
+    padding: 0 10px;
+    .blue-properties{
+      color:#207ebb;
+    }
+  }
+
+   }
+   
+}
+.price-wrapper{
+  font-size:27px;
+  margin-bottom:6px;
+   .price{
+     font-weight: 700;
+      font-size: 34px;
+     }
+}
+.month-text{
+  font-size:14px;
+  color:#808080;
+}
+.right-cards{
+  width:49%;
+  padding-left:34.5px;
+  border-left:1px solid #EDEEF4;
+  padding-top:15px !important;
+  padding-bottom:10px;
+  img{
+    width:18px;
+    height:18px;
+    margin-right:10px;
+  }
+  span{
+  color: #207EBB;
+  font-size:14px;
+  cursor:pointer;
+}
+}
+.user-input{
+  background: #fff;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    margin-top: 7px;
+    height: 36px;
+    padding: 0 10px 13px  !important;
+}
+.upgrade-layout-popup ::ng-deep .ui-dropdown {
+  background: transparent linear-gradient(180deg, #FFFFFF 0%, #EEEEEE 100%) 0% 0% no-repeat padding-box;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 36px !important;
+  margin-top: 10px;
+  padding: 2px 1px;
+  width: 100% !important;
+  min-width: 100% !important;
+
+  .ui-dropdown-trigger {
+    padding: 0 13px 0 !important;
+
+    .ui-dropdown-trigger-icon {
+      &:before {
+          content: "\e902" !important;
+          font-family: "primeicons" !important;
+          position: absolute;
+          top: 0px;
+          right: -3px;
+          color: #808080;
+      }
+    }
+  }
+}

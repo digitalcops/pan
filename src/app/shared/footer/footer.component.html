@@ -1,0 +1,44 @@
+<footer *ngIf="!(router.url.includes('/maintainance/maintainance-page') || router.url.includes('/contacts/contact-detail') || router.url.includes('/error/error-page'))">
+
+  <div class="row w-100 desktop-footer" >
+    <div class="col-sm-12">
+    </div>
+    <div class="col-md-6">
+      <p>Copyright &copy; 2020 | Premier Agent Network</p>
+    </div>
+    <div class="col-md-6 text-right">
+      <ul>
+        <li [routerLink]="['/users/about']" routerLinkActive="active"><a>About</a></li>
+        <li  [routerLink]="['/users/team']" routerLinkActive="active"><a>Team</a></li>
+        <li  [routerLink]="['/contacts/contact-page']" routerLinkActive="active"><a>Contact Us</a></li>
+        <li  [routerLink]="['/users/privacy-policy']" routerLinkActive="active"><a>Privacy Policy</a></li>
+        <li  [routerLink]="['/users/terms-conditions']" routerLinkActive="active"><a>T&C</a></li>
+        
+      </ul>
+    </div>
+  </div>
+ <div class="d-flex mobile-footer-menu">
+  <ul class="mb-0 mobile-footer">
+   <li [routerLink]="['/contacts/all-contacts']">
+     <figure class="text-center mb-0"><img src="../../../assets/images/sidebar/contact.svg" alt="contacts"> </figure>
+     <span class="d-block">Contacts</span>
+   </li>
+   <li  [routerLink]="['/message/template']">
+    <figure class="text-center mb-0"><img src="../../../assets/images/conversation.svg"  alt="messages"> </figure>
+    <span class="d-block">Messages</span>
+  </li>
+  <li [routerLink]="['/tasks/tasks']">
+    <figure class="text-center mb-0"><img src="../../../assets/images/task.svg"  alt="tasks"> </figure>
+    <span class="d-block">Tasks</span>
+  </li>
+  <li  [routerLink]="['/transactions/all-transactions']" routerLinkActive="active">
+    <figure class="text-center mb-0"><img src="../../../assets/images/sidebar/transaction.png"  alt="transactions"> </figure>
+    <span class="d-block">Transactions</span>
+  </li>
+  <li   [routerLink]="['/support/tickets']">
+    <figure class="text-center mb-0"><img src="../../../assets/images/task.svg"  alt="support"> </figure>
+    <span class="d-block">Support</span>
+  </li>
+  </ul>
+</div>
+</footer>

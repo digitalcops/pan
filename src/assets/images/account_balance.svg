@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <g id="account_balance" transform="translate(0.185)">
+    <g id="Group_2726" data-name="Group 2726">
+      <rect id="Rectangle_2101" data-name="Rectangle 2101" width="18" height="18" transform="translate(-0.185)" fill="none"/>
+    </g>
+    <g id="Group_2728" data-name="Group 2728" transform="translate(1.485 0.742)">
+      <g id="Group_2727" data-name="Group 2727">
+        <rect id="Rectangle_2102" data-name="Rectangle 2102" width="2" height="6" transform="translate(1.331 6.258)" fill="#207ebb"/>
+        <rect id="Rectangle_2103" data-name="Rectangle 2103" width="2.227" height="5.196" transform="translate(6.31 6.681)" fill="#207ebb"/>
+        <rect id="Rectangle_2104" data-name="Rectangle 2104" width="15" height="2" transform="translate(0.331 13.258)" fill="#207ebb"/>
+        <rect id="Rectangle_2105" data-name="Rectangle 2105" width="2" height="6" transform="translate(11.331 6.258)" fill="#207ebb"/>
+        <path id="Path_7869" data-name="Path 7869" d="M9.423,1,2,4.712V6.2H16.846V4.712Z" transform="translate(-2 -1)" fill="#207ebb"/>
+      </g>
+    </g>
+  </g>
+</svg>

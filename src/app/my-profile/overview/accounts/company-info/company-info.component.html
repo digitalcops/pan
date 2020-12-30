@@ -1,0 +1,147 @@
+<div class="main-content right-side-content">
+  <form [formGroup]="companyInfoEditForm" style="padding-left:10px;" (ngSubmit)="updateCompanyInfo()">
+    <h5 class="heading">Company Information</h5>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Company Name<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="company_name" name="company_name">
+          <ng-container
+            *ngIf="companyInfoEditForm.controls['company_name'].invalid && 
+                            (companyInfoEditForm.controls['company_name'].dirty || companyInfoEditForm.controls['company_name'].touched)">
+            <p class="vaiidate-field" *ngIf="companyInfoEditForm.controls['company_name'].errors.required">
+              Company Name is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6  selected-contact-data">
+          <label>
+            Type<span class="required">*</span>
+          </label>
+          <p-dropdown name="company_type" formControlName="company_type" [(ngModel)]="companyInfoDetails.company_type"
+            placeholder="Select Role" [options]="roleList" filter="false">
+          </p-dropdown>
+          <ng-container
+          *ngIf="companyInfoEditForm.controls['company_type'].invalid && 
+                          (companyInfoEditForm.controls['company_type'].dirty || companyInfoEditForm.controls['company_type'].touched)">
+          <p class="vaiidate-field" *ngIf="companyInfoEditForm.controls['company_type'].errors.required">
+           Type is required!
+          </p>
+        </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6  ">
+          <label>
+            EIN<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="ein" name="ein">
+          <ng-container
+            *ngIf="companyInfoEditForm.controls['ein'].invalid && 
+                            (companyInfoEditForm.controls['ein'].dirty || companyInfoEditForm.controls['ein'].touched)">
+            <p class="vaiidate-field" *ngIf="companyInfoEditForm.controls['ein'].errors.required">
+              EIN is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6   ">
+          <label>
+            Mailing Address<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mailing_address"
+            name="mailing_address">
+          <ng-container
+            *ngIf="companyInfoEditForm.controls['mailing_address'].invalid && 
+                            (companyInfoEditForm.controls['mailing_address'].dirty || companyInfoEditForm.controls['mailing_address'].touched)">
+            <p class="vaiidate-field" *ngIf="companyInfoEditForm.controls['mailing_address'].errors.required">
+              Mailing Address is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6  ">
+          <label>
+            City<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mailing_city" name="mailing_city">
+          <ng-container
+            *ngIf="companyInfoEditForm.controls['mailing_city'].invalid && 
+                            (companyInfoEditForm.controls['mailing_city'].dirty || companyInfoEditForm.controls['mailing_city'].touched)">
+            <p class="vaiidate-field" *ngIf="companyInfoEditForm.controls['mailing_city'].errors.required">
+              City is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6    selected-contact-data">
+          <label>
+            State<span class="required">*</span>
+          </label>
+          <p-dropdown [options]="states" placeholder="Select" formControlName="mailing_state" name="mailing_state"
+            filter="true"></p-dropdown>
+            <ng-container
+            *ngIf="companyInfoEditForm.controls['mailing_state'].invalid && 
+                            (companyInfoEditForm.controls['mailing_state'].dirty || companyInfoEditForm.controls['mailing_state'].touched)">
+            <p class="vaiidate-field" *ngIf="companyInfoEditForm.controls['mailing_state'].errors.required">
+              State is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Zipcode<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mailing_zip_code"
+            name="mailing_zip_code">
+          <ng-container
+            *ngIf="companyInfoEditForm.controls['mailing_zip_code'].invalid && 
+                            (companyInfoEditForm.controls['mailing_zip_code'].dirty || companyInfoEditForm.controls['mailing_zip_code'].touched)">
+            <p class="vaiidate-field" *ngIf="companyInfoEditForm.controls['mailing_zip_code'].errors.required">
+              Zipcode is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6">
+          <label>
+            County
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mailing_county"
+            name="mailing_county">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Upload W9<span class="required">*</span>
+          </label>
+          <input type="file" class="file-upload" accept="application/pdf,application/vnd.ms-excel"
+            (change)="onFileSelect($event)">
+          <button class="btn-remove" *ngIf="false">Remove</button>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Country
+          </label>
+          <input class="form-control" type="text" maxlength="100" disabled formControlName="mailing_country"
+            name="mailing_country">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn-cancel" type="button" (click)="cancelButtonClicked()">Cancel</button>
+      <button class="btn-save">Save</button>
+    </div>
+  </form>
+</div>

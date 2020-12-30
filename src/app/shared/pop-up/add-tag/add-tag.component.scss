@@ -1,0 +1,22 @@
+.add-tag {
+  ::ng-deep p-footer {
+    width: 100%;
+    text-align: right;
+    float: right;
+    position: relative;
+  }
+  ::ng-deep .ui-dialog-top .ui-dialog,
+  .ui-dialog-bottom .ui-dialog,
+  .ui-dialog-left .ui-dialog,
+  .ui-dialog-right .ui-dialog,
+  .ui-dialog-topleft .ui-dialog,
+  .ui-dialog-topright .ui-dialog,
+  .ui-dialog-bottomleft .ui-dialog,
+  .ui-dialog-bottomright .ui-dialog {
+    margin: 100px 0;
+    position: relative;
+  }
+}
+.mtTop{
+  margin-top: 15px;
+}

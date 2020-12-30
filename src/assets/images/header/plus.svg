@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="Plus" transform="translate(2 2)">
+    <rect id="bound" width="20" height="20" transform="translate(-2 -2)" fill="none"/>
+    <circle id="Oval-5" cx="8.5" cy="8.5" r="8.5" fill="#207ebb" opacity="0.3"/>
+    <path id="Combined-Shape" d="M8.243,8.243V4.849A.8.8,0,0,1,9.092,4a.8.8,0,0,1,.849.849V8.243h3.394a.8.8,0,0,1,.849.849.8.8,0,0,1-.849.849H9.94v3.394a.8.8,0,0,1-.849.849.8.8,0,0,1-.849-.849V9.94H4.849A.8.8,0,0,1,4,9.092a.8.8,0,0,1,.849-.849Z" transform="translate(-0.908 -0.908)" fill="#207ebb" fill-rule="evenodd"/>
+  </g>
+</svg>

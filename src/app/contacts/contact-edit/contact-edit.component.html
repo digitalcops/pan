@@ -1,0 +1,604 @@
+<div class="page-wrapper">
+  <div class="table-wrapper">
+    <div class="subheader-wrapper">
+      <div class="row">
+        <div class="col-md-12 pr-0">
+          <div class="profile-datas">
+            <ul>
+              <li (click)="activeTab(1);usersData()">
+                <span [ngClass]="{'active': tab==='tab1'}" class="profile-tab">Profile</span>
+              </li>
+              <li (click)="activeTab(2); PersonalInfo()">
+                <span [ngClass]="{'active': tab==='tab2'}" class="profile-tab">Additional Info</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!userData" class="container-main contact-edit-data contact-edit-section">
+      <div class="row">
+        <div class="col-12 col-sm-12">
+          <div class="port no-pad">
+            <div class="port-header-contact">
+              <div class="title">
+                <div class="contact ml-1 menu-link">
+                  <ul>
+                    <li class="default" routerLink="/contacts/all-contacts">Contact</li>
+                    <li class="active">Edit</li>
+                  </ul>
+                </div>
+                <div class="head-btn-wrap">
+                  <ion-button routerLink="/contacts/all-contacts" class="btn-cancel btn-cancel-head" type="button">
+                    Cancel
+                  </ion-button>
+                  <ion-button class="btn-save btn-save-head" (click)="updateContact()"
+                    [disabled]="!contactEditForm.valid || invalidFname || invalidLname" type="button">Save
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+
+            <div class="port-body">
+              <div class="row">
+                <div class="col-12" *ngIf="assigneesList.length > 0 && contactEditForm">
+                  <form [formGroup]="contactEditForm" #f="ngForm" (ngSubmit)="updateContact()">
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">First Name <span class="required">*</span></ion-label>
+                        <ion-input name="first_name" (ionBlur)="whitespaceCheck('FNAME')" formControlName="first_name"
+                          [(ngModel)]="userDetails.first_name" class="user-input" required type="text"></ion-input>
+                        <ng-container
+                          *ngIf="contactEditForm.controls['first_name'].invalid && 
+                            (contactEditForm.controls['first_name'].dirty || contactEditForm.controls['first_name'].touched)">
+                          <p class="vaiidate-field" *ngIf="contactEditForm.controls['first_name'].errors.required">
+                            First name is required!
+                          </p>
+                        </ng-container>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Middle Name</ion-label>
+                        <ion-input name="middle_name" formControlName="middle_name"
+                          [(ngModel)]="userDetails.middle_name" class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Last Name <span class="required">*</span></ion-label>
+                        <ion-input class="user-input" (ionBlur)="whitespaceCheck('LNAME')" name="last_name"
+                          [(ngModel)]="userDetails.last_name" formControlName="last_name" required type="text">
+                        </ion-input>
+                        <ng-container
+                          *ngIf="contactEditForm.controls['last_name'].invalid && 
+                              (contactEditForm.controls['last_name'].dirty || contactEditForm.controls['last_name'].touched)">
+                          <p class="vaiidate-field" *ngIf="contactEditForm.controls['last_name'].errors.required">
+                            Last name is required!
+                          </p>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Prefix</ion-label>
+                        <ion-input name="prefix" formControlName="prefix" [(ngModel)]="userDetails.prefix"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Nick Name</ion-label>
+                        <ion-input class="user-input" name="nick_name" [(ngModel)]="userDetails.nick_name"
+                          formControlName="nick_name" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Gender<span class="required">*</span></ion-label>
+                        <p-dropdown [options]="genderOptions" name="gender" [(ngModel)]="userDetails.gender"
+                          formControlName="gender" appendTo="body" placeholder="Select"></p-dropdown>
+                      </div>
+                    </div>
+
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Primary Email <span class="required">*</span></ion-label>
+                        <div class="row col-12 email-section">
+                          <div class="col-8 email-field">
+                            <ion-input class="user-input email-input-field" name="email" required
+                              formControlName="email" [(ngModel)]="userDetails.email" type="text"></ion-input>
+                          </div>
+                          <div class="col-4 email-field dropdown-field">
+                            <p-dropdown name="email_label" formControlName="email_label"
+                              [(ngModel)]="userDetails.email_label" [options]="emailsOption" placeholder="Select">
+                            </p-dropdown>
+                          </div>
+                          <ng-container
+                            *ngIf="contactEditForm.controls['email'].invalid && 
+                                (contactEditForm.controls['email'].dirty || contactEditForm.controls['email'].touched)">
+                            <p class="vaiidate-field" *ngIf="contactEditForm.controls['email'].errors.required">
+                              Email is required!
+                            </p>
+                            <p class="vaiidate-field" *ngIf="contactEditForm.controls['email'].errors.pattern">
+                              Please enter a valid email!</p>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Secondary Email</ion-label>
+                        <div class="row col-12 email-section">
+                          <div class="col-8 email-field">
+                            <ion-input class="user-input email-input-field" name="secondary_email"
+                              [(ngModel)]="userDetails.secondary_email" formControlName="secondary_email" type="text">
+                            </ion-input>
+                          </div>
+                          <div class="col-4 email-field dropdown-field">
+                            <p-dropdown name="secondary_email_label" [options]="emailsOption"
+                              formControlName="secondary_email_label" [(ngModel)]="userDetails.secondary_email_label"
+                              placeholder="Select"></p-dropdown>
+                          </div>
+                          <ng-container
+                            *ngIf="contactEditForm.controls['secondary_email'].invalid && 
+                                (contactEditForm.controls['secondary_email'].dirty || contactEditForm.controls['secondary_email'].touched)">
+                            <p class="vaiidate-field"
+                              *ngIf="contactEditForm.controls['secondary_email'].errors.pattern">
+                              Please enter a valid email!</p>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Other Email</ion-label>
+                        <div class="row col-12 email-section">
+                          <div class="col-8 email-field">
+                            <ion-input class="user-input email-input-field" name="other_email"
+                              [(ngModel)]="userDetails.other_email" formControlName="other_email" type="text">
+                            </ion-input>
+                          </div>
+                          <div class="col-4 email-field dropdown-field">
+                            <p-dropdown name="other_email_label" [options]="emailsOption"
+                              formControlName="other_email_label" [(ngModel)]="userDetails.other_email_label"
+                              placeholder="Select"></p-dropdown>
+                          </div>
+                        </div>
+                        <ng-container
+                          *ngIf="contactEditForm.controls['other_email'].invalid && 
+                                (contactEditForm.controls['other_email'].dirty || contactEditForm.controls['other_email'].touched)">
+                          <p class="vaiidate-field" *ngIf="contactEditForm.controls['other_email'].errors.pattern">
+                            Please enter a valid email!</p>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Primary Mobile <span class="required">*</span></ion-label>
+                        <div class="row col-12 email-section">
+                          <div
+                            class="col-8 email-field dropdown-top own-email-ngx contact-phone customCountry customCountrySec">
+                            <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                              [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                              [selectFirstCountry]="false" [selectedCountryISO]="countryISO.UnitedStates"
+                              [phoneValidation]="true" [separateDialCode]="true" name="phone" formControlName="phone"
+                              autocomplete="nope" (input)="updateLabel($event, mobileOptions[0], 'mobileExist')"
+                              required>
+                            </ngx-intl-tel-input>
+                            <ng-container *ngIf="f.form.controls['phone'].errors">
+                              <p class="vaiidate-field">
+                                Please enter a valid number!</p>
+                            </ng-container>
+                          </div>
+                          <div class="col-4 email-field dropdown-field">
+                            <p-dropdown name="phone_label" [options]="phoneOption" formControlName="phone_label"
+                              [(ngModel)]="userDetails.phone_label" placeholder="Select"></p-dropdown>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Secondary Mobile</ion-label>
+                        <div class="row col-12 email-section">
+                          <div class="col-8 email-field own-email-ngx contact-phone customCountry">
+                            <!-- <ion-input class="user-input email-input-field" name="secondary_phone"
+                              [(ngModel)]="userDetails.secondary_phone" formControlName="secondary_phone" type="text">
+                            </ion-input> -->
+
+                            <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                              [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                              [selectFirstCountry]="false" [selectedCountryISO]="countryISO.UnitedStates"
+                              [phoneValidation]="true" [separateDialCode]="true" name="secondary_phone"
+                              formControlName="secondary_phone"
+                              (input)="updateLabel($event, mobileOptions[1], 'mobileExist')">
+                            </ngx-intl-tel-input>
+                            <ng-container *ngIf="f.form.controls['secondary_phone'].errors">
+                              <p class="vaiidate-field">
+                                Please enter a valid number!</p>
+                            </ng-container>
+                          </div>
+                          <div class="col-4 email-field dropdown-field">
+                            <p-dropdown name="secondary_phone_label" [options]="phoneOption"
+                              formControlName="secondary_phone_label" [(ngModel)]="userDetails.secondary_phone_label"
+                              placeholder="Select"></p-dropdown>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Other Mobile</ion-label>
+                        <div class="row col-12 email-section">
+                          <div class="col-8 email-field customCountry own-email-ngx contact-phone customCountrySec">
+                            <!-- <ion-input class="user-input email-input-field" name="other_phone"
+                              [(ngModel)]="userDetails.other_phone" formControlName="other_phone" type="text">
+                            </ion-input> -->
+
+                            <ngx-intl-tel-input [cssClass]="'country-input'" [preferredCountries]="preferredCountries"
+                              [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                              [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                              [selectFirstCountry]="false" [selectedCountryISO]="countryISO.UnitedStates"
+                              [phoneValidation]="true" [separateDialCode]="true" name="secondary_phone"
+                              formControlName="other_phone"
+                              (input)="updateLabel($event, mobileOptions[2], 'mobileExist')">
+                            </ngx-intl-tel-input>
+                            <ng-container *ngIf="f.form.controls['other_phone'].errors">
+                              <p class="vaiidate-field">
+                                Please enter a valid number!</p>
+                            </ng-container>
+                          </div>
+                          <div class="col-4 email-field dropdown-field">
+                            <p-dropdown name="other_phone_label" [options]="phoneOption" appendTo="body"
+                              formControlName="other_phone_label" [(ngModel)]="userDetails.other_phone_label"
+                              placeholder="Select"></p-dropdown>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Address 1</ion-label>
+                        <ion-input name="address_line" formControlName="address_line"
+                          [(ngModel)]="userDetails.address_line" class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Address 2</ion-label>
+                        <ion-input name="address_line2" formControlName="address_line2"
+                          [(ngModel)]="userDetails.address_line2" class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5 selected-contact-data">
+                        <ion-label class="label">Country</ion-label>
+                        <p-dropdown name="country_code" formControlName="country_code"
+                          [(ngModel)]="userDetails.country_code" placeholder="Select" [options]="countriesData"
+                          filter="true" (onChange)="getStates($event)">
+                        </p-dropdown>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5 selected-contact-data">
+                        <ion-label class="label">State</ion-label>
+                        <p-dropdown name="state" formControlName="state" [(ngModel)]="userDetails.state"
+                          placeholder="Select" [options]="states" filter="true"></p-dropdown>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">City</ion-label>
+                        <ion-input name="city" formControlName="city" [(ngModel)]="userDetails.city" class="user-input"
+                          type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Zip Code</ion-label>
+                        <ion-input name="zip" formControlName="zip" [(ngModel)]="userDetails.zip" class="user-input"
+                          type="text"></ion-input>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">County</ion-label>
+                        <ion-input name="county" formControlName="county" [(ngModel)]="userDetails.county"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Budget Min</ion-label>
+                        <ion-input name="budget_min" formControlName="budget_min" min="0" max="440000"
+                          (ionBlur)="minMaxValidate($event, 'BUDGET')" [(ngModel)]="userDetails.budget_min"
+                          class="user-input" type="number"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Budget Max</ion-label>
+                        <ion-input name="budget_max" formControlName="budget_max" min="0" max="440000"
+                          (ionBlur)="minMaxValidate($event, 'BUDGET')" [(ngModel)]="userDetails.budget_max"
+                          class="user-input" type="number"></ion-input>
+                        <ng-container>
+                          <p class="vaiidate-field" *ngIf="invalidBudget">
+                            Budget max can't be less than Budget min!</p>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Min Time</ion-label>
+                        <ion-input name="minTime" formControlName="minTime" min="0" max="440000"
+                          (ionBlur)="minMaxValidate($event, 'TIME')" [(ngModel)]="userDetails.minTime"
+                          class="user-input" type="number"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Max Time</ion-label>
+                        <ion-input name="maxTime" formControlName="maxTime" [(ngModel)]="userDetails.maxTime"
+                          max="440000" (ionBlur)="minMaxValidate($event, 'TIME')" class="user-input" min="0"
+                          type="number"></ion-input>
+                        <ng-container>
+                          <p class="vaiidate-field" *ngIf="invalidTime">
+                            Max Time can't be less than Min Time!</p>
+                        </ng-container>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Select Timeframe</ion-label>
+                        <p-dropdown name="selectTimeFrame" formControlName="selectTimeFrame"
+                          [(ngModel)]="userDetails.selectTimeFrame" [options]="timeFrame" placeholder="Select">
+                        </p-dropdown>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Interested Location 1</ion-label>
+                        <ion-input name="interested_address" formControlName="interested_address"
+                          [(ngModel)]="userDetails.interested_address" class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Interested Location 2</ion-label>
+                        <ion-input name="interested_address2" formControlName="interested_address2"
+                          [(ngModel)]="userDetails.interested_address2" class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Criteria</ion-label>
+                        <ion-input name="criteria" formControlName="criteria" [(ngModel)]="userDetails.criteria"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Source</ion-label>
+                        <ion-input name="source" formControlName="source" [(ngModel)]="userDetails.source"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Sub-Source</ion-label>
+                        <ion-input name="sub_source" formControlName="sub_source" [(ngModel)]="userDetails.sub_source"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Status</ion-label>
+                        <p-dropdown [options]="contactStatus" [(ngModel)]="userDetails.status" name="status"
+                          formControlName="status" appendTo="body" placeholder="Select">
+                        </p-dropdown>
+                      </div>
+                    </div>
+
+
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Rating</ion-label>
+                        <p-dropdown name="status_rating" formControlName="status_rating" [(ngModel)]="userDetails.status_rating"
+                          [options]="ratingOptionTable" placeholder="Select">
+                        </p-dropdown>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Group</ion-label>
+                        <p-dropdown [options]="groupsData" name='groups' [(ngModel)]="userDetails.groups"
+                          formControlName="groups" appendTo="body" placeholder="Select"></p-dropdown>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Assign To</ion-label>
+                        <p-dropdown appendTo="body" filter="true" name="assigned_to" formControlName="assigned_to"
+                          [options]="assigneesList" placeholder="Select">
+                        </p-dropdown>
+                      </div>
+                    </div>
+
+
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Follow Up On</ion-label>
+                        <p-calendar name="date1" placeholder="Date" [showIcon]="true" formControlName="next_follow_up"
+                          [(ngModel)]="userDetails.next_follow_up" styleClass="contact-calendar"
+                          [(ngModel)]="userDetails.next_follow_up">
+                        </p-calendar>
+                      </div>
+                      <div class="col-md-4 user-field ">
+                        <ion-label class="label">Fax #</ion-label>
+                        <ion-input name="fax" formControlName="fax" [(ngModel)]="userDetails.fax" class="user-input"
+                          type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field pl-5">
+                        <ion-label class="label">Company Name</ion-label>
+                        <ion-input class="user-input" formControlName="company_name"
+                          [(ngModel)]="userDetails.company_name" name="company_name" type="text"></ion-input>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field pr-5">
+                        <ion-label class="label">Tags</ion-label>
+                        <tag-input name="tagInput" class="editContactTag native-input sc-ion-input-md user-input"
+                          formControlName="tagsData" [onlyFromAutocomplete]="false" (onAdd)="onTagAdd($event)"
+                          (onRemove)="onTagRemove($event)" [separatorKeyCodes]="[188]" [placeholder]="'Tag'"
+                          [secondaryPlaceholder]="'Tag'">
+                          <tag-input-dropdown [showDropdownIfEmpty]="true" [focusFirstElement]="true"
+                            [displayBy]="'value'" [identifyBy]="'id'" [autocompleteItems]="tags">
+                            <ng-template let-item="item" let-index="index">
+                              {{ item.value }}
+                            </ng-template>
+                          </tag-input-dropdown>
+                        </tag-input>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pl-2 text-left">
+                        <ion-button routerLink="/contacts/all-contacts" class="btn-cancel" type="button">Cancel
+                        </ion-button>
+                        <ion-button class="btn-save" type="submit"
+                          [disabled]="!contactEditForm.valid || invalidFname || invalidLname">
+                          Save</ion-button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="personaldata" class="container-main contact-edit-section contaner-height">
+      <div class="row">
+        <div class="col-12 col-sm-12">
+          <div class="port no-pad">
+            <div class="port-header-contact">
+              <div class="title">
+                <div class="contact ml-1 menu-link">
+                  <ul>
+                    <li class="default" routerLink="/contacts/all-contacts">Contact</li>
+                    <li class="active">Edit</li>
+                  </ul>
+                </div>
+                <div class="head-btn-wrap">
+                  <ion-button routerLink="/contacts/all-contacts" class="btn-cancel btn-cancel-head" type="button">
+                    Cancel
+                  </ion-button>
+                  <ion-button class="btn-save btn-save-head" (click)="updateAdditionalInfoContact()" type="button">Save
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+            <div class="port-body infoSpace">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row user-data makeBottomMargin">
+                    <div class="col-md-2 user-field pr-5">
+                      <span class="image-upload" (click)="uploadImages()">
+                        <img *ngIf="!croppedImage" src="../../../../assets/images/avatar.svg" class="image-avatar pt9"
+                          alt="avatar">
+                        <img *ngIf="croppedImage" [src]="croppedImage" class="after-image-upload" alt="avatar">
+                        <span (click)="imageModal = true; imageExist = false"><img
+                            src="../../../../assets/images/camera.svg" alt="camera" class="camera-size" /></span>
+                      </span>
+                    </div>
+                    <div class="col-md-5 user-field">
+                    </div>
+                    <div class="col-md-5 user-field pl-5">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 pl-2">
+                      <h5 class="heading">Personal Information</h5>
+                    </div>
+                  </div>
+                  <form [formGroup]="additionalInfoForm" (ngSubmit)="updateAdditionalInfoContact()">
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Language Spoken</ion-label>
+                        <p-dropdown name="language" formControlName="language" [(ngModel)]="userDetails.language"
+                          [options]="languageOption" filter="true" placeholder="Select"></p-dropdown>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Birthday</ion-label>
+                        <p-calendar name="birthday" formControlName="birthday" [(ngModel)]="userDetails.birthday"
+                          placeholder="Date" [showIcon]="true" styleClass="contact-calendar"
+                          [(ngModel)]="userDetails.birthday"></p-calendar>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Time Zone</ion-label>
+                        <!-- <p-dropdown name="timezone" formControlName="timezone" [(ngModel)]="userDetails.timezone" placeholder="Select"></p-dropdown> -->
+                        <ion-input name="timezone" formControlName="timezone" [(ngModel)]="userDetails.timezone"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+                    </div>
+                    <div class="row user-data">
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Occupation</ion-label>
+                        <ion-input name="occupation" formControlName="occupation" [(ngModel)]="userDetails.occupation"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+                      <div class="col-md-4 user-field">
+                        <ion-label class="label">Job Title</ion-label>
+                        <ion-input name="job_title" formControlName="job_title" [(ngModel)]="userDetails.job_title"
+                          class="user-input" type="text"></ion-input>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 pl-2 text-left">
+                        <ion-button routerLink="/contacts/all-contacts" class="btn-cancel" type="button">Cancel
+                        </ion-button>
+                        <ion-button class="btn-save" (click)="addAddionalinfo()" type="submit">Save</ion-button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog position="top" [draggable]="false" [visible]="imageModal" class="custom-popup add-contact" [modal]="true"
+  [ngClass]="!imageExist ? 'pick-wrapper' : ''">
+  <p-header>
+    <span *ngIf="!imageExist" class="pick-photo">Pick a photo</span>
+    <span *ngIf="imageExist">
+      <div class="icon-area">
+        <a (click)="rotate('left')" class="rotate-icon"><img src="../../../../assets/images/rotate_left.png"
+            alt="Rotate Left" /></a>
+        <a (click)="rotate('right')" class="rotate-icon"><img src="../../../../assets/images/rotate_right.svg"
+            alt="Rotate Right" /></a>
+        <a (click)="cropImage()" class="text-done">Done</a>
+        <!-- <a (click)="saveImage()" class="text-done">Done</a> -->
+      </div>
+    </span>
+    <span *ngIf="mode === 'UPLOAD'" class="close-pop close-pop-area" (click)="imageModal = false; selectedImgUrl = ''">
+      <img src="../../../../assets/images/close.svg" alt="close" /></span>
+    <span *ngIf="mode === 'REMOVE'" class="close-pop close-pop-area" (click)="imageModal = false"> <img
+        src="../../../../assets/images/close.svg" alt="close" /></span>
+  </p-header>
+  <div class="content-wrapper">
+    <div class="p-modal-content">
+      <div class="upload-image" *ngIf="!imageExist">
+        <div class="upload-text">
+          <svg height="20" viewBox="0 0 10.056 10" width="20" xmlns="http://www.w3.org/2000/svg">
+            <path class="a"
+              d="M9.389,26.25H.639A.591.591,0,0,1,0,25.639v-2.5A.6.6,0,0,1,.639,22.5a.6.6,0,0,1,.639.639v1.889h7.5V23.139a.639.639,0,1,1,1.278,0v2.5A.665.665,0,0,1,9.389,26.25Z"
+              transform="translate(0 -16.25)"></path>
+            <path class="a"
+              d="M12.7,2.694,10.2.194c-.083-.083-.139-.083-.194-.139a.59.59,0,0,0-.5,0c-.083,0-.139.083-.194.139l-2.5,2.5a.629.629,0,1,0,.889.889L9.146,2.139V6.278a.639.639,0,0,0,1.278,0V2.167l1.444,1.444a.588.588,0,0,0,.861,0A.631.631,0,0,0,12.7,2.694Z"
+              transform="translate(-4.785)"></path>
+          </svg>
+          <h4>Upload Photo</h4>
+        </div>
+        <input name="file" type="file" (change)="onImageSelect($event)" />
+        <!-- <input name="file" type="file" (change)="onFileSelect($event)" /> -->
+      </div>
+
+      <div class="upload-image" *ngIf="selectedImgUrl !== ''">
+        <!-- <img src="{{selectedImgUrl}}" alt="image" /> -->
+        <input name="file" type="file" (change)="onImageSelect($event)" />
+        <input name="file" type="file" (change)="onFileSelect($event)" />
+      </div>
+
+      <image-cropper #imageCropper *ngIf="imageExist" [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true" [resizeToWidth]="128" [aspectRatio]="4 / 4" format="png"
+        (imageCropped)="imageCropped($event)" (loadImageFailed)="loadImageFailed()" [onlyScaleDown]="true"
+        [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'center'">
+      </image-cropper>
+    </div>
+  </div>
+  <p-footer *ngIf="!imageExist && croppedImage">
+    <ion-button class="btn-cancel" type="button" (click)="imageModal = false; croppedImage = ''">Remove Photo
+    </ion-button>
+  </p-footer>
+</p-dialog>
+
+
+<p-dialog class="new-tag-popup" position="center" [draggable]="false" [(visible)]="newTag" *ngIf="newTag">
+  <div class="content new-tag-popup">
+    <div class="close-btn-signup">
+      <h5>Would you like to add this tag?</h5>
+      <!-- <img height="10px" width="10px" src="../../../../assets/images/close.svg" alt="close" /> -->
+    </div>
+  </div>
+  <p-footer class="btns">
+    <ion-button class="btn-cancel" (click)="dontAddTag()">No</ion-button>
+    <ion-button class="btn-save" (click)="addTagToList()">Yes</ion-button>
+  </p-footer>
+</p-dialog>

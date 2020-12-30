@@ -1,0 +1,493 @@
+.subheader-wrapper {
+  background-color: #fff;
+
+  .profile-datas {
+    padding: 9px 0 9px 15px;
+    padding-bottom: 0;
+
+    ul {
+      margin: 0;
+      padding: 0 3px;
+      list-style: none;
+
+      li {
+        display: inline-flex;
+        height: 32px;
+        margin-right: 28px;
+
+        .profile-tab {
+          font-size: 14px;
+          color: #404040;
+          cursor: pointer;
+
+          &:hover {
+            border-bottom: 2px solid #207ebb;
+            color: #207ebb;
+          }
+
+          &.active {
+            color: #207ebb;
+            border-bottom: 2px solid #207ebb;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container-main {
+  padding: 25px 20px;
+  position: relative;
+
+  .port {
+    margin: 7px 3px;
+
+    .port-header-contact {
+      height: auto;
+      background: #ffffff;
+      border-radius: 3px 3px 0px 0px;
+      padding: 10px 15px;
+      border-bottom: 1px solid #dedede;
+      margin-top: -10px;
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        .contact {
+          padding: 2px;
+          top: 0px;
+          position: relative;
+
+          .contact-redirect {
+            cursor: pointer;
+            color: #207ebb;
+            font-size: 12px;
+            margin-right: 9px;
+
+            &:hover {
+              color: #207ebb;
+            }
+          }
+
+          .name {
+            cursor: pointer;
+            color: #404040;
+            font-size: 12px;
+            margin-left: 9px !important;
+          }
+        }
+      }
+    }
+
+    .port-body {
+      background: #ffffff;
+      padding: 20px 25px;
+      overflow-y: auto;
+      height: calc(100vh - 215px);
+
+      .heading {
+        text-align: left;
+        padding-bottom: 15px;
+        font-size: 20px;
+        color: #404040;
+      }
+
+      form {
+        position: relative;
+        top: -2px;
+
+        .user-data {
+          padding: 0;
+
+          .user-field {
+            padding: 0 9px;
+            margin-bottom: 20px;
+
+            .label {
+              display: flex;
+              color: #404040 !important;
+              font-size: 13px;
+            }
+
+            .user-input {
+              background: #ffffff;
+              border: 1px solid #dedede;
+              border-radius: 5px;
+              margin-top: 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.contact-edit-section ::ng-deep .ui-dropdown {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  padding: 2px 1px;
+  width: 100% !important;
+
+  .ui-dropdown-trigger {
+    padding: 0 13px 0 !important;
+
+    .ui-dropdown-trigger-icon {
+      &:before {
+        content: url(../../../assets/images/down-arrow.png);
+      }
+    }
+  }
+}
+
+.dropdown-field::ng-deep .ui-dropdown {
+  width: 96% !important;
+}
+
+/*input text area start*/
+.contact-edit-section ::ng-deep input.native-input.sc-ion-input-md {
+  position: relative;
+  top: 0px !important;
+  font-size: 12px;
+  padding: 4px 8px;
+  color: #808080;
+}
+
+.contact-edit-section ::ng-deep input.ui-inputtext {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 3px 10px;
+  color: #808080;
+  cursor: pointer;
+  width: 100% !important;
+}
+
+.contact-edit-section ::ng-deep.ui-calendar-button {
+  height: 100%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 0;
+  border-left: 0 none;
+  background-color: transparent;
+  outline: none;
+}
+
+.contact-edit-section ::ng-deep.ui-button-icon-only .ui-button-icon-left {
+  top: 8px;
+  left: -6px;
+}
+
+.contact-edit-section ::ng-deep .ui-calendar .ui-datepicker {
+  width: 100% !important;
+  display: inline-block;
+  cursor: pointer;
+  top: 36px !important;
+}
+
+.contact-edit-section ::ng-deep.ui-button-icon-only .ui-button-icon-left {
+  &:before {
+    content: url(../../../assets/images/calendar.svg);
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    line-height: 23px;
+  }
+}
+
+.contact-edit-section ::ng-deep .ui-calendar {
+  position: relative;
+  display: block !important;
+}
+
+.contact-edit-section ::ng-deep input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  display: none;
+}
+
+.vaiidate-field {
+  margin-bottom: 0;
+}
+
+.infoSpace {
+  height: 69vh;
+}
+
+.contaner-height {
+  max-height: 82vh;
+}
+
+.contact-edit-section ::ng-deep .ui-dropdown-panel {
+  position: absolute;
+  height: auto;
+  width: 200px !important;
+
+  input.ui-dropdown-filter.ui-inputtext {
+    min-width: 200px !important;
+  }
+
+  .ui-dropdown-filter-icon {
+    top: 17px;
+    right: 16px;
+  }
+}
+
+.contact-edit-section ::ng-deep .ui-dropdown-panel {
+  width: 200px !important;
+}
+
+.email-section ::ng-deep .ui-dropdown-panel {
+  width: 91px !important;
+}
+
+.email-section {
+  padding: 0;
+  margin-left: 0;
+
+  .email-field {
+    padding: 0;
+  }
+}
+
+.email-field ::ng-deep .ui-dropdown {
+  min-width: 0px !important;
+  margin-left: 5px;
+}
+
+.page-wrapper {
+  min-width: 100%;
+}
+
+.menu-link {
+  border-bottom: none !important;
+}
+
+.head-btn-wrap {
+  padding-top: 0px;
+  position: absolute;
+  top: -6px;
+  right: 5px;
+  display: inline-block
+}
+
+.btn-save-head {
+  margin-bottom: 0px;
+  width: 60px;
+  height: 26px;
+  font-size: 12px;
+  margin-top: 0px;
+  padding: 0px;
+  margin-left: 10px;
+}
+
+.btn-cancel-head {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  width: 60px;
+  height: 26px;
+  font-size: 12px;
+  margin-right: 0px;
+  padding: 0px;
+}
+
+.new-tag-popup {
+  text-align: center;
+  position: relative;
+  padding: 12px;
+
+  h5 {
+    font-size: 20px !important;
+    color: #404040 !important;
+    font-weight: 400 !important;
+  }
+
+  ::ng-deep .ui-dialog-titlebar {
+    display: none;
+  }
+
+  .btns {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+  }
+
+  ::ng-deep span::before {
+    display: none;
+  }
+
+  ::ng-deep div[role="dialog"] {
+    height: 135px;
+    background-color: #fff !important;
+  }
+}
+
+.customCountry ::ng-deep.flag-container {
+  top: 7px !important;
+  cursor: pointer;
+  left: 5px !important;
+}
+
+.customCountry ::ng-deep.iti-arrow {
+  position: relative;
+  top: -4px;
+}
+
+.customCountry ::ng-deep.country-input {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  margin-top: 6px;
+  padding-left: 67px !important;
+  border-radius: 5px;
+  max-width: 213px;
+  width: 213px;
+  font-size: 12px;
+  height: 28px;
+}
+
+.customCountrySec ::ng-deep.country-input {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  margin-top: 6px;
+  padding-left: 67px !important;
+  border-radius: 5px;
+  max-width: 187px;
+  width: 187px;
+  font-size: 12px;
+  height: 28px;
+}
+
+.customCountry ::ng-deep .selected-dial-code {
+  position: relative;
+  left: 3px;
+  font-size: 12px;
+  top: -2px;
+}
+.image-upload {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  width: 48px;
+}
+
+.image-upload span {
+  display: none;
+  z-index: 999;
+}
+.camera-size {
+  width: 15px;
+}
+.after-image-upload {
+  width: 47px;
+  height: 47px;
+  border-radius: 100%;
+  margin-top: 0px;
+}
+.image-avatar {
+  position: relative;
+}
+.custom-popup.add-contact .ui-dialog-wrapper .ui-dialog {
+  margin: 100px;
+}
+.pick-photo {
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: 0 auto;
+  text-align: center;
+  top: 14px;
+}
+.icon-area {
+  position: absolute;
+  right: 24px;
+  top: 13px;
+}
+
+.icon-area {
+  .rotate-icon {
+    cursor: pointer;
+    img {
+      width: 20px;
+      margin-left: 20px;
+    }
+  }
+  .text-done {
+    color: #207ebb;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+}
+.close-pop-area {
+  left: 20px;
+}
+.content-wrapper {
+  overflow-y: auto;
+  max-height: 58vh;
+  margin-right: -25px;
+  padding-top: 20px;
+}
+::ng-deep .p-modal-content .call-image {
+  width: 20px;
+}
+.upload-image {
+  width: 150px;
+  height: 150px;
+  background: #f0f0f0;
+  position: relative;
+  .upload-text {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    h4 {
+      font-size: 13px;
+      color: #404040;
+      margin-top: 5px;
+    }
+  }
+}
+
+.upload-image input[type="file"] {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.image-upload {
+  &:hover {
+    span {
+      display: block;
+      position: absolute;
+      top: 11px;
+      left: 16px;
+      right: 0;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: rgba(40, 40, 40, 0.4);
+      top: 0px;
+      left: 0px;
+      width: 48px;
+      height: 48px;
+      border-radius: 100%;
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+}
+.makeBottomMargin{
+  margin-bottom: 10px;
+}
+span.required{
+  color: red;
+}

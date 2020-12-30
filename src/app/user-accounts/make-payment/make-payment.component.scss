@@ -1,0 +1,470 @@
+.payment-wrapper{
+    h2{
+       color: #404040;
+       font-size:16px;
+       margin-bottom:20px;
+    }
+    .port-header-contact {
+    height: 40px;
+    background: #ffffff;
+    border-radius: 3px 3px 0px 0px;
+    padding: 5px 13px 0px 12px;
+    border-bottom: 1px solid #dedede;
+    margin-top: -10px;  
+  } 
+  .contact-redirect {
+    cursor: pointer;
+    font-size: 12px;
+    color: #207ebb;
+}
+.common-color{
+    font-size: 12px;
+    color:#404040;
+}
+.contact-main-page {
+    padding: 17px 15px 15px;
+}
+.custom-body{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+.form-input{
+    .user-input{
+    border:1px solid black;
+}
+}
+
+.container-main.lead-provider {
+    padding:10px 20px 15px;
+    position: relative;
+    overflow-y: hidden;
+    height: calc(100vh - 85px);
+  
+    .port {
+      margin: 7px 3px;
+  
+      .port-header-contact {
+        height: auto;
+        background: #ffffff;
+        border-radius: 3px 3px 0px 0px;
+        padding: 10px 15px;
+        border-bottom: 1px solid #dedede;
+        margin-top: -10px;
+        margin-bottom:16px;
+  
+        .title {
+          display: flex;
+          justify-content: space-between;
+          position: relative;
+  
+          .contact {
+            padding: 2px;
+            top: 0px;
+            position: relative;
+  
+            .contact-redirect {
+              cursor: pointer;
+              color: #207ebb;
+              font-size: 12px;
+              margin-right: 9px;
+  
+              &:hover {
+                color: #207ebb;
+              }
+            }
+  
+            .name {
+              cursor: pointer;
+              color: #404040;
+              font-size: 12px;
+              margin-left: 9px !important;
+            }
+          }
+        }
+      }
+  
+      .port-body {
+        background: #ffffff;
+        padding: 10px 0px;
+        padding-right: 0px !important;
+        min-height: calc(100vh - 120px);
+  
+        p {
+          font-size: 14px;
+          margin-bottom: 12px;
+  
+          a {
+            color: #207ebb;
+            font-size: 12px;
+  
+            &:hover {
+              text-decoration: none;
+              outline: none;
+            }
+  
+            &:focus,
+            &:active {
+              text-decoration: none;
+              outline: none;
+            }
+          }
+        }
+  
+        .heading {
+          text-align: left;
+          padding-bottom: 10px;
+          font-size: 20px;
+          color: #404040;
+        }
+  
+        .user-field {
+          padding: 0px;
+          margin-bottom: 20px;
+  
+          .label {
+            display: flex;
+            color: #404040 !important;
+            font-size: 14px;
+          }
+  
+          .user-input {
+            background: #ffffff;
+            border: 1px solid #dedede;
+            border-radius: 5px;
+            margin-top: 7px;
+            height:36px;
+            padding: 0 10px 13px 10px !important;
+          }
+        }
+      }
+    }
+  }
+  
+  p {
+    font-size: 14px;
+    margin-bottom: 12px;
+  
+    a {
+      color: #207ebb;
+      font-size: 12px;
+  
+      &:hover {
+        text-decoration: none;
+        outline: none;
+      }
+  
+      &:focus,
+      &:active {
+        text-decoration: none;
+        outline: none;
+      }
+    }
+  }
+  
+  .heading {
+    text-align: left;
+    font-size: 20px;
+    color: #404040;
+    padding: 0 0px 12px;
+    border-bottom: 1px solid #E5E5E5;
+    margin-bottom: 20px;
+  }
+  
+  .user-field {
+    padding: 0 0px;
+    margin-bottom: 20px;
+  
+    .label {
+      display: flex;
+      color: #404040 !important;
+      font-size: 13px;
+    }
+  
+    .user-input {
+      background: #ffffff;
+      border: 1px solid #dedede;
+      border-radius: 5px;
+      margin-top: 6px;
+    }
+  }
+ 
+  
+  .payment-edit-section ::ng-deep .ui-dropdown {
+    background: transparent linear-gradient(180deg, #FFFFFF 0%, #EEEEEE 100%) 0% 0% no-repeat padding-box;
+    border: 1px solid #dedede !important;
+    border-radius: 5px;
+    height: 36px !important;
+    margin-top: 10px;
+    padding: 2px 1px;
+    width: 100% !important;
+    min-width: 100% !important;
+  
+    .ui-dropdown-trigger {
+      padding: 0 13px 0 !important;
+  
+      .ui-dropdown-trigger-icon {
+        &:before {
+            content: "\e902" !important;
+            font-family: "primeicons" !important;
+            position: absolute;
+            top: 0px;
+            right: -3px;
+            color: #808080;
+        }
+      }
+    }
+  }
+  .payment-edit-section .state-payment ::ng-deep .ui-dropdown {
+    background:#fff;
+  }
+  .dropdown-field::ng-deep .ui-dropdown {
+    width: 96% !important;
+  }
+  
+  /*input text area start*/
+  .contact-edit-section ::ng-deep input.native-input.sc-ion-input-md {
+    position: relative;
+    top: 0px !important;
+    font-size: 16px;
+    padding: 4px 8px;
+    color: #808080;
+  }
+  
+  .contact-edit-section ::ng-deep input.ui-inputtext {
+    background: #ffffff;
+    border: 1px solid #dedede !important;
+    border-radius: 5px;
+    height: 28px !important;
+    margin-top: 10px;
+    font-size: 12px;
+    padding: 3px 10px;
+    color: #808080;
+    cursor: pointer;
+    width: 100% !important;
+  }
+  
+  .contact-edit-section ::ng-deep.ui-calendar-button {
+    height: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 0;
+    border-left: 0 none;
+    background-color: transparent;
+    outline: none;
+  }
+  
+  .contact-edit-section ::ng-deep.ui-button-icon-only .ui-button-icon-left {
+    top: 8px;
+    left: -6px;
+  }
+  
+  .contact-edit-section ::ng-deep .ui-calendar .ui-datepicker {
+    width: 100% !important;
+    display: inline-block;
+    cursor: pointer;
+    top: 36px !important;
+  }
+  
+  .contact-edit-section ::ng-deep.ui-button-icon-only .ui-button-icon-left {
+    &:before {
+      content: url(../../../assets/images/calendar.svg);
+      position: absolute;
+      right: 10px;
+      top: 2px;
+      line-height: 23px;
+    }
+  }
+  
+  .contact-edit-section ::ng-deep .ui-calendar {
+    position: relative;
+    display: block !important;
+  }
+  
+  .contact-edit-section ::ng-deep input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    display: none;
+  }
+  
+  .vaiidate-field {
+    margin-bottom: 0;
+  }
+  
+  .infoSpace {
+    height: 69vh;
+  }
+  
+  .contaner-height {
+    max-height: 82vh;
+  }
+  
+  .contact-edit-section ::ng-deep .ui-dropdown-panel {
+    position: absolute;
+    height: auto;
+    width: 186px !important;
+  
+    input.ui-dropdown-filter.ui-inputtext {
+      min-width: 166px !important;
+    }
+  
+    .ui-dropdown-filter-icon {
+      top: 20px;
+      right: 16px;
+    }
+  }
+  
+  .contact-edit-section ::ng-deep .ui-dropdown-panel {
+    width: 186px !important;
+  }
+  
+  .email-section ::ng-deep .ui-dropdown-panel {
+    width: 91px !important;
+  }
+  
+  .email-section {
+    padding: 0;
+    margin-left: 0;
+  
+    .email-field {
+      padding: 0;
+    }
+  }
+  
+  .email-field ::ng-deep .ui-dropdown {
+    min-width: 0px !important;
+    margin-left: 5px;
+  }
+  
+  .page-wrapper {
+    min-width: 100%;
+  }
+  
+  .menu-link {
+    border-bottom: none !important;
+  }
+  
+  .head-btn-wrap {
+    padding-top: 0px;
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    display: inline-block
+  }
+  
+  .btn-save-head {
+    margin-bottom: 0px;
+    width: 60px;
+    height: 26px;
+    font-size: 12px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 10px;
+  }
+  
+  .btn-cancel-head {
+    margin-left:15px;
+    width: 100%;
+    display:block;
+    height: 36px;
+    color:#207ebb;
+    font-size: 14px;
+    background:rgba(32,126,187,0.1);
+    margin-right: 0px;
+    padding: 0px;
+    border-radius: 5px;
+    &:hover{
+        color:#fff;
+        background: #207ebb;
+    }
+  }
+  
+  .new-tag-popup {
+    text-align: center;
+    position: relative;
+    padding: 12px;
+  
+    h5 {
+      font-size: 20px !important;
+      color: #404040 !important;
+      font-weight: 400 !important;
+    }
+  
+    ::ng-deep .ui-dialog-titlebar {
+      display: none;
+    }
+  
+    .btns {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+    }
+  
+    ::ng-deep span::before {
+      display: none;
+    }
+  
+    ::ng-deep div[role="dialog"] {
+      height: 135px;
+      background-color: #fff !important;
+    }
+  }
+  
+  .customCountry ::ng-deep.flag-container {
+    top: 7px !important;
+    cursor: pointer;
+    left: 5px !important;
+  }
+  
+  .customCountry ::ng-deep.iti-arrow {
+    position: relative;
+    top: -4px;
+  }
+  
+  .customCountry ::ng-deep.country-input {
+    background: #ffffff;
+    border: 1px solid #dedede;
+    margin-top: 10px;
+    padding-left: 67px !important;
+    border-radius: 5px;
+    max-width: 213px;
+    width: 213px;
+    font-size: 12px;
+    height: 28px;
+  }  
+  .form-body {
+    max-height: calc(100vh - 200px);
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    min-height: 420px;
+  }
+  .add_ico,
+  .search_ico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .user-field .add_ico .user-input,
+  .user-field .add_ico p-dropdown,
+  .user-field .search_ico .user-input,
+  .user-field .search_ico p-dropdown {
+    width: calc(100% - 29px);
+  }
+  .user-field .add_ico .lock_ico {
+    width: 28px;
+    height: 28px;
+    line-height: 25px;
+    border-radius: 3px;
+    margin: 6px 0 0 1px;
+    text-align: center;
+    cursor: pointer;
+    background: url('../../../assets/images/lock.svg')#F2F3F7 no-repeat center center;
+  }
+  
+  .user-field .multi.add_ico span {
+    margin: 0px 0 0 1px;
+  }
+ 
+}

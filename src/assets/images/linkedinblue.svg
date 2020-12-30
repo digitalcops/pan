@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14.05" height="14" viewBox="0 0 14.05 14">
+	<defs>
+		<style>
+			.a{fill:#207ebb;}
+		</style>
+	</defs>
+	<g transform="translate(-4.95 -5)">
+		<path class="a" d="M8,19H5V9H8Zm11,0H16V13.658c0-1.392-.5-2.085-1.479-2.085A1.478,1.478,0,0,0,13,12.738V19H10s.04-9,0-10h2.368l.183,2h.062a3.339,3.339,0,0,1,2.946-1.678,3.106,3.106,0,0,1,2.487,1A4.327,4.327,0,0,1,19,13.353Z" />
+		<ellipse class="a" cx="1.55" cy="1.5" rx="1.55" ry="1.5" transform="translate(4.95 5)" />
+	</g>
+</svg>

@@ -1,0 +1,131 @@
+<div class="page-wrapper main-page-payment">
+  <div class="table-wrapper">
+    <div class="container-main contact-main-page" style="overflow-x: hidden;">
+      <div class="row">
+        <div class="col-12 col-sm-12">
+          <div class="port no-pad">
+            <div class="port-header-contact pixel-width">
+              <div class="title">
+                <div class="contact">
+                  <span class="contact-redirect common-color" tabindex="0">Billing History &nbsp;&gt; </span>
+                  <span class="contact-redirect common-color" tabindex="0">Details &nbsp;&gt; </span>
+                  <span class="name common-color ml-2"> Make a Payment</span></div>
+              </div>
+            </div>
+            <div class="port-body">
+              <div>
+                <ul class="common-menu detail-commision">
+                  <li>
+                    <span>Account ID</span>
+                    <span>JC5455185</span>
+                  </li>
+                  <li>
+                    <span>Account Holder</span>
+                    <span>Jeff Cullen</span>
+                  </li>
+                  <li>
+                    <span>Company</span>
+                    <span>Premier Agent Network</span>
+                  </li>
+                  <li>
+                    <span>Address</span>
+                    <span>27315 Jefferson Avenue Suite J10, Temecula, CA 92590</span>
+                  </li>
+                  <li>
+                    <span>Current Balance</span>
+                    <span>$499.00</span>
+                  </li>
+                  <li>
+                    <span>Due Date</span>
+                    <span>22/03/2020</span>
+                  </li>
+
+                </ul>
+                <div class="input-box-wrapper"><input type="text" placeholder="$0.0"></div>
+                <div class="payment-options">
+                  <span>Payment Options</span>
+                  <button class="print-btn">Add/Edit Card</button>
+                </div>
+                <ul class="common-menu credit-menu">
+                  <li>
+                    <span>Credit Card Payment</span>
+
+                    <label class="radio-wrapper">Use credit card information on file.
+                      <input type="radio" checked="checked" name="radio">
+                      <p class="d-inline-block checkmark"></p>
+                    </label>
+                  </li>
+                  <li>
+                    <span></span>
+                    <label style="width:49%">
+                      <div class="page-wrapper tableheight-wrapper">
+                        <div class="table-wrapper search-pagination payment-table mapScrollToTable pb-0">
+                          <p-table [columns]="viewsAndActivityColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                            [paginator]="false" [value]="viewsAndActivityData">
+                            <ng-template pTemplate="colgroup" let-columns>
+                              <colgroup>
+                                <col *ngFor="let col of viewsAndActivityColoumns">
+                              </colgroup>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                              <tr class="activity-rows">
+                                <th *ngFor="let col of viewsAndActivityColoumns ">
+                                  <ng-container>
+                                    {{col.header}}
+                                  </ng-container>
+                                </th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-activity>
+                              <tr class="activity-data">
+                                <td *ngFor="let col of viewsAndActivityColoumns">
+                                  <ng-container *ngIf="col.field === 'imageUrl'">
+                                    {{activity.imageUrl}}
+                                  </ng-container>
+                                  <ng-container *ngIf="col.field === 'id'">
+                                    <p class=" mb-0 common-properties"> {{activity.id}}</p>
+                                  </ng-container>
+                                  <ng-container *ngIf="col.field === 'name'">
+                                    <p class="mb-0 common-properties">{{activity.name}}</p>
+                                  </ng-container>
+                                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <span>1-time Payment</span>
+                    <label class="radio-wrapper">One time payment using a credit card or debit card.
+                      <input type="radio" name="radio">
+                      <p class="d-inline-block checkmark"></p>
+                    </label>
+
+                  </li>
+                
+                  <li>
+                    <span>PayPal</span>
+                    <label class="radio-wrapper">Make payment using PayPal
+                      <input type="radio" name="radio">
+                      <p class="d-inline-block checkmark"></p>
+                    </label>
+                  </li>
+                  <li>
+                    <span>Pay by Check</span>
+                    <label class="radio-wrapper">Follow <a style="color:#207ebb;">instructions</a> to pay by check.
+                      <input type="radio" name="radio">
+                      <p class="d-inline-block checkmark"></p>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <button class="payment-btn">Make Payment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

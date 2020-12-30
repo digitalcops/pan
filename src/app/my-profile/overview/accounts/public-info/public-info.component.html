@@ -1,0 +1,140 @@
+<div class="main-content right-side-content">
+  <form [formGroup]="publicInfoEditForm" style="padding-left:10px;" (ngSubmit)="updatePublicInfoData()">
+    <h5 class="heading">Public Information</h5>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Business Title
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="business_title"
+            name="business_title">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Team Name
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="team_name" name="team_name">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Slogan
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="slogan" name="slogan">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Languages<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="language" name="language">
+          <ng-container
+            *ngIf="publicInfoEditForm.controls['language'].invalid && 
+                                (publicInfoEditForm.controls['language'].dirty || publicInfoEditForm.controls['language'].touched)">
+            <p class="vaiidate-field" *ngIf="publicInfoEditForm.controls['language'].errors.required">
+              Language is required!
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Specialities<span class="required">*</span>
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="specialties" name="specialties">
+          <ng-container
+            *ngIf="publicInfoEditForm.controls['specialties'].invalid && 
+                                (publicInfoEditForm.controls['specialties'].dirty || publicInfoEditForm.controls['specialties'].touched)">
+            <p class="vaiidate-field" *ngIf="publicInfoEditForm.controls['specialties'].errors.required">
+              Specialities is required!
+            </p>
+          </ng-container>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Education / Special Training
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="awards" name="awards">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Biography
+          </label>
+          <textarea [maxlength]="maxChars" class="form-control biography" formControlName="biography"
+            name="biography"></textarea>
+          <span class="lengthData">{{maxChars - publicInfoEditForm.get('biography').value.length}} characters
+            remaining</span>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Experience
+          </label>
+          <textarea [maxlength]="maxChars" class="form-control biography" formControlName="experience"
+            name="experience"></textarea>
+          <span class="lengthData">
+            {{maxChars - publicInfoEditForm.get('experience').value.length}} characters
+            remaining</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+       
+        <div class="col-md-6">
+          <label>
+            Awards / Certificates
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="interests" name="interests">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Interests / Hobbies
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="interests" name="interests">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+       
+        <div class="col-md-6">
+          <label>
+            Books
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="books" name="books">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Movies / Shows
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="movies" name="movies">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+       
+        <div class="col-md-6">
+          <label>
+            Travel
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="travel" name="travel">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn-cancel" type="button" (click)="cancelButtonClicked()">Cancel</button>
+      <button class="btn-save">Save</button>
+    </div>
+  </form>
+</div>

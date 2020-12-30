@@ -1,0 +1,84 @@
+<div class="overlaySideMenu" [@overlay]="overlays"></div>
+<div class="personal-inner" [@profileSection]="sidebarSetting">
+  <div class="setting-header">
+    <div class="tabbing setting-inner">
+      <ul class="alert-inner">
+        <li>Messages</li>
+        <li class="active">Setting</li>
+        <li>Logs</li>
+      </ul>
+      <div class="close" (click)="addScroll(); sidebarSetting = !sidebarSetting; overlays = !overlays">
+        <img src="../../../assets/images/close.svg" alt="close" />
+      </div>
+    </div>
+  </div>
+  <div class="personal-body setting-body">
+    <div class="setting-wrapper">
+      <ul>
+        <li>
+          <h4> Authentication</h4>
+        </li>
+        <li>Authenticate With Google
+          <span>
+            <p-inputSwitch (onChange)="onAuthenticateGoogle()" [(ngModel)]="authenticated"></p-inputSwitch>
+          </span>
+        </li>
+        <li class="spacing-area"></li>
+        <li>
+          <h4> General Settings</h4>
+        </li>
+        <li>Email Notifications
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+        <li>Site Tracking
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+        <li>SMS Alerts
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+        <li>Backup Storage <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span></li>
+        <li>Audit Logs
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span></li>
+        <li class="spacing-area"></li>
+        <li>
+          <h4> System Settings</h4>
+        </li>
+        <li>System Logs
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+        <li>Error Reporting
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+        <li>Application logs
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+        <li>Backup Servers
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+        <li>Audit Logs
+          <span>
+            <p-inputSwitch [(ngModel)]="checked2"></p-inputSwitch>
+          </span>
+        </li>
+
+      </ul>
+    </div>
+  </div>

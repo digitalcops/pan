@@ -1,0 +1,95 @@
+<div class="view-page-wrapper view-checklist-wrapper ">
+  <div class="view-template-wrapper checklist-wrapper">
+    <div class="menu-link">
+      <div class="row">
+        <div class="col-md-10 d-flex align-items-center">
+          <ul>
+            <li [routerLink]="['/subscription/sales-team']" class="default">Sales Team</li>
+            <li class="active"> {{(saleOrderId === 0) ? 'Add' : 'Edit'}} Sales Team
+            </li>
+          </ul>
+        </div>
+        <div class="head-btn-wrap col-md-2 save_right_move">
+          <ion-button [routerLink]="['/subscription/sales-team']" class="btn-cancel btn-cancel-head"
+            type="button">
+            Cancel
+          </ion-button>
+          <ion-button (click)="addUpdateChecklist()" class="btn-save btn-save-head" type="button">
+            {{(saleOrderId === 0) ? 'Save' : 'Update'}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="Office-listing">
+        <form *ngIf="subscriptionService.salesTeamDataForm" [formGroup]="subscriptionService.salesTeamDataForm">
+          <div class="Listing">
+            <div class="row user-data">
+              <div class="col-sm-12">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Team Name<span class="required">*</span></ion-label>
+                  <ion-input formControlName="name" class="user-input" type="text" autocomplete="off">
+                  </ion-input>
+                  <ng-container *ngIf="subscriptionService.salesTeamDataForm.controls['name'].invalid &&  (subscriptionService.salesTeamDataForm.controls['name'].dirty
+                     || subscriptionService.salesTeamDataForm.controls['name'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.salesTeamDataForm.controls['name'].errors.required">
+                      Team Name is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Status<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [options]="isActiveList" formControlName="is_active" placeholder="Select"
+                      appendTo="body">
+                    </p-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Leader Name<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [filter]="true" [options]="salesPersonList" formControlName="team_leader" placeholder="Select"
+                      appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.salesTeamDataForm.controls['team_leader'].invalid &&  (subscriptionService.salesTeamDataForm.controls['team_leader'].dirty
+                     || subscriptionService.salesTeamDataForm.controls['team_leader'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.salesTeamDataForm.controls['team_leader'].errors.required">
+                      Leader is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Members List<span class="required">*</span></ion-label>
+                  <div class="multi">
+                    <p-multiSelect [options]="salesPersonList" formControlName="team_members" panelStyleClass="panelSideConProduct"
+                    appendTo="body" class="multiple-select">
+                  </p-multiSelect>
+                   
+                  </div>
+                  <ng-container *ngIf="subscriptionService.salesTeamDataForm.controls['team_members'].invalid &&  (subscriptionService.salesTeamDataForm.controls['team_members'].dirty
+                     || subscriptionService.salesTeamDataForm.controls['team_members'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.salesTeamDataForm.controls['team_members'].errors.required">
+                      Members List is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-12">&nbsp;</div>
+              <div class="col-sm-12">&nbsp;</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

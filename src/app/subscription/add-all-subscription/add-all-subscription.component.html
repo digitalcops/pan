@@ -1,0 +1,244 @@
+<div class="view-page-wrapper view-checklist-wrapper ">
+  <div class="view-template-wrapper checklist-wrapper">
+    <div class="menu-link">
+      <div class="row">
+        <div class="col-md-9 d-flex align-items-center">
+          <ul>
+            <li [routerLink]="['/subscription/all-subscription']" class="default">All Subscriptions</li>
+            <li class="active"> {{(saleOrderId === 0) ? 'Add' : 'Edit'}} Subscription
+            </li>
+          </ul>
+        </div>
+        <div class="head-btn-wrap col-md-3 save_right_move">
+          <h6 class="unitTextPage">
+            {{(allData && allData.invoice_count) ? allData.invoice_count : 0}} Invoice
+            {{(allData && allData.invoice_count && allData.invoice_count > 1) ? 's' : ''}}
+          </h6>
+          <ion-button [routerLink]="['/subscription/all-subscription']" class="btn-cancel btn-cancel-head"
+            type="button">
+            Cancel
+          </ion-button>
+          <ion-button (click)="addUpdateChecklist()" class="btn-save btn-save-head" type="button">
+            {{(saleOrderId === 0) ? 'Save' : 'Update'}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="Office-listing">
+        <form *ngIf="invoicingService.allSubsDataForm" [formGroup]="invoicingService.allSubsDataForm">
+          <div class="Listing">
+            <div class="row user-data">
+              <div class="col-sm-12">
+                <div class="staWrap form-group user-field selected-contact-data">
+                    <ion-button [disabled]="activeIndex >= i" (click)="changeStatusSub(item)" 
+                        [ngClass]="{'stHighlight': invoicingService.allSubsDataForm.value.status === item.value,
+                        disbBtn: (activeIndex >= i), modStatusBtn: !(activeIndex >= i)}" 
+                      *ngFor="let item of statusOptions; let i=index" class="btn-save-status" type="button">
+                      {{item.label}}
+                    </ion-button>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label style="margin-bottom: 6px;" class="label">Customer Name<span class="required">*</span>
+                  </ion-label>
+                  <p-dropdown [filter]="true" [options]="customerList" formControlName="customer" placeholder="Select"
+                    appendTo="body">
+                  </p-dropdown>
+                  <ng-container *ngIf="invoicingService.allSubsDataForm.controls['customer'].invalid &&  (invoicingService.allSubsDataForm.controls['customer'].dirty
+                  || invoicingService.allSubsDataForm.controls['customer'].touched)">
+                 <p class="vaiidate-field"
+                   *ngIf="invoicingService.allSubsDataForm.controls['customer'].errors.required">
+                   Customer Name is required!
+                 </p>
+               </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label style="margin-bottom: 6px;" class="label">Subscription Product<span
+                      class="required">*</span></ion-label>
+                  <p-dropdown [filter]="true" (onChange)="onProductChange($event)" [options]="productsList" formControlName="product" placeholder="Select"
+                    appendTo="body">
+                  </p-dropdown>
+                  <ng-container *ngIf="invoicingService.allSubsDataForm.controls['product'].invalid &&  (invoicingService.allSubsDataForm.controls['product'].dirty
+                  || invoicingService.allSubsDataForm.controls['product'].touched)">
+                 <p class="vaiidate-field"
+                   *ngIf="invoicingService.allSubsDataForm.controls['product'].errors.required">
+                   Subscription Product is required!
+                 </p>
+               </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label style="margin-bottom: 6px;" class="label">Subscription Plan<span class="required">*</span>
+                  </ion-label>
+                  <p-dropdown [readonly]="true" [filter]="true" [options]="plansList" formControlName="plan" placeholder="Select"
+                    appendTo="body">
+                  </p-dropdown>
+                  <ng-container *ngIf="invoicingService.allSubsDataForm.controls['plan'].invalid &&  (invoicingService.allSubsDataForm.controls['plan'].dirty
+                  || invoicingService.allSubsDataForm.controls['plan'].touched)">
+                 <p class="vaiidate-field"
+                   *ngIf="invoicingService.allSubsDataForm.controls['plan'].errors.required">
+                   Subscription Plan is required!
+                 </p>
+               </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Recurring Price<span class="required">*</span></ion-label>
+                  <ion-input placeholder="Recurring Price" formControlName="recurring_price" class="user-input" type="number" autocomplete="off">
+                  </ion-input>
+                  <ng-container *ngIf="invoicingService.allSubsDataForm.controls['recurring_price'].invalid &&  (invoicingService.allSubsDataForm.controls['recurring_price'].dirty
+                  || invoicingService.allSubsDataForm.controls['recurring_price'].touched)">
+                 <p class="vaiidate-field"
+                   *ngIf="invoicingService.allSubsDataForm.controls['recurring_price'].errors.required">
+                   Recurring Price is required!
+                 </p>
+               </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label style="margin-bottom: 6px;" class="label">Sales Team</ion-label>
+                  <p-dropdown (onChange)="onSalesTeamChange($event)" [filter]="true" [options]="salesTeamList" formControlName="sales_team"
+                    placeholder="Select" appendTo="body">
+                  </p-dropdown>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label style="margin-bottom: 6px;" class="label">Sales Person</ion-label>
+                  <p-dropdown [filter]="true" [options]="salesPersonList" formControlName="sales_person"
+                    placeholder="Select" appendTo="body">
+                  </p-dropdown>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Start Date</ion-label>
+                  <div class="contact-visit-section search_ico drpdwn-wrap">
+                    <p-calendar [minDate]="currentDate" class="fullcW" formControlName="start_timestamp" appendTo="body" [readonlyInput]="true"
+                      styleClass="p-calendar" placeholder="Start Date" [showIcon]="true">
+                    </p-calendar>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Close Date</ion-label>
+                  <div class="contact-visit-section search_ico drpdwn-wrap">
+                    <p-calendar [minDate]="currentDate" class="fullcW" formControlName="close_timestamp" appendTo="body" [readonlyInput]="true"
+                      styleClass="p-calendar" placeholder="Close Date" [showIcon]="true">
+                    </p-calendar>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Next Invoice Date</ion-label>
+                  <div class="contact-visit-section search_ico drpdwn-wrap">
+                    <p-calendar [minDate]="currentDate" class="fullcW" formControlName="next_invoice_date" appendTo="body"
+                      [readonlyInput]="true" styleClass="p-calendar" placeholder="Next Invoice Date" [showIcon]="true">
+                    </p-calendar>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label style="margin-bottom: 6px;" class="label align-item-center">Billing Address</ion-label>
+                  <div style="margin-top:0px !important;" class="add_ico">
+                    <p-dropdown [appendTo]="'body'" [filter]="true" placeholder="Select" [options]="billingList"
+                      formControlName="billing_address" class="multiple-select">
+                    </p-dropdown>
+                    <span (click)="addAddressItem('billing')" style="margin-top:0px !important;"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">&nbsp;</div>
+              <div class="col-sm-12">&nbsp;</div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <p-dialog position="center" [draggable]="false" [visible]="addAddress"
+      class="popup-element custom-popup add-contact add-contact-wrapper" [modal]="true">
+      <p-header>Add Address
+        <span class="close-pop" (click)="addAddress = false;"><img src="assets/images/close.svg" alt="close" /></span>
+      </p-header>
+      <div class="Listing">
+        <div class="row user-data">
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Customer</ion-label>
+              <p-dropdown [filter]="true" class="user-input" [(ngModel)]="addressData.contact" [options]="customerList"
+                placeholder="Select" appendTo="body">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Address Type</ion-label>
+              <p-dropdown [appendTo]="'body'" class="user-input" [(ngModel)]="addressData.address_type"
+                [options]="addressList" placeholder="Select" appendTo="body">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Country</ion-label>
+              <p-dropdown [appendTo]="'body'" [(ngModel)]="addressData.country" placeholder="Select"
+                [options]="countriesData" filter="true" (onChange)="getStates($event)">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">State</ion-label>
+              <p-dropdown [appendTo]="'body'" [(ngModel)]="addressData.state" placeholder="Select" [options]="states"
+                filter="true">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Street 1</ion-label>
+              <ion-input [(ngModel)]="addressData.street1" class="user-input" type="number" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Street 2</ion-label>
+              <ion-input [(ngModel)]="addressData.street2" class="user-input" type="number" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Zip Code<Code></Code></ion-label>
+              <ion-input [(ngModel)]="addressData.zip" class="user-input" type="text" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 20px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">City <Code></Code></ion-label>
+              <ion-input [(ngModel)]="addressData.city" class="user-input" type="text" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p-footer class="btns-sale">
+        <ion-button class="btn-save" (click)="addAddressToTable()">Save</ion-button>
+        <ion-button class="btn-cancel" (click)="addAddress = false">Cancel</ion-button>
+      </p-footer>
+    </p-dialog>
+  </div>

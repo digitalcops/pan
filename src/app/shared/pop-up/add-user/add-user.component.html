@@ -1,0 +1,64 @@
+<p-dialog position="top" [draggable]="false" [visible]="true" class="add-user custom-popup common-popup-css"
+  [modal]="true">
+  <p-header>Add User
+    <span class="close-pop" (click)="modalState.emit('addUser')">  <img src="../../../../assets/images/close.svg"
+        alt="close" /></span>
+  </p-header>
+  <form #addUserForm="ngForm" (ngSubmit)="addUserAccount(addUser)">
+    <div class="content">
+      <div class="p-modal-content form-element">
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label" position="floating">First Name*</ion-label>
+            <ion-input type="text" #firstName="ngModel" name="firstName" [(ngModel)]="addUser.firstName" required>
+            </ion-input>
+          </ion-item>
+          <div class="vaiidate-field" *ngIf="firstName.errors && ( firstName.touched || addUserForm.submitted)">
+            <p [hidden]="!firstName.errors.required">First name is required</p>
+          </div>
+        </div>
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label" position="floating">Middle Name</ion-label>
+            <ion-input type="text" #middleName="ngModel" name="middleName" [(ngModel)]="addUser.middleName">
+            </ion-input>
+          </ion-item>
+        </div>
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label" position="floating">Last Name*</ion-label>
+            <ion-input type="text" #lastName="ngModel" name="lastName" [(ngModel)]="addUser.lastName" required>
+            </ion-input>
+          </ion-item>
+          <div class="vaiidate-field" *ngIf="lastName.errors && ( lastName.touched || addUserForm.submitted)">
+            <p [hidden]="!lastName.errors.required">Last Name is required</p>
+          </div>
+        </div>
+
+
+        <div class="vaildation-area">
+          <ion-item class="no-padding">
+            <ion-label class="label" position="floating">Email*</ion-label>
+            <ion-input type="email" required #email="ngModel" name="email" [(ngModel)]="addUser.email"
+              pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"></ion-input>
+          </ion-item>
+          <div class="vaiidate-field" *ngIf="email.errors && ( email.touched || addUserForm.submitted)">
+            <p [hidden]="!email.errors.required">Email is required</p>
+            <p [hidden]="!email.errors.pattern">Please enter a valid email</p>
+          </div>
+        </div>
+
+        <div class="vaildation-area p-dropdown-top">
+          <p-dropdown required #groups="ngModel" name="groups" [options]="augmentedRoles" [(ngModel)]="addUser.groups"
+            placeholder="Role*" appendTo="body">
+          </p-dropdown>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <ion-button class="btn-cancel" type="button" (click)="modalState.emit('addUser')">Cancel</ion-button>
+      <ion-button class="btn-save" type="submit" [disabled]="!addUserForm.valid || validateForm(addUser)">Save
+      </ion-button>
+    </p-footer>
+  </form>
+</p-dialog>

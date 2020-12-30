@@ -1,0 +1,1869 @@
+<div class="page-wrapper">
+
+    <div class="table-wrapper">
+        <div class="subheader-wrapper">
+            <div class="row subheader-row">
+                <div class="col-md-9 pr-0">
+                    <div class="social-images">
+                        <ul>
+                            <li (click)="sendCallMessage()">
+                                <div class="social-inner social-contact" pTooltip="Call" tooltipPosition="top">
+                                    <img src="../../../assets/images/active-call.svg" class="default defaulter"
+                                        alt="active call" />
+                                    <img src="../../../assets/images/active-call-white.svg" class="white"
+                                        alt="active call" />
+                                </div>
+                            </li>
+                            <li>
+                                <div (click)="file.click()" class="social-inner social-contact" pTooltip="Upload"
+                                    tooltipPosition="top">
+                                    <input type="file" class="hidethis" accept=".csv" #file>
+                                    <img src="../../../assets/images/upload.svg" class="default defaulter"
+                                        alt="active call" />
+                                    <img src="../../../assets/images/upload-white.svg" class="white"
+                                        alt="active call" />
+                                </div>
+                            </li>
+                            <li (click)="exportSelectedContact()">
+                                <div class="social-inner social-contact" pTooltip="Download" tooltipPosition="top">
+                                    <img src="../../../assets/images/download.svg" class="default defaulter"
+                                        alt="active call" />
+                                    <img src="../../../assets/images/download-white.svg" class="white"
+                                        alt="active call" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="social-inner subheader-wrapper" (click)="assign()" pTooltip="Assign To"
+                                    tooltipPosition="top">
+                                    <img src="../../../assets/images/select-icons/assign-grey.svg"
+                                        class="assign-grey default defaulter assign-header-grey" alt="active call" />
+                                    <img src="../../../assets/images/select-icons/assign-white.svg"
+                                        class="white assign-grey assign-header-grey" alt="active call" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="social-inner social-contact" pTooltip="Fax" tooltipPosition="top">
+                                    <img src="../../../assets/images/fax.svg" class="default defaulter"
+                                        alt="active call" />
+                                    <img src="../../../assets/images/fax-white.svg" class="white" alt="active call" />
+                                </div>
+                            </li>
+                            <li>
+                                <div (click)="openAddNotificationPopup()" class="social-inner social-contact"
+                                    pTooltip="SMS" tooltipPosition="top">
+                                    <img style="left:4px;" src="../../../assets/images/send-message.svg"
+                                        class="default defaulter" alt="active call" />
+                                    <img style="left:4px;" src="../../../assets/images/send-message-white.svg"
+                                        class="white" alt="active call" />
+                                </div>
+                            </li>
+                            <li>
+                                <div (click)=" openAddPopUp()" class="social-inner subheader-wrapper" pTooltip="Tasks"
+                                    tooltipPosition="top">
+                                    <img style="left:6px;" src="../../../assets/images/footer-task.svg"
+                                        class="assign-grey default defaulter assign-header-grey" alt="active call" />
+                                    <img style="left:6px;" src="../../../assets/images/footer-task-white.svg"
+                                        class="white assign-grey assign-header-grey" alt="active call" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 text-right">
+                    <ul class="interaction-bar-inner-right inter-bar-right">
+                        <li>
+                            <div class="box" pTooltip="Print" tooltipPosition="top">
+                                <img alt="" src="../../../assets/images/print.svg" class="default print">
+                                <img alt="" src="../../../assets/images/print-white.svg" class="white">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box" pTooltip="Settings" (click)="openSettingSidebar(true)"
+                                tooltipPosition="top">
+                                <img alt="" src="assets/images/settings.svg" class="default">
+                                <img alt="" src="../../../assets/images/settings-white.svg" class="white">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box" style="position: relative;"
+                                (click)="$event.stopPropagation();hideVisible()" pTooltip="More" tooltipPosition="top">
+                                <img alt="" src="../../../assets/images/more.svg" class="default">
+                                <img alt="" src="../../../assets/images/more-white.svg" class="white">
+                                <div class="show-box" *ngIf="active">
+                                    <div class="upload-menu">
+                                        <div class="top-list">
+                                            <span><img alt="" src="../../../.../../assets/images/more/Add-User.svg">Add
+                                                Contact</span>
+                                            <span><img alt="" src="../../../.../../assets/images/more/Task.svg">Add
+                                                Note</span>
+                                            <span><img alt="" src="../../../.../../assets/images/more/File.svg">Add
+                                                Task</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-main contact-main-page" *ngIf="userDetails" style="overflow-x:hidden">
+            <div class="row">
+                <div class="col-12 col-sm-12">
+                    <div class="port no-pad">
+                        <div class="port-header-contact pixel-width">
+                            <div class="title">
+                                <div class="contact ml-1">
+                                    <span routerLink="/contacts/all-contacts" class="contact-redirect">Contacts
+                                        &nbsp;></span>
+                                    <span class="name ml-2">{{userDetails.prefix}} {{userDetails.first_name}}
+                                        {{userDetails.middle_name}} {{userDetails.last_name}}</span>
+                                </div>
+                                <div class="contact-side-text">
+                                    Contact's Local Time {{now | date:'shortTime'}} UTC
+                                </div>
+                            </div>
+                        </div>
+                        <div class="port-body user-details contact-third">
+                            <ul class="profile-wrapper contact-profile row">
+                                <li class="col-md-1">
+                                    <div class="profile-pic" [ngClass]="{'red-border' :  userDetails.followUp <= 0, 'orange-border' :  userDetails.followUp  > 0 && userDetails.followUp <= 7,
+                                        'yellow-border' :  userDetails.followUp  > 7 && userDetails.followUp <= 14, 'green-border' :  userDetails.followUp  > 14 , 
+                                        'blue-border' :  userDetails.followUp === null }">
+                                        <img *ngIf="userDetails.image" [src]="userDetails.image" alt="Avatar"
+                                            class="md-avatar line-view-arc rounded-circle">
+                                        <img *ngIf="!userDetails.image" class="md-avatar line-view-arc rounded-circle"
+                                            src="../../../assets/images/avatar.svg" alt="Avatar" />
+                                    </div>
+                                </li>
+                                <li class="col-md-3">
+                                    <ul class="profile-details">
+                                        <li class="username" *ngIf="userDetails.first_name">
+                                            {{userDetails.prefix}} {{userDetails.first_name}}
+                                            {{userDetails.middle_name}} {{userDetails.last_name}}</li>
+                                        <li *ngIf="userDetails.job_position">
+                                            {{userDetails.job_title}}</li>
+                                        <li *ngIf="userDetails.company_name">
+                                            {{userDetails.company_name}}</li>
+                                        <li *ngIf="userDetails.mobile">
+                                            {{userDetails.mobile}}</li>
+                                        <li *ngIf="userDetails.email">
+                                            {{userDetails.email}}</li>
+                                        <li *ngIf="userDetails.address_line">
+                                            {{userDetails.address_line | titlecase}}</li>
+                                        <li *ngIf="userDetails.address_line2">
+                                            {{ userDetails.address_line2 | titlecase}}</li>
+                                        <li *ngIf="userDetails.zip">
+                                            {{userDetails.zip}}</li>
+                                        <li>Rating: {{userDetails.status_rating}}</li>
+                                        <li>License</li>
+                                        <li *ngIf="userDetails.is_seller">Seller</li>
+                                        <li *ngIf="userDetails.is_investor">Invester</li>
+                                    </ul>
+                                </li>
+                                <li class="col-md-4">
+                                    <ul class="location-intrest contact-intrest">
+                                        <li>
+                                            <p> <span class="heading-data">Location Interest :</span><span
+                                                    class="para-data  address-data">
+                                                    {{userDetails.interested_address}}
+                                                    {{userDetails.interested_address2}}</span></p>
+                                            <p class="bugte-min"><span class="heading-data">Budget :</span> <span
+                                                    *ngIf="userDetails.budget_min" class="para-data address-data">
+                                                    ${{userDetails.budget_min}} -
+                                                    ${{userDetails.budget_max}}</span></p>
+                                            <p><span class="heading-data">Timeframe :</span><span
+                                                    class="para-data address-data" *ngIf="userDetails.timeframe">
+                                                    {{userDetails.timeframe}}</span></p>
+                                            <p><span class="heading-data">Criteria :</span> <span
+                                                    class="para-data address-data" *ngIf="userDetails.criteria">
+                                                    {{userDetails.criteria}}</span></p>
+                                            <p *ngIf="false"><span class="heading-data">Main Features :</span> <span
+                                                    class="para-data address-data">
+                                                </span></p>
+                                            <p> <span class="heading-data">Property Type
+                                                    :</span><span class="para-data address-data">
+                                                </span></p>
+                                            <p> <span class="heading-data">Main Features
+                                                    :</span><span class="para-data address-data">
+                                                </span></p>
+                                            <p> <span class="heading-data">Qualified
+                                                    :</span><span class="para-data address-data">
+                                                </span></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="col-md-4">
+                                    <ul class="location-intrest assigned-intrest">
+                                        <li>
+                                            <p> <span class="heading-data">Assigned to
+                                                    :</span><span class="para-data">
+                                                    {{userDetails.assignee?.name ? userDetails.assignee?.name : ''}}
+                                                </span></p>
+                                            <p> <span class="heading-data">Next
+                                                    Follow Up :</span><span class="para-data">
+                                                    {{userDetails.next_follow_up | date:'M/d/yyyy'}}</span>
+                                            </p>
+                                            <p> <span class="heading-data">Last
+                                                    Follow Up :</span><span class="para-data">
+                                                    {{userDetails.last_follow_up | date:'M/d/yyyy'}}
+                                                </span>
+                                            </p>
+                                            <p> <span class="heading-data">Last Login
+                                                    :</span><span class="para-data"></span>
+                                            </p>
+                                            <p> <span class="heading-data">Source
+                                                    :</span><span class="para-data">{{userDetails.source}}</span></p>
+                                            <p> <span class="heading-data">Campaign
+                                                    :</span><span class="para-data"></span></p>
+                                            <p> <span class="heading-data">Owner
+                                                    :</span><span class="para-data">
+                                                </span></p>
+                                            <p> <span class="heading-data">Lender
+                                                    :</span><span class="para-data">
+                                                </span></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row arrow-tabs">
+                <div class="col-12 col-sm-12">
+                    <div class="port">
+                        <div class="tags  arrow-tags">
+                            <ul>
+                                <li class="roundCorners" *ngFor="let item of userDetails.stage; let i = index">
+                                    <a [ngClass]="{'isStepDone': item.value, 'active': (activeStageIndex === i)}" 
+                                    class="new-tab active" (click)="contractedState('New', i)" >
+                                        {{item.label}}
+                                        <img *ngIf="i === (userDetails.stage.length - 1)"
+                                            src="../../../assets/images/down-arrow.png" alt="">
+                                    </a>
+                                </li>
+                                <li (click)="contractedState('completed', 'done')" class="own-cursor-pointer"><em
+                                        class="pi pi-check tick-color" aria-hidden="true"></em><span class="top-name">
+                                    Mark Status as Complete</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-7">
+                    <div class="row">
+                        <div class="col-12 pr-0">
+                            <div class="port">
+                                <div class="port-header col-12 p-0">
+                                    <ul class="list-inline tabing own-list-wrap">
+                                        <li [ngClass]="activeLink==1?'active':''" (click)="changeTab(1)"><a
+                                                routerLinkActive="active">Activity</a></li>
+                                        <li [ngClass]="activeLink==2?'active':''" (click)="changeTab(2)"><a
+                                                routerLinkActive="active"> Views & Searches</a></li>
+                                        <li [ngClass]="activeLink==3?'active':''" (click)="changeTab(3)"><a
+                                                routerLinkActive="active">Campaigns</a></li>
+                                        <li [ngClass]="activeLink==4?'active':''" (click)="changeTab(4)"><a
+                                                routerLinkActive="active">Listings</a></li>
+                                        <li [ngClass]="activeLink==5?'active':''" (click)="changeTab(5)"><a
+                                                routerLinkActive="active">Reviews</a></li>
+                                        <li [ngClass]="activeLink==6?'active':''" (click)="changeTab(6)"><a
+                                                routerLinkActive="active">Questions</a></li>
+                                        <li [ngClass]="activeLink==7?'active':''" (click)="changeTab(7)"><a
+                                                routerLinkActive="active">History</a></li>
+                                        <li [ngClass]="activeLink==8?'active':''" (click)="changeTab(8)"><a
+                                                routerLinkActive="active">Settings</a></li>
+                                    </ul>
+                                </div>
+                                <div class="port-body editor-inner" *ngIf="activeLink==1">
+                                    <div class="activity-subheader">
+                                        <p class="activity-note load-data"><strong>Note</strong></p>
+                                    </div>
+                                    <div class="editor-section">
+                                        <div id=“TinyMCE” class="tiny">
+                                            <editor cloudChannel="5" [disabled]="false" id="" [init]="config"
+                                                initialValue="" [inline]="false" plugins="" tagName="div" toolbar=""
+                                                [(ngModel)]="noteText"></editor>
+                                        </div>
+                                    </div>
+                                    <div class="single-line-dropdown-text">
+                                        <div class="type-phone-call mt-2">
+                                            <p class="type">Type</p>
+                                            <p class="phone-call mr-1">Phone Call</p>
+                                        </div>
+                                        <div class="type-phone-call mt-2">
+                                            <p class="type">Outcome</p>
+                                            <p class="phone-call mr-1">Select an Outcome</p>
+                                        </div>
+                                        <div class="type-phone-call mt-2 mr-3">
+                                            <p class="type">Date & Time</p>
+                                            <p class="phone-call mr-1">03/21/2020 at 8:00AM</p>
+                                        </div>
+                                    </div>
+                                    <div class="single-line-dropdown-text">
+                                        <div class="create-wrapper">
+                                            <p-checkbox [(ngModel)]="checked4" binary="true"></p-checkbox>
+                                            <span class="create-follow-up-text">Create a follow-up task<span
+                                                    class="business-days">3
+                                                    business days</span></span>
+                                        </div>
+                                        <div>
+                                            <button class="save-note own-save-note"
+                                                [ngClass]="noteText.trim() === '' ? 'btn-disabled':''"
+                                                [disabled]="noteText.trim() === ''" (click)="saveNote()">Save
+                                                Note</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-table-wrapper" *ngIf="activeLink==2">
+                        <div class="saved-wrapper">
+                            <div class="searches-text">
+                                <span class="saved-text">Saved Favorites & Property Views</span>
+                                <span class="search-text">Searches</span>
+                            </div>
+                            <div class="icon-wrapper">
+                                <span pTooltip="Download" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/download.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/download-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Print" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/print.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/print-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Settings" tooltipPosition="top">
+                                    <img alt="" src="assets/images/settings.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/settings-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="More" tooltipPosition="top">
+                                    <img alt="" src="assets/images/more.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/more-white.svg" class="hover-change">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="page-wrapper tableheight-wrapper">
+                            <div class="table-wrapper search-pagination mapScrollToTable">
+                                <p-table [columns]="viewsAndActivityColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                                    [paginator]="true" [value]="viewsAndActivityData" [totalRecords]="total"
+                                    [rows]="rows">
+                                    <ng-template pTemplate="colgroup" let-columns>
+                                        <colgroup>
+                                            <col *ngFor="let col of viewsAndActivityColoumns">
+                                        </colgroup>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr class="activity-rows">
+                                            <th *ngFor="let col of viewsAndActivityColoumns ">
+                                                <ng-container *ngIf="col.field === 'imageUrl'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                </ng-container>
+                                                <ng-container>
+                                                    {{col.header}}
+                                                </ng-container>
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-activity>
+                                        <tr class="activity-data">
+                                            <td *ngFor="let col of viewsAndActivityColoumns">
+                                                <ng-container *ngIf="col.field === 'imageUrl'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                    <figure><img src="{{activity.imageUrl}}" alt="property-image">
+                                                    </figure>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'id'"><span
+                                                        class="common-properties"> {{activity.id}}</span></ng-container>
+                                                <ng-container *ngIf="col.field === 'name'"><span
+                                                        class="common-properties">{{activity.name}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'group_name'"><span
+                                                        class="common-properties address-info">{{activity.group_name}}</span>
+                                                    <div class="beds-availabity">
+                                                        <span *ngFor="let data of activity.araay"> {{data}}</span></div>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'created_at'">{{activity.created_at}}
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                <p class="paginate_data">
+                                    Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of
+                                    {{total}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-table-wrapper" *ngIf="activeLink==3">
+                        <div class="saved-wrapper">
+                            <div class="searches-text">
+                                <button class="add-button">Add New</button>
+                            </div>
+                            <div class="icon-wrapper">
+                                <label class="search-text"><input type="text" placeholder="Search">
+                                    <img alt="" class="search-icon" src="../../../assets/images/search.svg"></label>
+                                <span pTooltip="Download" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/download.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/download-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Print" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/print.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/print-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Settings" tooltipPosition="top">
+                                    <img alt="" src="assets/images/settings.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/settings-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="More" tooltipPosition="top">
+                                    <img alt="" src="assets/images/more.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/more-white.svg" class="hover-change">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="page-wrapper tableheight-wrapper">
+                            <div class="table-wrapper search-pagination mapScrollToTable">
+                                <p-table [columns]=" campaignsColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                                    [paginator]="true" [value]="campaignsColoumnsData" [totalRecords]="total"
+                                    [rows]="rows">
+                                    <ng-template pTemplate="colgroup" let-columns>
+                                        <colgroup>
+                                            <col *ngFor="let col of  campaignsColoumns">
+                                        </colgroup>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr class="activity-rows campaign-rows">
+                                            <th *ngFor="let col of  campaignsColoumns">
+                                                <ng-container *ngIf="col.field === 'dropdown'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                </ng-container>
+                                                <ng-container>
+                                                    {{col.header}}
+                                                </ng-container>
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-campaign>
+                                        <tr class="activity-data campaign-data">
+                                            <td *ngFor="let col of campaignsColoumns">
+                                                <ng-container *ngIf="col.field ==='dropdown'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                    <p-dropdown placeholder="Status" appendTo="body"
+                                                        [options]="userUpdateStatus" [(ngModel)]="rowData.is_active"
+                                                        (onChange)="updateUsers(rowData)"></p-dropdown>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field ==='campaign_status'">
+                                                    <span>{{campaign.campaign_status}}</span></ng-container>
+                                                <ng-container *ngIf="col.field ==='name'"><span>{{campaign.name}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field ==='date'"><span class="time-login">Last:
+                                                        12/04/2011 08:30AM</span><span class="time-login"> Next:
+                                                        12/04/2011 08:30AM</span></ng-container>
+                                                <ng-container *ngIf="col.field ==='letters'">
+                                                    <span>{{campaign.letters}}</span></ng-container>
+
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                <p class="paginate_data">
+                                    Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of
+                                    {{total}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-table-wrapper" *ngIf="activeLink==4">
+                        <div class="saved-wrapper">
+                            <div class="searches-text">
+                                <button class="add-button">Add New</button>
+                            </div>
+                            <div class="icon-wrapper">
+                                <label class="search-text"><input type="text" placeholder="Search">
+                                    <img alt="" class="search-icon" src="../../../assets/images/search.svg"></label>
+                                <span pTooltip="Download" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/download.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/download-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Print" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/print.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/print-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Settings" tooltipPosition="top">
+                                    <img alt="" src="assets/images/settings.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/settings-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="More" tooltipPosition="top">
+                                    <img alt="" src="assets/images/more.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/more-white.svg" class="hover-change">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="page-wrapper tableheight-wrapper">
+                            <div class="table-wrapper search-pagination mapScrollToTable">
+                                <p-table [columns]="listingColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                                    [paginator]="true" [value]="listingData" [totalRecords]="total" [rows]="rows">
+                                    <ng-template pTemplate="colgroup" let-columns>
+                                        <colgroup>
+                                            <col *ngFor="let col of listingColoumns">
+                                        </colgroup>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr class="activity-rows listing-rows">
+                                            <th *ngFor="let col of listingColoumns ">
+                                                <ng-container *ngIf="col.field === 'sub'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                </ng-container>
+                                                <ng-container>
+                                                    {{col.header}}
+                                                </ng-container>
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-listing>
+                                        <tr class="activity-data listing-data">
+                                            <td *ngFor="let col of listingColoumns">
+                                                <ng-container *ngIf="col.field === 'sub'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                    <p-dropdown placeholder="Status" appendTo="body"
+                                                        [options]="userUpdateStatus" [(ngModel)]="rowData.is_active"
+                                                        (onChange)="updateUsers(rowData)"></p-dropdown>
+                                                    <span class="sale-text">{{listing.sub}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'imageUrl'">
+                                                    <figure><img src="{{listing.imageUrl}}" alt="property-image">
+                                                    </figure>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'mail'"><span
+                                                        class="date-data">12/04/2011</span><span class="time-data">
+                                                        08:30AM</span></ng-container>
+                                                <ng-container *ngIf="col.field === 'name'"><span
+                                                        class="common-properties common-padding">34677 Camino Del
+                                                        Rio Road Santa Ana CA 92563</span>
+                                                    <span>MLS #: T2452452145</span>
+                                                    <span> List Start Date: 12/03/2014 </span>
+                                                    <span> Number of Online Views: 105</span>
+                                                    <span> Number of Offers: 3 </span>
+                                                    <span> Commission: 3% | $1,000 bonus if closed <br> before
+                                                        12/12/2011</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'categ'">
+                                                    <span *ngFor="let data of listing.categ"> {{data}}</span>
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                <p class="paginate_data">
+                                    Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of
+                                    {{total}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-table-wrapper" *ngIf="activeLink==5">
+                        <div class="saved-wrapper">
+                            <div class="searches-text">
+                                <button class="add-button">Add New</button>
+                            </div>
+                            <div class="icon-wrapper">
+                                <label class="search-text"><input type="text" placeholder="Search">
+                                    <img alt="" class="search-icon" src="../../../assets/images/search.svg"></label>
+                                <span pTooltip="Download" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/download.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/download-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Print" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/print.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/print-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Settings" tooltipPosition="top">
+                                    <img alt="" src="assets/images/settings.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/settings-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="More" tooltipPosition="top">
+                                    <img alt="" src="assets/images/more.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/more-white.svg" class="hover-change">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="page-wrapper tableheight-wrapper">
+                            <div class="table-wrapper search-pagination mapScrollToTable">
+                                <p-table [columns]="reviewsColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                                    [paginator]="true" [value]="reviewsData" [totalRecords]="total" [rows]="rows">
+                                    <ng-template pTemplate="colgroup" let-columns>
+                                        <colgroup>
+                                            <col *ngFor="let col of reviewsColoumns">
+                                        </colgroup>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr class="activity-rows review-rows">
+                                            <th *ngFor="let col of reviewsColoumns ">
+                                                <ng-container *ngIf="col.field === 'stats'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                </ng-container>
+                                                <ng-container>
+                                                    {{col.header}}
+                                                </ng-container>
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-review>
+                                        <tr class="activity-data review-data">
+                                            <td *ngFor="let col of reviewsColoumns">
+                                                <ng-container *ngIf="col.field === 'stats'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                    <p-dropdown placeholder="Status" appendTo="body"
+                                                        [options]="userUpdateStatus" [(ngModel)]="rowData.is_active"
+                                                        (onChange)="updateUsers(rowData)"></p-dropdown>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'where'"><span
+                                                        class="common-properties"> {{review.where}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'name'"><span
+                                                        class="common-properties">{{review.name}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'avg'">{{review.avg}}
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'calc'">{{review.calc}}
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'detail_info'">
+                                                    <div>
+                                                        <span>Honesty & Integrity: 4.6 </span>
+                                                        <span> Responsiveness: 4.6 </span>
+                                                        <span>Local Knowledge: 4.6 </span>
+                                                        <span> Negotiation: 4.6 Process Expertise: 4.6 </span>
+                                                        <span> Overall Experience: 4.6</span>
+                                                    </div>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'comments'">{{review.comments}}
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                <p class="paginate_data">
+                                    Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of
+                                    {{total}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-table-wrapper" *ngIf="activeLink==6">
+                        <div class="saved-wrapper">
+                            <div class="searches-text">
+                                <button class="add-button">Add New</button>
+                            </div>
+                            <div class="icon-wrapper">
+                                <label class="search-text"><input type="text" placeholder="Search">
+                                    <img alt="" class="search-icon" src="../../../assets/images/search.svg"></label>
+                                <span pTooltip="Download" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/download.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/download-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Print" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/print.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/print-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Settings" tooltipPosition="top">
+                                    <img alt="" src="assets/images/settings.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/settings-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="More" tooltipPosition="top">
+                                    <img alt="" src="assets/images/more.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/more-white.svg" class="hover-change">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="page-wrapper tableheight-wrapper">
+                            <div class="table-wrapper search-pagination mapScrollToTable">
+                                <p-table [columns]="questionColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                                    [paginator]="true" [value]="questionData" [totalRecords]="total" [rows]="rows">
+                                    <ng-template pTemplate="colgroup" let-columns>
+                                        <colgroup>
+                                            <col *ngFor="let col of questionColoumns">
+                                        </colgroup>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr class="activity-rows question-rows">
+                                            <th *ngFor="let col of questionColoumns ">
+                                                <ng-container *ngIf="col.field === 'stats'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                </ng-container>
+                                                <ng-container>
+                                                    {{col.header}}
+                                                </ng-container>
+                                            </th>
+                                        </tr>
+
+                                    </ng-template>
+
+                                    <ng-template pTemplate="body" let-rowData let-question>
+                                        <tr class="activity-data question-data">
+                                            <td *ngFor="let col of questionColoumns">
+                                                <ng-container *ngIf="col.field === 'stats'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                    <p-dropdown placeholder="Status" appendTo="body"
+                                                        [options]="userUpdateStatus" [(ngModel)]="rowData.is_active"
+                                                        (onChange)="updateUsers(rowData)"></p-dropdown>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'ques'"><span class="question-text">
+                                                        {{question.ques}}</span>
+                                                    <button class="btn-tableshow">Show More</button></ng-container>
+                                                <ng-container *ngIf="col.field === 'ans'"><span
+                                                        class="question-text">{{question.ans}}</span>
+                                                    <button class="btn-tableshow">Show More</button>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'election'">{{question.election}}
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'quesby'"><span
+                                                        class="common-properties">{{question.quesby}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'ans_from'"><span
+                                                        class="common-properties">{{question.ans_from}}</span>
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                <p class="paginate_data">
+                                    Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of
+                                    {{total}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-table-wrapper" *ngIf="activeLink==7">
+                        <div class="saved-wrapper">
+                            <div class="searches-text">
+                                <span class="saved-text">Email History</span>
+                                <span class="search-text">Activity Log</span>
+                            </div>
+                            <div class="icon-wrapper">
+                                <label class="search-text"><input type="text" placeholder="Search">
+                                    <img alt="" class="search-icon" src="../../../assets/images/search.svg"></label>
+                                <span pTooltip="Download" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/download.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/download-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Print" tooltipPosition="top">
+                                    <img alt="" src="../../../assets/images/print.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/print-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="Settings" tooltipPosition="top">
+                                    <img alt="" src="assets/images/settings.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/settings-white.svg" class="hover-change">
+                                </span>
+                                <span pTooltip="More" tooltipPosition="top">
+                                    <img alt="" src="assets/images/more.svg" class="active-image">
+                                    <img alt="" src="../../../assets/images/more-white.svg" class="hover-change">
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="page-wrapper tableheight-wrapper">
+                            <div class="table-wrapper search-pagination mapScrollToTable">
+                                <p-table [columns]="historyColoumns" [rowsPerPageOptions]="[10,25,50, 100]"
+                                    [paginator]="true" [value]="historyData" [totalRecords]="total" [rows]="rows">
+                                    <ng-template pTemplate="colgroup" let-columns>
+                                        <colgroup>
+                                            <col *ngFor="let col of historyColoumns">
+                                        </colgroup>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr class="activity-rows history-rows">
+                                            <th *ngFor="let col of historyColoumns ">
+                                                <ng-container *ngIf="col.field === 'sub'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                </ng-container>
+                                                <ng-container>
+                                                    {{col.header}}
+                                                </ng-container>
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-history>
+                                        <tr class="activity-data history-data">
+                                            <td *ngFor="let col of historyColoumns">
+                                                <ng-container *ngIf="col.field === 'sub'">
+                                                    <p-checkbox styleClass="custom-checkbox" binary="true"></p-checkbox>
+                                                    <span>{{history.sub}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="col.field === 'mail'"><a href="#">
+                                                        {{history.mail}}</a></ng-container>
+                                                <ng-container *ngIf="col.field === 'name'"><span
+                                                        class="date-data">12/04/2011</span><span class="time-data">
+                                                        08:30AM</span></ng-container>
+                                                <ng-container *ngIf="col.field === 'categ'">{{history.categ}}
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                <p class="paginate_data">
+                                    Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of
+                                    {{total}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-table-wrapper" *ngIf="activeLink==8">
+                        <div class="saved-wrapper settings-tabbing">
+                            <div class="searches-text">
+                                <div class="personal-body setting-body">
+                                    <div class="general-wapper common-settings">
+                                        <h4> General Settings</h4>
+                                        <ul>
+                                            <li>Email Notifications
+                                                <span>
+                                                    <p-inputSwitch [(ngModel)]="unchecked"></p-inputSwitch>
+                                                </span>
+                                            </li>
+                                            <li>Site Tracking
+                                                <span>
+                                                    <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="mail-notification-wrapper common-settings">
+                                        <h4>Setup Email Notification</h4>
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <p-checkbox binary="true"></p-checkbox>
+                                                </span>
+                                                Email Notification
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <p-checkbox binary="true"></p-checkbox>
+                                                </span>
+                                                Send Copy To Personal Email
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="general-wapper activity-relation common-settings">
+                                        <h4>Activity Related Emails</h4>
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <p-checkbox binary="true"></p-checkbox>
+                                                </span> Email Notification
+                                            </li>
+                                            <li> <span>
+                                                    <p-checkbox binary="true"></p-checkbox>
+                                                </span>
+                                                Send Copy To Personal Email
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <p-checkbox binary="true"></p-checkbox>
+                                                </span>
+                                                Email Notification
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <p-checkbox binary="true"></p-checkbox>
+                                                </span>
+                                                Send Copy To Personal Email
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="port">
+                        <div class="row">
+                            <div class="col-12 pr-0">
+                                <div class="port-header notify">
+                                    <ul class="bottom-tabs list-inline tabing-container">
+                                        <li (click)="showData = 'all'"><a [ngClass]="showData === 'all' ? 'active':''">
+                                                All</a></li>
+                                        <li (click)="showData = 'notes'"><a
+                                                [ngClass]="showData === 'notes' ? 'active':''">Notes</a></li>
+                                        <li (click)="showData = 'emails'"><a
+                                                [ngClass]="showData === 'emails' ? 'active':''">Emails</a></li>
+                                        <li (click)="showData = 'Calls'"><a
+                                                [ngClass]="showData === 'Calls' ? 'active':''">
+                                                Calls</a></li>
+                                        <li (click)="showData = 'text'"><a
+                                                [ngClass]="showData === 'text' ? 'active':''">Text</a></li>
+                                        <li><a>Web Activity</a></li>
+                                        <li><a>Calendar</a></li>
+                                        <li><a>In Person</a></li>
+                                        <li><a>Comments</a></li>
+                                        <li><a>Other</a></li>
+                                    </ul>
+                                </div>
+                                <div class="activity-wrapper-detail">
+                                    <div *ngIf="showData === 'all'" class="port-body">
+
+                                        <div class="row notify-item line-in"
+                                            *ngFor="let comment of userDetails.comment">
+                                            <div class="col-1">
+                                                <div>
+                                                    <div class="notify-icon">
+                                                        <span class="name-no">
+                                                            {{comment.created.name.substring(0, 1).toUpperCase()}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="not-badge">
+                                                        <img height="10px" src="../../../assets/images/sidebar/file.svg"
+                                                            alt="active call" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-11 notify-body">
+                                                <div class="item-title">
+                                                    <div>
+                                                        <label class="mr-2"><strong>{{comment.created.name}}</strong>
+                                                            &nbsp;
+                                                            {{comment.created_at | date:'MM/dd/yyyy'}} at
+                                                            {{comment.created_at | date:'shortTime'}}</label>
+                                                    </div>
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                                <p class="noti-para" [innerHTML]="comment.comment">
+                                                </p>
+                                                <em class="pi pi-ellipsis-h three-dot"></em>
+                                            </div>
+                                        </div>
+                                        <small *ngIf="(userDetails.comment?.length === 0) && (tasksList?.length === 0) 
+                                            && (callCount === 0)">
+                                            No Results Found
+                                        </small>
+                                    </div>
+
+                                    <div *ngIf="showData === 'notes'" class="port-body">
+                                        <div class="row notify-item line-in"
+                                            *ngFor="let comment of userDetails.comment">
+                                            <div class="col-1">
+                                                <div>
+                                                    <div class="notify-icon">
+                                                        <span class="name-no">
+                                                            {{comment.created.name.substring(0, 1).toUpperCase()}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="not-badge">
+                                                        <img height="10px" src="../../../assets/images/sidebar/file.svg"
+                                                            alt="active call" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-11 notify-body">
+                                                <div class="item-title">
+                                                    <div>
+                                                        <label class="mr-2"><strong>{{comment.created.name}}</strong>
+                                                            &nbsp;
+                                                            {{comment.created_at | date:'MM/dd/yyyy'}} at
+                                                            {{comment.created_at | date:'shortTime'}}</label>
+                                                    </div>
+                                                    <div>
+
+                                                    </div>
+                                                </div>
+                                                <p class="noti-para" [innerHTML]="comment.comment">
+                                                </p>
+                                                <em class="pi pi-ellipsis-h three-dot"></em>
+                                            </div>
+                                        </div>
+                                        <small *ngIf="(userDetails.comment?.length === 0)">
+                                            No Results Found
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-5 pl-0 pr-0 accordion-wrapper" id="accordion">
+                    <span cdkDropList (cdkDropListDropped)="drop($event)">
+                        <span cdkDrag *ngFor="let idx of listDragAccodiansPos" class="">
+                            <div class="row" *ngIf="idx === 0" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseOne">
+                                            <img src="../../../assets/images/information.svg" alt="information"><span
+                                                class="details">More
+                                                Information</span>
+                                        </div>
+                                        <div class="collapse" id="collapseOne">
+                                            <div class="port-body drop-body">
+                                                <p class="more-inner">
+                                                    <label class="ques">
+                                                        Location Interest
+                                                    </label>
+                                                    <label class="answ">
+                                                        {{userDetails.interested_address}}
+                                                        {{userDetails.interested_address}}
+                                                    </label>
+                                                </p>
+                                                <p class="more-inner">
+                                                    <label class="ques">
+                                                        Budget
+                                                    </label>
+                                                    <label class="answ" *ngIf="userDetails.budget_min">
+                                                        ${{userDetails.budget_min}} -
+                                                        ${{userDetails.budget_max}}
+                                                    </label>
+                                                </p>
+                                                <p class="more-inner">
+                                                    <label class="ques">
+                                                        Timeframe
+                                                    </label>
+                                                    <label class="answ" *ngIf="userDetails.timeframe">
+                                                        {{userDetails.timeframe}}
+                                                    </label>
+                                                </p>
+                                                <p class="more-inner">
+                                                    <label class="ques">
+                                                        Criteria
+                                                    </label>
+                                                    <label class="answ" *ngIf="userDetails.criteria">
+                                                        {{userDetails.criteria}}
+                                                    </label>
+                                                </p>
+                                                <p class="more-inner">
+                                                    <label class="ques">
+                                                        Property Type
+                                                    </label>
+                                                </p>
+                                                <p class="more-inner">
+                                                    <label class="ques">
+                                                        Main Features
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 1" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseTwo">
+                                            <img src="../../../assets/images/tag.svg" alt="tag"><span
+                                                class="details">Tags
+                                                ({{userDetails.tag.length}}) </span>
+                                        </div>
+                                        <div class="collapse own-add-tags" id="collapseTwo">
+                                            <div class="port-body tag-body">
+                                                <span class="tag" *ngFor="let tag of userDetails.tag">
+                                                    {{tag.tag}}
+                                                    <img style="cursor: pointer;" (click)="removeTag(tag)"
+                                                        src="../../../assets/images/close.svg" alt="" class="close-tag">
+                                                </span>
+                                                <div class="add-tag">
+                                                    <a class="load-data ml-1" (click)="assignTag()">+ Add
+                                                        Tag</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 2" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseThree">
+                                            <img src="../../../assets/images/group.svg" alt="groups">
+                                            <span class="details" *ngIf="userDetails.group.length !== 0">Groups
+                                                ({{userDetails.group.length}})</span>
+                                            <span class="details" *ngIf="userDetails.group.length === 0">Groups
+                                                (0)</span>
+                                        </div>
+
+                                        <div class="collapse" id="collapseThree">
+                                            <div class="port-body tag-body">
+                                                <span *ngFor="let data of userDetails.group; let i = index" class="tag">
+                                                    {{data.group}}
+                                                    <img (click)="unAssignGroup(i)"
+                                                        src="../../../assets/images/close.svg" alt="" class="close-tag">
+                                                </span>
+                                                <div class="add-tag">
+                                                    <a class="load-data ml-1" (click)="assignGroup()">+ Assign Group</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 3" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseFour">
+                                            <img src="../../../assets/images/connection.svg" alt="groups">
+                                            <span class="details">Connections
+                                                ({{userDetails.connections.length}})</span>
+                                        </div>
+                                        <div class="collapse" id="collapseFour">
+                                            <div class="port-body">
+                                                <div class="connection text-connection">
+                                                    <ul>
+                                                        <li
+                                                            *ngFor="let connection of userDetails.connections; let i = index">
+                                                            <div class="connection-wrapper">
+                                                                <span class="badge"
+                                                                    *ngIf="connection.contact">{{connection.contact.trim()[0]}}</span>
+                                                                <span class="name">{{connection.contact}} <span
+                                                                        class="partner partner-connection">({{connection.relation_type}})</span>
+                                                                </span>
+                                                                <span class="edit-wrapper-icon">
+                                                                    <img pTooltip="Edit" tooltipPosition="top"
+                                                                        src="../../../assets/images/edit.svg" alt="edit"
+                                                                        (click)="editConnection(i)"
+                                                                        class="pr-3 edit-custom edit-icon" />
+                                                                    <img pTooltip="Delete" tooltipPosition="top"
+                                                                        src="../../../assets/images/delete.svg"
+                                                                        alt="delete"
+                                                                        (click)="deleteConnection(i, connection.id)"
+                                                                        class="delete-icon" />
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <button class="add-group" type="button" (click)="addConnections()">+
+                                                        Connection</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 4" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseFour1">
+                                            <img src="../../../assets/images/social-media.svg" alt=""><span
+                                                class="details">Social
+                                                Media ({{userDetails.social_media_links.length}})</span>
+                                        </div>
+
+                                        <div class="collapse" id="collapseFour1">
+                                            <div class="port-body">
+                                                <ul class="social-media-list social-icons-custom">
+                                                    <li *ngFor="let media of userDetails.social_media_links"
+                                                        class="pos-rel">
+                                                        <a [href]="media.link" target="_blank"
+                                                            class="social-media-links">
+                                                            <span class="tooltiptext">{{media.link}}</span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Facebook'">
+                                                                <img src="../../../assets/images/social media/facebook.svg"
+                                                                    alt="facebook" class="mr-3 social-media"></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'LinkedIn'"> <img
+                                                                    src="../../../assets/images/social media/linkedin.svg"
+                                                                    alt="linkedin" class="mr-3 social-media"></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Twitter'"> <img
+                                                                    src="../../../assets/images/social media/twitter.svg"
+                                                                    alt="twitter" class="mr-3 social-media"></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Instagram'"> <img
+                                                                    src="../../../assets/images/social media/instagram.svg"
+                                                                    alt="instagram" class="mr-3 social-media" /></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Google+'"> <img
+                                                                    src="../../../assets/images/social media/google-plus.svg"
+                                                                    alt="google-plus"
+                                                                    class="mr-3 social-media" /></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Pinterest'"> <img
+                                                                    src="../../../assets/images/social media/pinterest.svg"
+                                                                    alt="Pinterest" class="mr-3 social-media" /></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Blog'"> <img
+                                                                    src="../../../assets/images/social media/blogger.svg"
+                                                                    alt="Blog" class="mr-3 social-media" /></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Wordpress'"> <img
+                                                                    src="../../../assets/images/social media/wordpress.svg"
+                                                                    alt="Wordpress" class="mr-3 social-media" /></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Youtube'"> <img
+                                                                    src="../../../assets/images/social media/youtube.svg"
+                                                                    alt="Youtube" class="mr-3 social-media" /></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Skype'"> <img
+                                                                    src="../../../assets/images/social media/skype.svg"
+                                                                    alt="Skype" class="mr-3 social-media" /></span>
+                                                            <span class="social-media-wrapper"
+                                                                *ngIf="media.link_type === 'Other'"> <img
+                                                                    src="../../../assets/images/facebook.svg" alt=""
+                                                                    class="mr-3 social-media"></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div>
+                                                    <!-- <a class="load-data" (click)="addSocialMediaLink = true"> + Add link</a> -->
+                                                    <button class="add-group" type="button"
+                                                        (click)="addSocialMediaLink = true">+ Add link</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 5" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseFive">
+                                            <img src="../../../assets/images/attachment.svg" alt="attachment"><span
+                                                class="details">Attachments
+                                                ({{filesList.length}})</span>
+                                        </div>
+                                        <div class="collapse own-attachment" id="collapseFive">
+                                            <div class="port-body">
+                                                <div class="list-inline attach-inline own-add-attachment"
+                                                    *ngFor="let file of filesList; let i = index">
+                                                    <div class="purchase-wrapper">
+                                                        <img *ngIf="file.file_type === 'image/png'"
+                                                            src="../../../assets/images/attachments/attachment-image.svg"
+                                                            alt="attachment">
+                                                        <img *ngIf="file.file_type === 'image/jpeg'"
+                                                            src="../../../assets/images/attachments/attachment-image.svg"
+                                                            alt="attachment">
+                                                        <img *ngIf="file.file_type === 'application/pdf'"
+                                                            src="../../../assets/images/attachments/attachment-file-pdf.svg"
+                                                            alt="attachment">
+                                                        <img *ngIf="file.file_type === 'application/vnd.ms-excel'"
+                                                            src="../../../assets/images/attachments/attachment-Excel_logo.svg"
+                                                            alt="attachment">
+                                                        <img *ngIf="file.file_type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                                            src="../../../assets/images/attachments/attachment-Excel_logo.svg"
+                                                            alt="attachment">
+                                                        <img *ngIf="file.file_type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                            src="../../../assets/images/attachments/attachment-document-file-docx.svg"
+                                                            alt="attachment">
+                                                        <img *ngIf="file.file_type === 'application/msword'"
+                                                            src="../../../assets/images/attachments/attachment-document-file-docx.svg"
+                                                            alt="attachment">
+                                                        <span *ngIf="file.filename?.length<=46"
+                                                            class="inner-data attach-data pl-0 mr-7">{{file.filename?.substring(file.filename.indexOf("-") + 1)}}.{{file.file_type.substring(file.file_type.indexOf("/") + 1)}}</span>
+                                                        <span *ngIf="file.filename?.length>46"
+                                                            class="extension-data">{{file.filename?.substring(file.filename.lastIndexOf("."))}}.{{file.file_type.substring(file.file_type.indexOf("/") + 1)}}</span>
+                                                    </div>
+                                                    <div class="download-wrapper">
+                                                        <a target="_blank" rel="noopener noreferrer"
+                                                            [href]="file.file_url">
+                                                            <img pTooltip="Download" tooltipPosition="top"
+                                                                src="../../../assets/images/download.svg" alt="download"
+                                                                class="download-icon">
+                                                        </a>
+                                                        <img pTooltip="Delete" tooltipPosition="top"
+                                                            src="../../../assets/images/delete.svg" alt=""
+                                                            (click)="deleteFile(file.id, i)" class="delete-icon">
+                                                    </div>
+                                                </div>
+                                                <div class="btn-add-task mt-2 attachment-upload">
+                                                    <a class="load-data">+ Add File</a>
+                                                    <input class="add-file" type="file" name="file"
+                                                        (change)="onFileSelect($event)"
+                                                        accept="image/png, image/jpg, image/jpeg, .pdf, .doc, .docx, .xls, .xlsx"
+                                                        #fileUpload value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 6" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseSix">
+                                            <img alt="" src="../../../assets/images/feed.svg"><span
+                                                class="details">Tasks
+                                                ({{tasksList.length}})</span>
+                                        </div>
+                                        <div class="collapse" id="collapseSix">
+                                            <div class="port-body">
+                                                <div class="task-section-container"
+                                                    *ngFor="let task of tasksList; let i = index"
+                                                    [ngClass]="{'high-priority': task.priority === 'High', 'medium-priority subs-priority': task.priority === 'Medium', 'low-priority': task.priority === 'Low', 'none-priority': task.priority === 'none'}">
+                                                    <ul>
+                                                        <li><label class="task-heading">{{task.subject}}</label></li>
+                                                        <li> <span
+                                                                [ngClass]="task.status === 'Over Due' ? 'over-due' : 'other-status'"
+                                                                class="overdue">{{task.status}}</span></li>
+                                                        <li (click)="editTask(i)"><img
+                                                                src="../../../assets/images/edit.svg" pTooltip="Edit"
+                                                                tooltipPosition="top" alt="edit"
+                                                                class="edit-alignment edit-icon edit-custom"
+                                                                style="margin-right:0;"></li>
+                                                    </ul>
+                                                    <h6>
+                                                        <span
+                                                            class="circle-gray">{{task.assigne_details.assigne_name[0]}}</span>
+                                                        <span
+                                                            class="name-of-person">{{task.assigne_details.assigne_name}}</span>
+                                                    </h6>
+                                                    <div class="single-line-dropdown-text">
+                                                        <label>Due : <span
+                                                                class="date-time">{{task.due_date | date:'MM/dd/yyyy'}}
+                                                                at
+                                                                {{task.due_time}}</span></label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="">
+                                                    <a class="add-group load-data" (click)="openAddPopUp()"> + Add
+                                                        Task</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 7" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header  tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseSeven">
+                                            <img src="../../../assets/images/feed.svg" alt="ticket"><span
+                                                class="details">Tickets
+                                                ({{ticketList.length}})</span>
+                                        </div>
+                                        <div class="collapse" id="collapseSeven">
+                                            <div class="port-body">
+                                                <div *ngFor="let ticket of ticketList; let i = index"
+                                                    class="ticket-section-container">
+                                                    <p class="ticket-name verLine">
+                                                        {{ticket.subject}}
+                                                        <span class="edit-icons">
+                                                            <img pTooltip="Edit" tooltipPosition="top"
+                                                                src="../../../assets/images/edit.svg" alt="edit"
+                                                                class="edit" style="cursor:pointer">
+                                                        </span></p>
+                                                    <p class="open-hours">Description: {{ticket.description}}</p>
+                                                    <p class="open-hours">Opened:
+                                                        {{ticket.created_at | date:'M/d/yyyy'}}
+                                                        {{ticket.created_at | date:'shortTime'}}
+                                                    </p>
+                                                    <div class="single-line-dropdown-text">
+                                                        <label>Type : <span class="date-time">
+                                                                {{ticket.type}}</span></label>
+                                                    </div>
+                                                    <div class="single-line-dropdown-text">
+                                                        <label>Status : <span class="date-time">
+                                                                {{ticket.status}}</span></label>
+                                                    </div>
+                                                    <p class="grey-text">Owner : <span class="circle-gray">
+                                                            {{ticket.assigne_details.assignee_name[0]}}
+                                                        </span><span class="name-of-person">
+                                                            {{ticket.assigne_details.assignee_name}}
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="mt-4 add-tick-btn">
+                                                    <a class="load-data" (click)="updateModalState(true)"> + Add
+                                                        Ticket</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 8" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseEight">
+                                            <img src="../../../assets/images/feed.svg" alt="ticket"><span
+                                                class="details">
+                                                Playbook ({{associatedPlaybook.length}})
+                                            </span>
+                                        </div>
+                                        <div class="collapse" id="collapseEight">
+                                            <div class="port-body">
+                                                <div class="playbook-wrapper playbook-custom"
+                                                    *ngFor="let item of associatedPlaybook; let idx_play = index">
+                                                    <div class="row">
+                                                        <div class="col-md-10 playbook-content">
+                                                            <span>
+                                                                <div
+                                                                    class="d-inline-flex align-items-center playDropdown grey-text-play">
+                                                                    <span class="name-of-person">
+                                                                        {{item.title}}
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-2 text-right playbook-content playbook-edit">
+                                                            <img (click)="updateFilledPlaybook(item.id, item.playbook_form, item.title, idx_play)"
+                                                                pTooltip="Edit" tooltipPosition="top"
+                                                                src="../../../assets/images/edit.svg" alt="edit" />
+                                                            <img src="../../../assets/images/delete.svg"
+                                                                pTooltip="Delete" tooltipPosition="top"
+                                                                (click)="deleteContactPlaybook(item.id)" alt=""
+                                                                class="delete-icon">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 playbook-content grey-text-play">Owner:
+                                                            <span class="playDropdown">
+                                                                <span class="circle-gray" *ngIf="!item.image_url">
+                                                                    {{item.data_filled_by.split(" ")[0].substring(0, 1).toUpperCase()}}
+                                                                    {{(item.data_filled_by.split(" ").length >= 3) ? 
+                                                                  item.data_filled_by.split(" ")[2].substring(0, 1).toUpperCase() :
+                                                                  item.data_filled_by.split(" ")[1].substring(0, 1).toUpperCase()}}
+                                                                </span>
+                                                                <img class="circle-gray" [src]="item.image_url"
+                                                                    *ngIf="item.image_url" alt="">
+                                                                <span class="name-of-person setNamePos">
+                                                                    {{item.data_filled_by}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6 playbook-content grey-text-play">
+                                                            Updated:
+                                                            <span class="playDropdown">
+                                                                <span class="name-of-person">
+                                                                    {{item.updated_at | date:'MM/dd/yyyy'}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-4 add-playbook-drpdwn">
+                                                    <a class="load-data" (click)="assignPlaybook()"> + Add Playbook</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="idx === 9" class="w-100" style="display: inline-block;">
+                                <div class="col-12">
+                                    <div class="port">
+                                        <div class="port-header tabs-header collapsed" data-toggle="collapse"
+                                            href="#collapseNine">
+                                            <img src="../../../assets/images/feed.svg" alt="ticket"><span
+                                                class="details">
+                                                Transaction ({{userDetails && userDetails.transaction ? userDetails.transaction.length : 0}})
+                                            </span>
+                                        </div>
+                                        <div class="collapse" id="collapseNine">
+                                            <div *ngIf="userDetails && userDetails.transaction" class="port-body">
+                                                <div class="playbook-wrapper playbook-custom"
+                                                    *ngFor="let item of userDetails.transaction; let idx_play = index">
+                                                    <div class="row">
+                                                        <div class="col-md-10 playbook-content">
+                                                            <span>
+                                                                <div
+                                                                    class="d-inline-flex align-items-center playDropdown grey-text-play">
+                                                                    <span class="name-of-person">
+                                                                        {{item.transaction_id}}
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 playbook-content grey-text-play">
+                                                            Status:
+                                                            <span class="playDropdown">
+                                                                <span class="name-of-person">
+                                                                    {{item.save_status}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6 playbook-content grey-text-play">
+                                                            Closing Date:
+                                                            <span class="playDropdown">
+                                                                <span class="name-of-person">
+                                                                    {{item.estimated_closing_leased_date | date:'MM/dd/yyyy'}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6 playbook-content grey-text-play">
+                                                            Transaction Type:
+                                                            <span class="playDropdown">
+                                                                <span class="name-of-person">
+                                                                    {{item.transaction_type}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div *ngIf="item.mls_id" class="col-md-6 playbook-content grey-text-play">
+                                                           MLS ID:
+                                                            <span class="playDropdown">
+                                                                <span class="name-of-person">
+                                                                    {{item.mls_id}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div *ngIf="item.listing_key" class="col-md-6 playbook-content grey-text-play">
+                                                            Listing Key:
+                                                            <span class="playDropdown">
+                                                                <span class="name-of-person">
+                                                                    {{item.listing_key}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6 playbook-content grey-text-play">Created by:
+                                                            <span class="playDropdown">
+                                                                <span class="circle-gray" *ngIf="!item.image_url">
+                                                                    {{item.created_by.name.split(" ")[0].substring(0, 1).toUpperCase()}}
+                                                                    {{(item.created_by.name.split(" ").length >= 3) ? 
+                                                              item.created_by.name.split(" ")[2].substring(0, 1).toUpperCase() :
+                                                              item.created_by.name.split(" ")[1].substring(0, 1).toUpperCase()}}
+                                                                </span>
+                                                                <img class="circle-gray" [src]="item.image_url"
+                                                                    *ngIf="item.image_url" alt="">
+                                                                <span class="name-of-person setNamePos">
+                                                                    {{item.created_by.name}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog position="center" [draggable]="false" [visible]="assignPlaybookPopup"
+    class="popup-element custom-popup add-contact add-contact-wrapper" [modal]="true">
+    <p-header>Add Playbook
+        <span class="close-pop" (click)="assignPlaybookPopup = false"><img src="assets/images/close.svg"
+                alt="close" /></span>
+    </p-header>
+    <div class="col-12 pt-3 pl-0 pr-0">
+        <div class="vaildation-area dropdown-top">
+            <p-dropdown class="select-dropdown" [(ngModel)]="selectedPlaybookID" [options]="playbookFormsList"
+                placeholder="Playbook" appendTo="body">
+            </p-dropdown>
+        </div>
+    </div>
+    <p-footer class="btns">
+        <ion-button (click)="openPlaybookFormPopup()" [disabled]="selectedPlaybookID === 0" class="btn-save">Save
+        </ion-button>
+        <ion-button class="btn-cancel" (click)="assignPlaybookPopup = false">Cancel</ion-button>
+    </p-footer>
+</p-dialog>
+
+<p-dialog position="center" [draggable]="false" [visible]="PlaybookFormPopup"
+    class="popup-element custom-popup add-playbook" [modal]="true">
+    <p-header>
+        {{model?.form_name}}
+        <span class="close-pop" (click)="PlaybookFormPopup = false"><img src="assets/images/close.svg"
+                alt="close" /></span>
+    </p-header>
+    <form>
+        <div class="col-12 pt-3 pl-0 pr-0" style="padding-top: 0px !important;">
+            <div class="vaildation-area dropdown-top">
+                <div class="row">
+                    <div class="col-md-6" *ngFor="let item of model?.attributes;let i= index;">
+                        <div class="form-group">
+                            <div *ngIf="item.type=='text'">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <input type="text" (change)="updateValue(i, $event, item.type)" class="form-control"
+                                    [attr.value]="item.controlValue" id="{{item.name}}"
+                                    placeholder="{{item.placeholder}}">
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='email'">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger field-neccesary">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <input type="email" (change)="updateValue(i, $event, item.type)" class="form-control"
+                                    id="{{item.name}}" [attr.value]="item.controlValue"
+                                    placeholder="{{item.placeholder}}">
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='phone'" class="customPlaybookPhone custom-play-phone">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <ngx-intl-tel-input [cssClass]="'country-input play-phone'"
+                                    [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
+                                    [enablePlaceholder]="true" [searchCountryFlag]="true"
+                                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                    [selectFirstCountry]="false" [selectedCountryISO]="countryISO.UnitedStates"
+                                    [phoneValidation]="true" [separateDialCode]="true" [(ngModel)]="item.controlValue"
+                                    name="item.name">
+                                </ngx-intl-tel-input>
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='number'">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <input type="number" (change)="updateValue(i, $event, item.type)" class="form-control"
+                                    id="{{item.name}}" min="{{item.min}}" [attr.value]="item.controlValue"
+                                    max="{{item.max}}" placeholder="{{item.placeholder}}">
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='date'" class="customPlabookCalender play-calender">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <p-calendar [numberOfMonths]="1" class="view-calender" [showIcon]="true"
+                                    [style]="{'width': '100%'}">
+                                </p-calendar>
+
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='datetime-local'">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <input type="datetime-local" (change)="updateValue(i, $event, item.type)"
+                                    class="form-control" [attr.value]="item.controlValue" id="{{item.name}}"
+                                    placeholder="{{item.placeholder}}">
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='textarea'">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <textarea (change)="updateValue(i, $event, item.type)" class="form-control"
+                                    id="{{item.name}}" [attr.value]="item.controlValue"
+                                    placeholder="{{item.placeholder}}">
+                                </textarea>
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='file'">
+                                <div class="custom-file-upload">
+                                    <input type="file" name="file"
+                                        (change)="onFileSelectAgentForm($event, item.type, i)" #fileUpload>
+                                    <div class="upload-area">
+                                        <svg height="15" viewBox="0 0 10.056 10" width="15">
+                                            <path class="a"
+                                                d="M9.389,26.25H.639A.591.591,0,0,1,0,25.639v-2.5A.6.6,0,0,1,.639,22.5a.6.6,0,0,1,.639.639v1.889h7.5V23.139a.639.639,0,1,1,1.278,0v2.5A.665.665,0,0,1,9.389,26.25Z"
+                                                transform="translate(0 -16.25)"></path>
+                                            <path class="a"
+                                                d="M12.7,2.694,10.2.194c-.083-.083-.139-.083-.194-.139a.59.59,0,0,0-.5,0c-.083,0-.139.083-.194.139l-2.5,2.5a.629.629,0,1,0,.889.889L9.146,2.139V6.278a.639.639,0,0,0,1.278,0V2.167l1.444,1.444a.588.588,0,0,0,.861,0A.631.631,0,0,0,12.7,2.694Z"
+                                                transform="translate(-4.785)"></path>
+                                        </svg>
+                                        <p>{{item.label}}</p><label *ngIf="item.required" class="text-danger">*</label>
+                                        <small id="UIFormControl-632-help" tabindex="-1"
+                                            class="private-microcopy private-form__inlinehelp is--text--help">
+                                            {{item.description}}
+                                        </small>
+                                    </div>
+                                </div>
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='paragraph'">
+                                <p class="form-text">{{item.placeholder}}</p>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.label}}
+                                </small>
+                            </div>
+                            <div *ngIf="item.type=='autocomplete'" class="playbook-view">
+                                <label class="private-form__label" l>{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <p-dropdown (onChange)="updateValue(i, $event, item.type)"
+                                    [(ngModel)]="item.controlValue" [options]="item.values" placeholder="{{item.label}}"
+                                    appendTo="body" name="{{item.name}}">
+                                </p-dropdown>
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='checkbox'">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <div *ngFor="let v of item.values" class="inline-form-group">
+                                    <label class="custom-radio custom-roundradios">
+                                        <p-checkbox styleClass="custom-checkbox"
+                                            (onChange)="updateValue(i, v.value, item.type)" binary="true"></p-checkbox>
+                                        {{v.label}}
+                                    </label>
+                                </div>
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='radio'" class="genderComponent">
+                                <label class="private-form__label">{{item.label}}</label> <label *ngIf="item.required"
+                                    class="text-danger">*</label>
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <div class="row">
+                                    <div *ngFor="let v of item.values" class="col-md-4">
+                                        <label class="custom-radio custom-boxes round-radio-gender" for="{{v.label}}">
+                                            {{v.label}}
+                                            <input id="{{v.label}}" (change)="updateValue(i, v.value, item.type)"
+                                                name="{{item.name}}" [checked]="v.checked" type="radio"
+                                                [value]="v.value">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <p class="vaiidate-field" *ngIf="item.showError">
+                                    Required field cannot be blank
+                                </p>
+                            </div>
+                            <div *ngIf="item.type=='button'" class="btn-cont">
+                                <small id="UIFormControl-632-help" tabindex="-1"
+                                    class="private-microcopy private-form__inlinehelp is--text--help">
+                                    {{item.description}}
+                                </small>
+                                <input type="{{item.subtype}}" (click)="submit()" value="{{item.label}}"
+                                    class="btn btn-primary" id="{{item.name}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <p-footer class="btns">
+        <ion-button [disabled]="false" (click)="submitPlaybookForm(model.addition)" class="btn-save">Save
+        </ion-button>
+        <ion-button class="btn-cancel" (click)="PlaybookFormPopup = false">Cancel</ion-button>
+    </p-footer>
+</p-dialog>
+
+<p-dialog position="center" [draggable]="false" [visible]="assignTagPopup"
+    class="custom-popup popup-element add-contact add-contact-wrapper" [modal]="true">
+    <p-header>Assign Tag
+        <span class="close-pop" (click)="assignTagPopup = false; tagsData = []"><img src="assets/images/close.svg"
+                alt="close" /></span>
+    </p-header>
+    <form>
+        <div class="col-12 pt-3 pl-0 pr-0 ">
+            <div class="vaildation-area dropdown-top">
+                <tag-input name="tagInput" [(ngModel)]="tagsData" [onlyFromAutocomplete]="false"
+                    (onAdd)="onTagAdd($event)" [separatorKeyCodes]="[188]" [placeholder]="'Tag'"
+                    [secondaryPlaceholder]="'Tag'">
+                    <tag-input-dropdown [showDropdownIfEmpty]="true" [focusFirstElement]="true" [displayBy]="'value'"
+                        [identifyBy]="'id'" [autocompleteItems]="tags">
+                        <ng-template let-item="item" let-index="index">
+                            {{ item.value }}
+                        </ng-template>
+                    </tag-input-dropdown>
+                </tag-input>
+            </div>
+        </div>
+    </form>
+
+    <p-footer class="btns" *ngIf="tagsData">
+        <ion-button class="btn-save" (click)="updateTags()" [disabled]="tagsData.length === 0">Save</ion-button>
+        <ion-button class="btn-cancel" (click)="assignTagPopup = false; tagsData = []">Cancel</ion-button>
+    </p-footer>
+</p-dialog>
+
+<p-dialog class="new-tag-popup add-new-tag" position="center" [draggable]="false" [(visible)]="newTag" *ngIf="newTag">
+    <div class="content new-tag-popup">
+        <div class="close-btn-signup">
+            <h5>Would you like to add this tag?</h5>
+        </div>
+    </div>
+    <p-footer class="btns">
+        <ion-button class="btn-cancel" (click)="newTag = false">No</ion-button>
+        <ion-button class="btn-save" (click)="addTagToList()">Yes</ion-button>
+    </p-footer>
+</p-dialog>
+
+<p-dialog position="center" [draggable]="false" [visible]="assignGroupPopup"
+    class="popup-element custom-popup add-contact add-contact-wrapper" [modal]="true">
+    <p-header>Assign Group
+        <span class="close-pop" (click)="assignGroupPopup = false;  group = ''"><img src="assets/images/close.svg"
+                alt="close" /></span>
+    </p-header>
+    <div class="col-12 pt-3 pl-0 pr-0">
+        <div class="multi">
+            <p-multiSelect panelStyleClass="panelViewProCon" [options]="groupsData" appendTo="body" [(ngModel)]="group"
+                class="multiple-select">
+            </p-multiSelect>
+        </div>
+    </div>
+    <p-footer class="btns">
+        <ion-button class="btn-save" (click)="updateGroup()" [disabled]="group === '' || group === undefined">Save
+        </ion-button>
+        <ion-button class="btn-cancel" (click)="assignGroupPopup = false; group = ''">Cancel</ion-button>
+    </p-footer>
+</p-dialog>
+<p-dialog position="center" [draggable]="false" [visible]="assignTo"
+    class="popup-element custom-popup add-contact add-contact-wrapper" [modal]="true">
+    <p-header>Assign To
+        <span class="close-pop" (click)="assignTo = false;  user = ''"><img src="assets/images/close.svg"
+                alt="close" /></span>
+    </p-header>
+    <form>
+        <div class="col-12 pt-3 pl-0 pr-0">
+            <div class="vaildation-area dropdown-top">
+                <p-dropdown class="select-dropdown" [options]="userData" placeholder="Select" appendTo="body"
+                    name="user" [(ngModel)]="user">
+                </p-dropdown>
+            </div>
+        </div>
+    </form>
+
+    <p-footer class="btns">
+        <ion-button class="btn-save" (click)="updateUser()" [disabled]="user === undefined || user === ''">Save
+        </ion-button>
+        <ion-button class="btn-cancel" (click)="assignTo = false; user = ''">Cancel</ion-button>
+    </p-footer>
+</p-dialog>
+<app-setting-sidebar></app-setting-sidebar>

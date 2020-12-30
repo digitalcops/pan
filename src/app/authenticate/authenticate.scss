@@ -1,0 +1,130 @@
+/*Login, Sign Up, Forgot Page Common CSS  */
+.login .vaildation-area {
+  margin-top: 8px;
+}
+.login {
+  width: 370px;
+  padding-top: 50px;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  .login-header {
+    text-align: center;
+    img {
+      width: 308px;
+      height: 62px;
+      margin-bottom: 50px;
+    }
+    h4 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+      color: #404040;
+      font-weight: normal;
+    }
+    .enter-your-detail {
+      color: #808080;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .reset-password {
+      color: #808080;
+      font-size: 14px;
+      margin-top: -3px;
+      margin-bottom: 0;
+    }
+  }
+  .no-padding {
+    --padding-left: 0;
+  }
+  .dont-have {
+    font-size: 14px;
+    margin-top: 30px;
+    color: #404040;
+  }
+  .margin-top {
+    margin-top: 20px;
+  }
+  .center-data {
+    text-align: center;
+    margin: 13px 61px 0;
+    .capthcha {
+      -webkit-transform: scale(0.82);
+      -moz-transform: scale(0.82);
+      -ms-transform: scale(0.82);
+      -o-transform: scale(0.82);
+      transform: scale(0.82);
+      -webkit-transform-origin: 0 0;
+      -moz-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+      -o-transform-origin: 0 0;
+      transform-origin: 0 0;
+    }
+  }
+  .center-dat {
+    margin: 14px 61px 0;
+    .capthcha {
+      -webkit-transform: scale(0.82);
+      -moz-transform: scale(0.82);
+      -ms-transform: scale(0.82);
+      -o-transform: scale(0.82);
+      transform: scale(0.82);
+      -webkit-transform-origin: 0 0;
+      -moz-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+      -o-transform-origin: 0 0;
+      transform-origin: 0 0;
+    }
+  }
+  .vaiidate-field {
+    text-align: left;
+    font-size: 14px;
+    color: #cc0000;
+    margin-top: 5px;
+    p {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+/*Thanks You POP CSS Start*/
+::ng-deep .ui-dialog .ui-dialog-titlebar-icon .pi-times:before {
+  font-size: 20px;
+}
+::ng-deep .ui-dialog .ui-dialog-titlebar-icon span {
+  display: block;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+::ng-deep .ui-dialog .ui-dialog-content {
+  padding: 0 0.75em 0.5em !important;
+}
+.thank-popup {
+  &:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9;
+  }
+  .close-btn-signup {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  .pi-times {
+    display: none;
+    &::before {
+      display: none;
+      position: absolute;
+      width: 10px;
+      display: block;
+      right: 0;
+    }
+  }
+}

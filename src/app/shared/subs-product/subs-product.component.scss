@@ -1,0 +1,1529 @@
+
+.form-group {
+  position: relative;
+}
+.tabbing-location {
+  margin-bottom: 0px;
+  li{
+   margin-right:10px;
+  
+   a{
+    font-size:12px;
+    text-decoration: none;
+    color:#5d596e;
+    cursor:pointer;
+    padding:5px 10px 5px;
+  }
+ 
+   }
+   li.active{
+    background: #F3F6F9;
+    border-bottom:2px solid #207EBB;
+    border-radius: 5px;
+    padding-bottom: 3px;
+     }
+ }
+.cal-send-message-call {
+  background: #ffffff;
+  box-shadow: 3px 3px 15px #40404029;
+  border-radius: 3px 3px 0px 0px;
+  position: fixed;
+  width: 560px;
+  width: 67vw;
+  overflow-y: auto;
+  margin: 0px auto;
+  margin-bottom: 19vh;
+  height: auto;
+  bottom: auto !important;
+  margin-bottom: auto !important;
+  top: 50%;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  .send-header {
+    padding-left: 15px;
+    border-bottom: 1px solid #dedede;
+    position: relative;
+    h3 {
+      font-size: 16px;
+      color: #595d6e;
+      font-weight: 700;
+      font-family: sans-serif;
+      height: 48px;
+      line-height: 48px;
+      margin-bottom: 0px;
+      display: inline-block;
+    }
+    .minus {
+      display: inline-block;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        li {
+          display: inline-block;
+          margin-right: 16px;
+          cursor: pointer;
+
+          img {
+            width: 12px;
+          }
+          ::last-of-type {
+            filter: grayscale(100%);
+          }
+        }
+      }
+    }
+    .close-btn {
+      position: absolute;
+      right: 19px;
+      top: -1px;
+      cursor: pointer;
+    }
+  }
+  .send-middle {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid #dedede;
+    ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      li {
+        display: inline-block;
+        font-size: 12px;
+        cursor: default;
+        margin-right: 0px;
+        color: #808080;
+        position: relative;
+        padding: 5px 0px;
+        width:33%;
+        opacity: 1;
+        &:nth-child(5) {
+          width:25%;
+          margin-right: 68px;
+          max-width:108px;
+          &::after {
+            content: "\e902";
+            font-family: "primeicons" !important;
+            position: absolute;
+            right: 8px;
+            top: 23px;
+          }
+        }
+        &:nth-child(6) {
+          margin-right: 0px;
+          max-width:70px;
+          &::after {
+            content: "\e902";
+            font-family: "primeicons" !important;
+            position: absolute;
+            right: -15px;
+            top: 23px;
+          }
+        }
+
+        .select-out{
+            margin-right: 0px;
+            color:#207EBB;
+            font-size:14px;
+            &::after {
+              content: "\e902";
+              font-family: "primeicons" !important;
+              position: absolute;
+              right:2px;
+            
+          }
+        }
+      }
+    }
+    .circle {
+      width: 13px;
+      height: 13px;
+      line-height: 13px;
+      text-align: center;
+      display: inline-block;
+      border-radius: 50%;
+      background-color: #808080;
+      opacity: 0.5;
+      font-size: 10px;
+      color: #fff;
+    }
+  }
+  .send-body {
+    padding-top: 9px;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 15px;
+    .to-from {
+      padding-bottom: 10px;
+    }
+    .message-box {
+      border-top: 1px solid #dedede;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .to-wrapper {
+      padding-bottom: 0px;
+      .wrap-mail {
+        span {
+          padding-top: 6px;
+          color: #808080;
+          padding-left: 0;
+          padding-right: 5px;
+          font-size: 14px;
+        }
+        .col-md-11 {
+          span {
+            color: #404040;
+            font-size: 12px;
+          }
+        }
+        .form-control {
+          display: inline-block;
+          border-bottom: 0px !important;
+          padding: 0 !important;
+          max-height: 120px;
+          overflow: overlay;
+          font-size: 13px;
+          color: #495057;
+        }
+      }
+    }
+    .associated-data {
+      padding-left: 15px;
+      border-bottom: 0px solid #dedede;
+      margin-bottom: 10px;
+      position: absolute;
+      bottom: 0px;
+      right:15px;
+      width: 100%;
+      .attachement-wrapper {
+        ul {
+          margin: 0px;
+          padding: 0px;
+          list-style: none;
+          li {
+            display: inline-block;
+            margin-right: 10px;
+          }
+        }
+        .form-group {
+          padding-left: 15px;
+          position: relative;
+          .cc {
+            position: absolute;
+            right: 0px;
+            top: 8px;
+            margin: 0;
+            padding: 0px;
+            list-style: none;
+            li {
+              margin-right: 10px;
+              display: inline-block;
+              color: #808080;
+              opacity: 0.5;
+            }
+            &::last-child {
+              position: absolute;
+              top: 0;
+              right: 316%;
+            }
+          }
+          .form-control {
+            border-bottom: 1px solid #ddd;
+            border-left: 0px;
+            border-right: 0px;
+            border-top: 0px;
+            border-radius: 0px;
+          }
+        }
+      }
+      p {
+        color: #207ebb;
+        font-size: 14px;
+        position: absolute;
+        right: 34px;
+        &::after {
+          content: "\e902";
+          font-family: "primeicons" !important;
+          position: absolute;
+          top: 0px;
+          right: -20px;
+        }
+      }
+    }
+
+    .mar-btm {
+      margin-bottom: 0px;
+    }
+    .form-group {
+      padding-left: 15px;
+      padding-right: 17px;
+      position: relative;
+      .cc {
+        position: absolute;
+        right: 0px;
+        top: 8px;
+        margin: 0;
+        padding: 0px;
+        list-style: none;
+        li {
+          display: inline-block;
+          color: #808080;
+          opacity: 0.5;
+          font-size: 14px;
+          cursor: pointer;
+
+          &:nth-child(2) {
+            color: #207ebb;
+            cursor: default;
+          }
+        }
+      }
+      .form-control {
+        border-bottom: 1px solid #ddd;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+        border-radius: 0px;
+        padding-left: 0px;
+        font-size: 13px;
+        padding: 5px 0;
+      }
+    }
+
+    .mail {
+      padding-left: 0;
+      margin: 0px;
+      height: 48px;
+      line-height: 48px;
+      border-bottom: 1px solid #dedede;
+    }
+    .description {
+      width: 100%;
+      height: 110px;
+      resize: none;
+      border: 0px;
+      padding-left: 0;
+      padding-right: 17px;
+      padding-bottom: 0;
+      padding-top: 0;
+      resize: none;
+      margin-bottom: 20px;
+      color: #404040;
+    }
+  }
+  .send-footer {
+    padding-bottom: 10px;
+    .send-footer-inner {
+      padding-left: 15px;
+      ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        li {
+          display: inline-block;
+          margin-right: 20px;
+          &:last-of-type {
+            margin-left: -5px;
+          }
+          .btn-email {
+            background: #e8f2f8;
+            font-size: 14px;
+            padding: 7px 16px;
+            color: #207ebb;
+            border-radius: 5px;
+            border: 0px;
+            &:hover {
+              background-color: #207ebb;
+              color: #fff;
+            }
+          }
+          .btn-disabled {
+            color: #808080 !important;
+            background: #f0f5eb !important;
+          }
+          .create-follow {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+            margin-left: -4px;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #74788d;
+            & input[type="checkbox"] + label:before {
+              box-sizing: content-box;
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 0;
+              width: 15px;
+              height: 15px;
+              margin-top: -9px;
+              text-align: center;
+              transition: 0.4s;
+              border-radius: 3px;
+            }
+            span {
+              color: #808080;
+              margin-left: 10px;
+              position: relative;
+              &::after {
+                content: "\e902";
+                font-family: "primeicons" !important;
+                position: absolute;
+                top: 0px;
+                right: -20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.contact-select-wrapper {
+  margin: 0px 0 0 10px;
+}
+
+.contact-profile-header {
+  background-color: #fff;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 20px;
+  position: fixed;
+  width: calc(100% - 215px);
+  z-index: 1;
+  box-shadow: 0 5px 15px 0 #ddd;
+}
+
+.icon-size {
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.contact-profile {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-right: 10px;
+}
+
+.contact-profile-header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-profile-header li {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 14px;
+  position: relative;
+}
+
+.cal-send-message-call ::ng-deep .ui-dropdown {
+  min-width: 100px;
+  margin-right: 10px;
+}
+.cal-send-message-call ::ng-deep .ui-inputtext {
+  position:relative;
+  font-size:12px !important;
+  padding-left:0;
+  padding-top:0 !important;
+  padding-bottom:0 !important;
+  text-overflow:ellipsis;
+ 
+}
+:cal-:ng-deep.pnlgpClass.send-message-call .multi-cal-style ::ng-deep .ui-multiselect-header .ui-multiselect-filter-container{
+  width:90% !important;
+}cal-.send-message-call .multi-cal-style ::ng-deep .pi-times:before {
+display: none;
+}
+.cal-send-message-call .multi-cal-style ::ng-deep .ui-chkbox .ui-chkbox-box{
+  border:1px solid #dedede !important;
+  width:12px !important;
+  height:12px !important;
+  margin-top:7px;
+}
+:cal-:ng-deep.pnlgpClass.send-message-call .multi-cal-style ::ng-deep  .ui-multiselect-header .ui-multiselect-filter-container .ui-multiselect-filter-icon{
+  left: initial !important;
+  right: 6px !important;
+  top: 12px !important;
+  font-size:14px;
+  margin-left:5px ;
+}
+.cal-send-message-call .multi-cal-style ::ng-deep  .ui-multiselect-header {
+  display:flex;
+  align-items:center
+}
+.cal-send-message-call .multi-cal-style ::ng-deep .ui-multiselect-panel .ui-multiselect-item span{
+
+  font-size:14px;
+  margin-left:5px ;
+}
+.cal-send-message-call .multi-cal-style ::ng-deep  .ui-multiselect .ui-multiselect-panel{
+  background:white !important;
+}
+.cal-send-message-call .multi-cal-style ::ng-deep input.ui-inputtext {
+  background: #fff;
+  border: 1px solid #dedede!important;
+  border-radius: 5px;
+  height: 28px!important;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 3px 10px;
+  color: grey;
+  cursor: pointer;
+  width: 100%!important;
+}
+.cal-send-message-call ::ng-deep .ui-inputtext .ui-calendar .ui-calendar-button{
+  display: none !important;
+}
+.cal-send-message-call ::ng-deep .ui-inputtext button{
+  display: none !important;
+  border:none;
+}
+.cal-send-message-call ::ng-deep .ui-dropdown .ui-dropdown-panel {
+  top: 100% !important;
+  border: 0 !important;
+}
+.cancel_btn {
+  background: #f5f5f5 !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  padding: 6px 15px !important;
+  color: #959cb6 !important;
+  font-weight: 500 !important;
+  border: none;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.cancel_btn:hover {
+  background-color: #808080;
+  color: #fff;
+}
+
+.save_btn {
+  background: #207ebb1a !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  padding: 6px 15px !important;
+  font-weight: 500 !important;
+  color: #207ebb !important;
+}
+
+.save_btn:hover {
+  background: #207ebb !important;
+  color: #fff !important;
+}
+
+.full-width {
+  width: calc(100% - 58px);
+}
+.contact-subheader {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  padding: 10px 0px 0px 15px;
+  li {
+    display: inline-block;
+    vertical-align: middle;
+    .form-group {
+      margin-bottom: 0px;
+      .form-control {
+        height: 25px !important;
+        line-height: 24px;
+        font-size: 10px;
+        width: 160px;
+        padding: 0 0 0 4px;
+        border-radius: 3px !important;
+      }
+      .input-group date {
+        width: 160px;
+      }
+    }
+    .w-12 {
+      width: 12px;
+      margin-right: 12px;
+      position: relative;
+      bottom: 2px;
+      opacity: 0.2;
+    }
+    .w-13 {
+      width: 11px;
+      margin-right: 11px;
+      position: relative;
+      bottom: 2px;
+      cursor: pointer;
+    }
+    .btn-status {
+      width: 103px;
+      height: 24px;
+      background: #e8f2f8;
+      color: #207ebb;
+      border: 0;
+      line-height: 24px;
+      border-radius: 4px;
+      font-size: 10px;
+      opacity: 0.5;
+      cursor: default;
+    }
+    .btn-fetched {
+      width: 103px;
+      height: 24px;
+      background: #f0f5eb;
+      color: #6a9f3a;
+      border: 0;
+      line-height: 24px;
+      border-radius: 4px;
+      font-size: 10px;
+      margin-left: 10px;
+      opacity: 0.5;
+      cursor: default;
+    }
+    .btn-all {
+      width: 103px;
+      height: 24px;
+      background: #fef9f8;
+      color: #d23200;
+      border: 0;
+      line-height: 24px;
+      border-radius: 4px;
+      font-size: 10px;
+      margin-left: 10px;
+      opacity: 0.5;
+      cursor: default;
+    }
+    .selected-text {
+      color: #808080;
+      font-size: 10px;
+      margin-right: 13px;
+      margin-bottom: 0px;
+      opacity: 0.5;
+    }
+    .selected-all-records {
+      color: #207ebb;
+      font-size: 10px;
+      margin-left: 13px;
+      margin-bottom: 0px;
+      opacity: 0.5;
+    }
+  }
+}
+.contact-profile-wrapper {
+  padding: 10px 15px 4px !important;
+}
+
+.right-menu {
+  text-align: right;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  padding: 12px 20px;
+  li {
+    margin-right: 5px;
+    display: inline-block;
+    img {
+      background-color: #f2f3f7;
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+    }
+  }
+}
+.pointer {
+  cursor: pointer;
+  transition: 0.5s all ease-in-out;
+  .black {
+    display: inline-block;
+  }
+  .white {
+    display: none;
+  }
+
+  &:hover {
+    .white {
+      display: inline-block;
+      background-color: #207ebb;
+    }
+    .black {
+      display: none;
+    }
+  }
+}
+
+.cal-send-message-call ::ng-deep .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item.ui-state-highlight,
+body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group.ui-state-highlight {
+  background-color: #eaeaea !important;
+}
+.no-margin {
+  margin-right: 0px !important;
+}
+
+.cal-send-message-call ::ng-deep tag-input {
+  height: auto !important;
+  overflow: hidden;
+  width: 90% !important;
+  .ng2-tag-input__text-input {
+    padding: 0px !important;
+    width: 100% !important;
+  }
+}
+
+.cal-send-message-call ::ng-deep .ng2-tag-input {
+  margin: 0px;
+}
+.cal-send-message-call ::ng-deep .tag__text {
+  color: #000 !important;
+}
+.cal-send-message-call ::ng-deep #from {
+  padding-bottom: 5px;
+}
+
+.cal-send-message-call ::ng-deep tag-input-form {
+  width: 100% !important;
+}
+
+.cal-send-message-call ::ng-deep .tox-tinymce {
+  height: 220px !important;
+  border: 0px !important;
+}
+
+.cal-send-message-call ::ng-deep .tox .tox-editor-header {
+  position: absolute;
+  bottom: 12px;
+  z-index: 99 !important;
+  width: 100%;
+}
+
+.cal-send-message-call::ng-deep .tox .tox-edit-area__iframe {
+  height: 165px !important;
+}
+
+.cal-send-message-call ::ng-deep .tox .tox-tbtn {
+  width: 28px !important;
+}
+.associated-text {
+  position: absolute;
+  bottom: -3px;
+  right: 0px;
+  z-index: 99;
+  p {
+    color: #207ebb;
+    &:after {
+      content: "\e902";
+      font-family: "primeicons" !important;
+      position: absolute;
+      top: 0px;
+      right: -15px;
+    }
+  }
+}
+
+.mar-btm-none {
+  margin-bottom: 0;
+  .form-control {
+    border: 0px solid #000;
+    font-size: 13px;
+  }
+}
+
+.cal-send-message-call {
+  .send-body {
+    padding: 0px;
+    .to-wrapper {
+      padding-top: 5px;
+    }
+    .description {
+      font-size: 14px;
+      padding-top: 15px;
+      color: #404040;
+    }
+  }
+  .send-footer {
+    .send-footer-inner {
+      ul {
+        display: flex;
+        li {
+          &:nth-child(2) {
+            padding-top: 2px;
+            opacity: 1;
+          }
+          &:nth-child(3) {
+            padding-top: 4px;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cal-send-message-call ::ng-deep .ng2-tag-input.ng2-tag-input--focused {
+  border-bottom: 0px solid #dedede !important;
+}
+.cal-send-message-call ::ng-deep .ng2-tag-input {
+  padding: 0px !important;
+  margin-bottom: 5px;
+  min-height: 24px !important;
+}
+
+.cal-send-message-call ::ng-deep .ng2-tag-input__text-input {
+  height: 24px !important;
+  font-size: 13px !important;
+  width: 100%;
+}
+.cal-send-message-call ::ng-deep tag {
+  height: 28px !important;
+  line-height: 24px !important;
+  background: #fff6f6 !important;
+  border-radius: 3px !important;
+  font-size: 12px !important;
+  padding: 2px 10px;
+}
+
+.cal-send-message-call ::ng-deep tag:hover {
+  box-shadow: none !important;
+}
+
+.cal-send-message-call ::ng-deep delete-icon {
+  position: relative;
+  top: -4px !important;
+  svg {
+    width: 12px !important;
+    height: 16px !important;
+  }
+}
+.cal-send-message-call ::ng-deep .c-list {
+  display: none;
+}
+.cal-send-message-call ::ng-deep .tox-statusbar__resize-handle {
+  display: none !important;
+}
+
+@media screen and (min-width: 3840px) and (max-width: 4000px) {
+  .maximize-screen {
+    margin-bottom: 41vh;
+  }
+}
+@media screen and (min-width: 1920px) and (max-width: 2000px) {
+  .maximize-screen {
+    margin-bottom: 41vh;
+  }
+}
+@media screen and (min-width: 1280px) and (max-width: 1300px) {
+  .maximize-screen {
+    margin-bottom: 41vh;
+  }
+}
+.minimize-screen {
+  position: fixed;
+  top: 93%;
+  .send-middle {
+    display: none;
+  }
+  .send-body {
+    display: none;
+  }
+  .send-footer {
+    display: none;
+  }
+}
+
+.cal-send-message-call ::ng-deep .ng2-tag-input {
+  border-style: none !important;
+}
+
+.cal-send-message-call ::ng-deep #chatIcon {
+  opacity: 0.7;
+}
+
+.cal-send-message-call ::ng-deep .mce-content-body p {
+  position: relative !important;
+  overflow-y: scroll !important;
+  height: 150px !important;
+}
+
+.associated-for-message {
+  position: relative;
+  cursor: pointer;
+  .myclass {
+    display: none;
+  }
+  .associated-dropdown {
+    position: absolute;
+    right: 0px;
+    top: -50px;
+    display: block !important;
+    width: 240px;
+  }
+}
+
+.cal-send-message-call ::ng-deep .closeEmail {
+  height: 12px;
+  width: 12px;
+  opacity: 0.6;
+}
+
+.mail-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 1000;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  display:block;
+}
+.bg-none{
+  background: rgba(0, 0, 0, 0.5);
+  display:none;
+}
+.form-control:focus {
+  border-color: #dedede !important;
+}
+.contact-drop {
+  ::ng-deep .selected-list {
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+  ::ng-deep .selected-list .c-btn {
+    width: 87% !important;
+    padding: 0 32px !important;
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    span {
+      display: none;
+    }
+  }
+  ::ng-deep .selected-list .c-angle-down {
+    right: 15px !important;
+    color: #207ebb !important;
+    top: 43% !important;
+    width: 10px !important;
+    height: 10px !important;
+    display: none;
+  }
+  ::ng-deep .selected-list .c-list .c-token {
+    padding: 0px 10px 0px 0 !important;
+    background-color: #207ebb !important;
+  }
+  ::ng-deep .selected-list .c-list .c-token .c-label {
+    display: block;
+    float: left;
+    padding: 5px 10px;
+    color: #ffff;
+    border-radius: 4px;
+    font-size: 10px !important;
+    width: auto;
+  }
+}
+
+.cal-send-message-call ::ng-deep .dropdown-list {
+  bottom: 39px !important;
+}
+.cal-send-message-call ::ng-deep .list-filter {
+  border-bottom: 1px solid #ccc;
+  position: relative !important;
+  height: auto !important;
+  padding: 10px 15px !important;
+  background-color: #f4f6f8 !important;
+}
+.cal-send-message-call ::ng-deep .list-filter input {
+  padding-left: 10px !important;
+  padding-right: 35px !important;
+  font-size: 12px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb !important;
+}
+
+.cal-send-message-call ::ng-deep .list-filter .c-search {
+  position: absolute !important;
+  top: 14px !important;
+  left: 210px !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+.cal-send-message-call ::ng-deep delete-icon:hover {
+  transform: scale(1) !important;
+}
+.cal-send-message-call ::ng-deep .dropdown-list .arrow-down {
+  margin-left: 175px;
+}
+.cal-send-message-call ::ng-deep .pure-checkbox .select-all {
+  display: none;
+}
+.cal-send-message-call ::ng-deep .pure-checkbox input[type="checkbox"] + label:before {
+  border: 1px solid #d1d1d1 !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+.cal-send-message-call ::ng-deep .pure-checkbox input[type="checkbox"]:checked + label:after {
+  transform: rotate(-45deg) scale(0.8) !important;
+}
+.cal-send-message-call ::ng-deep .pure-checkbox input[type="checkbox"] + label {
+  font-size: 13px;
+  color: #595d6e;
+  padding-top: 4px;
+}
+.cal-send-message-call ::ng-deep .dropdown-list ul li {
+  background-color: #f5fafe;
+  padding: 3px 10px;
+  cursor: pointer;
+  text-align: left;
+  .grp-item{
+    padding-left: 15px !important;
+  }
+}
+.cal-send-message-call ::ng-deep .dropdown-list .lazyContainer li {
+  background-color: #f5fafe;
+  padding: 3px 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.cal-send-message-call ::ng-deep.multi-item {
+  display: flex !important;
+  align-items: center !important;
+  height: 5px !important;
+  margin-left: 18px;
+  top: -2px;
+  position: relative;
+}
+
+.cal-send-message-call .maximize-screen ::ng-deep .lazyContainer {
+  height: 170px !important;
+}
+
+.sent-message .maximize-screen .description {
+  height: 136px !important;
+}
+
+.cal-send-message-call ::ng-deep .list-area {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  right: -5px;
+}
+
+.send-ull-message-call ::ng-deep .list-area {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  bottom: 0;
+  right: -5px;
+}
+
+.cal-send-message-call ::ng-deep .dropdown-list {
+  ::ng-deep .arrow-2 {
+    position: absolute;
+    right: -4px;
+  }
+  ::ng-deep .arrow-down {
+    position: absolute;
+    right: -4px;
+  }
+}
+.cal-send-message-call ::ng-deep .list-filter {
+  margin-bottom: 40px;
+  &:after {
+    content: "Attendees List";
+    position: absolute;
+    top: 63px;
+    left: 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+.cal-send-message-call ::ng-deep .list-filter .c-search {
+  &:after {
+    content: url("../../../assets/images/search.svg");
+    position: absolute;
+    right: 0px;
+    top: 3px;
+  }
+}
+.cal-send-message-call ::ng-deep .list-filter .c-search c-icon {
+  display: none;
+}
+.cal-send-message-call ::ng-deep.list-area::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 10px solid #fff;
+  position: absolute;
+  right: 0px;
+  bottom: -9px;
+}
+
+.cal-send-message-call ::ng-deep.select-all {
+  display: none;
+}
+.cal-send-message-call ::ng-deep .pure-checkbox input[type="checkbox"]:checked + label::after {
+  content: "\e909";
+  font-family: "primeicons" !important;
+  transition: transform 0.2s ease-out !important;
+  transform: rotate(0deg) scale(1) !important;
+  background-color: #207ebb !important;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  left: 1px !important;
+  top: 9px;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+}
+.cal-send-message-call ::ng-deep .pure-checkbox {
+  margin-left: 1px;
+  label::before {
+    border: 1px solid #ccc;
+    top: 12px !important;
+  }
+}
+
+.cal-send-message-call.maximize-screen {
+  bottom: auto !important;
+  margin-bottom: auto !important;
+  top: 50%;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+}
+.editor-inner {
+  padding: 8px 15px;
+}
+.editor-section ::ng-deep .tox .tox-editor-header {
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.editor-section ::ng-deep .tox .tox-tbtn svg {
+  display: block;
+  fill: #808080;
+}
+.editor-section ::ng-deep .tox .tox-notification--warn,
+.tox .tox-notification--warning {
+  display: none !important;
+}
+.editor-section ::ng-deep .tox .tox-tbtn {
+  width: 24px !important;
+  height: 24px !important;
+}
+.editor-section ::ng-deep .tox .tox-edit-area__iframe {
+  height: 154px !important;
+}
+.editor-section ::ng-deep .tox-tinymce {
+  height: 154px !important;
+  border: none !important;
+  padding: 2px 2px 2px 10px ;
+
+}
+.editor-section ::ng-deep button.tox-tbtn[aria-label="Blockquote"] {
+  background: url("../../../assets/images/editor-icon/Quotation\ Marks.svg") no-repeat;
+  background-position: 4px;
+}
+.editor-section ::ng-deep button.tox-tbtn[aria-label="Insert/edit image"] {
+  background: url("../../../assets/images/editor-icon/Attachment.svg") no-repeat;
+  background-position: 4px;
+}
+.editor-section ::ng-deep button.tox-tbtn[aria-label="Insert/edit link"] {
+  background: url("../../../assets/images/editor-icon/link.svg") no-repeat;
+  background-position: 4px;
+}
+.editor-section ::ng-deep div.tox-split-button[aria-label="Text color"] {
+  background: url("../../../assets/images/editor-icon/format.svg") no-repeat;
+  background-position: 8px;
+  &:hover {
+    background: url("../../../assets/images/editor-icon/format.svg") no-repeat;
+    background-position: 8px;
+  }
+}
+::ng-deep div.tox-split-button[aria-label="Text color"] .tox-tbtn:hover {
+  background-color: transparent;
+}
+.editor-section ::ng-deep button.tox-tbtn[aria-label="Underline"] {
+  background: url("../../../assets/images/editor-icon/underline.svg") no-repeat;
+  background-position: 4px;
+}
+.editor-section ::ng-deep button.tox-tbtn[aria-label="Italic"] {
+  background: url("../../../assets/images/editor-icon/italic.svg") no-repeat;
+  background-position: 4px;
+}
+.editor-section ::ng-deep button.tox-tbtn[aria-label="Bold"] {
+  background: url("../../../assets/images/editor-icon/bold.svg") no-repeat;
+  background-position: 4px;
+}
+.editor-section ::ng-deep .tox-icon.tox-tbtn__icon-wrap {
+  display: none;
+}
+.editor-section {
+  position: relative;
+  .associated-with {
+    position: absolute;
+    right: 29px;
+    bottom: 5px;
+    color: #207ebb;
+    z-index: 999;
+    margin-bottom: 0px;
+    font-size: 12px;
+    &::after {
+      content: "\e902" !important;
+      font-family: "primeicons" !important;
+      position: absolute;
+      top: 0px;
+      right: -17px;
+      font-size: 12px;
+      color: #207ebb;
+    }
+  }
+}
+span.required{
+  color: red !important;
+  font-size: 12px !important;
+}
+.widthFullDay{
+  width: 100%;
+  padding-right: 15px !important;
+}
+.widthFull{
+  width: 100%;
+}
+.check-box-wrapper-day {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  justify-content: space-between;
+  min-width: 115px;
+  .margin-ele{
+    margin-left: 10px !important;
+  }
+  span {
+      font-size: 12px;
+      margin-left: 0px;
+      margin-top:3px;
+      color: #404040;
+  }
+  .wrapper-attendee{
+      margin-left: 15px;
+  }
+}
+.attendeeSel ::ng-deep input.ui-inputtext {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 3px 10px;
+  color: #808080;
+  cursor: pointer;
+  width: 100% !important;
+}
+::ng-deep .ui-multiselect-header .ui-inputtext {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 3px 10px;
+  color: #808080;
+  cursor: pointer;
+  width: 100% !important;
+}
+.despDim{
+  padding-left: 15px;
+  padding-bottom: 8px;
+}
+.errorBorder ::ng-deep.ui-dropdown,
+.errorBorder ::ng-deep.ui-multiselect,
+.errorBorder ::ng-deep input.ui-inputtext,
+.errorBorder ::ng-deep input.native-input.sc-ion-input-md
+{
+  border: 1px solid #f26b7a !important;
+  border-radius: 5px !important;
+}
+.setPaddingCal {
+  padding-left: 32px;
+    padding-right: 32px;
+}
+.setInlineChk{
+  display: inline-block !important;
+}
+.cal-send-message-call .ui-colorpicker .ui-inputtext{   
+width: 24px !important;
+height: 24px !important;
+margin-top: 2px;
+}
+.errorBorder ::ng-deep.ui-dropdown,
+.errorBorder ::ng-deep.ui-multiselect,
+.errorBorder ::ng-deep input.ui-inputtext,
+.errorBorder ::ng-deep input.native-input.sc-ion-input-md
+{
+  border: 1px solid #f26b7a !important;
+  border-radius: 5px !important;
+}
+.undrGrpMulti {
+  .dropdown-list {
+    position: relative;
+    bottom: auto !important;
+    right: auto !important;
+    padding-top: 0;
+    top: -3px;
+  }
+  .cuppa-dropdown{
+    position: absolute  !important;
+    width: 278px !important;
+  }
+} 
+.modifiedMultiselect ::ng-deep .c-btn {
+  min-height: 28px !important;
+  border: 1px solid #dedede !important;
+  padding: 0.375rem 0.75rem !important;
+  border-radius: 4px;
+}
+
+.modifiedMultiselect ::ng-deep .c-btn .c-angle-up,
+.modifiedMultiselect ::ng-deep .c-btn .c-angle-down {
+  top: 10px !important;
+}
+.modifiedMultiselect ::ng-deep .list-area {
+  padding: 0px !important;
+}
+.modifiedMultiselect ::ng-deep .dropdown-list {
+  padding-top: 3px !important;
+  bottom: auto !important;
+  width: 450px !important;
+  margin:0;
+}
+.custom-multiselect ::ng-deep.selected-list .c-btn .c-angle-up:after,
+.custom-multiselect ::ng-deep.selected-list .c-btn .c-angle-down:after {
+  content: "\e902";
+  font-family: "primeicons" !important;
+  font-size: 12px;
+  right: -3px;
+  position: absolute;
+  top: 3px;
+  color: #2079eb;
+}
+::ng-deep.colorChooser{
+  margin-top: 0px !important;
+  padding: 0 !important;
+  .ui-inputtext{
+    padding: 0 !important;
+  }
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(1) li {
+  background: #a4bdfc;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(2) li {
+  background: #7ae7bf;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(3) li {
+  background: #dbadff;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(4) li {
+  background: #ff887c;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(5) li {
+  background: #fbd75b;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(6) li {
+  background: #ffb878;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(7) li {
+  background: #e1e1e1;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(8) li {
+  background: #5484ed;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(9) li {
+  background: #51b749;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(10) li {
+  background: #dc2127;
+}
+::ng-deep.colorChooser .ui-dropdown-items p-dropdownitem:nth-child(11) li {
+  background: #3788d8;
+}
+
+::ng-deep .meetingcolor {
+  max-width: 34px !important;
+  .ui-inputtext{
+    margin-top: 0px !important;
+  }
+}
+.user-field-callp .add_ico ::ng-deep p-dropdown {
+  width: calc(100% - 40px);
+  float: left;
+  margin-right: 4px;
+}
+.setSelectedCount {
+  position: absolute;
+  padding-left: 10px;
+  font-size: 12px;
+  padding-top: 4px;
+  color: #808080 !important;
+}
+.own-multiselect-drop ::ng-deep.countplaceholder{
+  display: none !important;
+}
+
+::ng-deep.ui-multiselect{
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  padding: 2px 1px;
+  width: 100% !important;
+}
+::ng-deep.ui-multiselect .ui-multiselect-label{
+  border-radius: 0.25rem;
+  font-size: 12px;
+  height: 24px !important;
+  color: grey !important;
+  padding: 2px 36px 2px 7px;
+  text-align: left;
+}
+::ng-deep.panelSideConProduct.ui-multiselect-panel{
+  background: #fff;
+  width: 400px;
+  min-width: 200px !important;
+  .ui-multiselect-header
+  {
+    background: #fff;
+    .pi-check:nth-child(1)::before {
+      top: -4px !important;
+      position: relative;
+      left: 0px !important;
+    }  
+  }
+  .pi-check::before {
+    top: -1.3px !important;
+    position: relative;
+    left: 0px !important;
+  }
+}
+::ng-deep.panelSideConProduct.ui-chkbox .ui-chkbox-box.ui-state-active .pi {
+  color: #ffffff;
+  position: relative;
+  top: -1px;
+}
+::ng-deep.panelSideConProduct.ui-chkbox-icon.ui-clickable.pi.pi-check::before {
+  color: #ffffff;
+  top: -1px !important;
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-item{
+  color: #404040 !important;
+  font-size: 13px;
+}
+::ng-deep .panelSideConProduct .pi{
+  margin: 0;
+}
+::ng-deep.ui-chkbox .ui-chkbox-box:hover{
+  border: 1px solid #207ebb;
+}
+::ng-deep.ui-chkbox .ui-chkbox-box.ui-state-active{
+  border: 1px solid #207ebb;
+  background-color: #207ebb;
+  color: #ffffff;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+::ng-deep.ui-chkbox .ui-chkbox-box {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #d1d1d1;
+  &:hover {
+    border: 1px solid #207ebb;
+  }
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-item span{
+  margin:0;
+  text-align: center;
+}
+::ng-deep.ui-multiselect-header .ui-multiselect-filter-container .ui-multiselect-filter-icon{
+  position: absolute;
+    top: 0;
+    right: 10px;
+    bottom: 0;
+    margin: auto;
+    height: 9px;
+    line-height: 15px;
+    left: inherit;
+}
+::ng-deep.ui-multiselect-header .ui-multiselect-close{
+  display: none;
+}
+::ng-deep.ui-multiselect-header .ui-multiselect-filter-container{
+  width: 90%;
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-item{
+  color: #404040 !important;
+  font-size: 13px;
+  padding: 5px 6px;
+}
+::ng-deep.ui-multiselect-panel .ui-multiselect-items-wrapper{
+  max-height: 180px !important;
+}
+::ng-deep.ui-multiselect-filter-container input.ui-inputtext {
+  background: #ffffff;
+  border: 1px solid #dedede !important;
+  border-radius: 5px;
+  height: 28px !important;
+  margin-top: 6px;
+  font-size: 12px;
+  padding: 3px 10px;
+  color: #808080;
+  cursor: pointer;
+  width: 100% !important;
+}
+.user-field .add_ico span:hover, .user-field .add_ico span:active, .user-field .add_ico span:focus{
+  background: url('../../../assets/images/add_white.svg')#207EBB no-repeat center center;
+  }
+
+ .add_ico, .search_ico{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ .user-field .add_ico .user-input, .user-field .add_ico p-dropdown, .user-field .search_ico .user-input, .user-field .search_ico p-dropdown{
+  width: calc(100% - 29px);
+ }
+ .user-field .add_ico span{
+   width:28px;
+   height: 28px;
+   line-height:25px;
+   border-radius: 3px;
+   margin: 6px 0 0 1px !important;
+   text-align: center;
+   cursor: pointer;
+   background: url('../../../assets/images/add.svg')#F2F3F7 no-repeat center center;
+ }
+ .user-field .multi.add_ico span{
+  margin: 0px 0 0 1px;
+ }
+ 

@@ -1,0 +1,757 @@
+<header
+  *ngIf="!(router.url.includes('/maintainance/maintainance-page') || router.url.includes('/contacts/contact-detail') || router.url.includes('/error/error-page'))">
+  <div class="row m-0 w-100 header-hamburger">
+    <div class="col-md-6 hamburger-wrapper">
+
+      <button (click)="showSidebar();" class="hamburger">
+        <span></span>
+        <span></span>
+        <span class="mb-0"></span>
+      </button>
+      <div class="header-inner-left">
+        <span *ngIf="router.url.includes('/property-details')" class="mr-5">
+          {{pageData.name}}
+        </span>
+        <span *ngIf="router.url.includes('/property-details')">
+          ({{pageData.count}})
+        </span>
+
+        <span class="mobile-header-page" [ngClass]="{'limit-text-status' : (pageData.name.length > 60)}"
+          *ngIf="!(router.url.includes('/property-details'))">
+          {{parsedDocData ? (parsedDocData.document_name + '.' + parsedDocData.fileExt) 
+          : pageData.name}}
+          <span *ngIf="!(router.url.includes('/import-export') || 
+                        router.url.includes('/oodo-detail-formtab') || 
+                        router.url.includes('/security-roles') || 
+                        router.url.includes('/contact-edit') || 
+                        router.url.includes('/program-detail') || 
+                        router.url.includes('/group-detail') || 
+                        router.url.includes('/transaction-form') || 
+                        router.url.includes('/profile/overview/user') || 
+                        router.url.includes('/profile/overview/accounts') || 
+                        router.url.includes('/user-notification') || 
+                        router.url.includes('/view-template') || 
+                        router.url.includes('/view-checklist') || 
+                        router.url.includes('/add-playbook') || 
+                        router.url.includes('/transactions/transaction-profile') ||
+                        router.url.includes('/add-leads-provider') || 
+                        router.url.includes('/website-management/blogedit') || 
+                        router.url.includes('/website-management/idx-page-edit') ||
+                        router.url.includes('/transactions/disbursement-form') ||
+                        router.url.includes('/hrms/agent-detail-formtab') ||
+                        router.url.includes('/hrms/contract-oodo-form-tab') ||
+                        router.url.includes('/hrms/contract-oodo-form-tab') ||
+                        router.url.includes('/hrms/transfer-oodo-form-tab') ||
+                        router.url.includes('/hrms/department-oodo-form-tab') ||
+                        router.url.includes('/hrms/attendance-oodo-form-tab')||   
+                        router.url.includes('/hrms/reminder-oodo-form-tab')|| 
+                        router.url.includes('/hrms/application-oodo-form-tab') ||
+                        router.url.includes('/hrms/announcement-oodo-form-tab') ||
+                        router.url.includes('/hrms/offices-oodo-form-tab') ||
+                        router.url.includes('/hrms/commision-oodo-form-tab') ||
+                        router.url.includes('/hrms/position-oodo-form-tab') ||
+                        router.url.includes('/website-management/building-edit')||
+                        router.url.includes('/website-management/propertiesedit')||
+                        router.url.includes('/website-management/communityedit')||
+                        router.url.includes('/dashboard/main-dashboard')||     
+                        router.url.includes('/users/payment')||   
+                        router.url.includes('/users/main-payment')||    
+                        router.url.includes('/users/billing-main-page')|| 
+                        router.url.includes('/website-management/setting')||  
+                        router.url.includes('/global-settings')||  
+                        router.url.includes('/website-management/edit-comment')||  
+                        router.url.includes('/website-management/idx-tab') || 
+                        router.url.includes('/website-management/idx-page') ||                 
+                        router.url.includes('/website-management/cities') ||
+                         router.url.includes('/transactions/my-setting')|| 
+                         router.url.includes('/users/upgrade-plans')|| 
+                        router.url.includes('/website-management/feature-property') || 
+                        router.url.includes('/contacts/contact-page')||
+                        router.url.includes('/users/billing-history')||  
+                        router.url.includes('/users/team')||
+                        router.url.includes('/users/privacy-policy')||
+                        router.url.includes('/users/about')||
+                        router.url.includes('/security/security-detail')|| 
+                        router.url.includes('/support/faq')||
+                        router.url.includes('/website-management/edit-reviews') || 
+                        router.url.includes('/users/terms-conditions') ||
+                        router.url.includes('/customer/mutate-customer') ||
+                        router.url.includes('/sales-team/mutate-salesteam')||  
+                        router.url.includes('/invoicing/mutate-invoice')||  
+                        router.url.includes('/all-subscription/mutate-allsubs')||  
+                        router.url.includes('/subscription-quotation/mutate-quotation') ||
+                        parsedDocData ||
+                        router.url.includes('/add-leads-listing'))">
+            ({{pageData.count}})
+          </span>
+        </span>
+        <span style="margin-left:15px;" *ngIf="router.url.includes('/hrms/emp-detail')">
+          <img alt="" (click)="appService.enableEditMode(false)" style="cursor:pointer"
+            src="../../../assets/images/edit.svg" pTooltip="Edit" tooltipPosition="right">
+        </span>
+        <ion-button class="btn-add-new" *ngIf="!(router.url.includes('/import-export') || 
+                               router.url.includes('/oodo-detail-formtab') || 
+                               router.url.includes('/property-details') || 
+                               router.url.includes('/add-leads-provider') || 
+                               router.url.includes('/listing') || 
+                               router.url.includes('/users/privacy-policy')||
+                               router.url.includes('/users/about')||
+                               router.url.includes('/income') || 
+                               router.url.includes('/support/faq')||
+                               router.url.includes('/users/terms-conditions') ||
+                               router.url.includes('/lease') || 
+                               router.url.includes('/land-lot') ||
+                               router.url.includes('/website-management/reviews') || 
+                               router.url.includes('/website-management/edit-reviews') ||                                
+                               router.url.includes('/mobile-homes') || 
+                               router.url.includes('/users/upgrade-plans')||
+                               router.url.includes('/commercial-sale') || 
+                               router.url.includes('/commercial-lease') || 
+                               router.url.includes('/business') || 
+                               router.url.includes('/view-providers') || 
+                               router.url.includes('/security-roles')||  
+                               router.url.includes('/view-contacts')|| 
+                               router.url.includes('/profile/overview/user') ||  
+                               router.url.includes('/group-detail') || 
+                               router.url.includes('/profile/overview/accounts') || 
+                               router.url.includes('/website-management/building-edit')||
+                               router.url.includes('/website-management/propertiesedit')||
+                               router.url.includes('/website-management/community')||
+                               router.url.includes('/contact-edit')|| 
+                               router.url.includes('/service-edit')|| 
+                               router.url.includes('/tasks/tasks') || 
+                               router.url.includes('/contacts/tags') || 
+                               router.url.includes('/contacts/groups') || 
+                               router.url.includes('/template/view-template') || 
+                               router.url.includes('/checklist/view-checklist') || 
+                               router.url.includes('/program-detail') || 
+                               router.url.includes('/user-notification') || 
+                               router.url.includes('/transactions/transaction-profile') ||
+                               router.url.includes('/transactions/transaction-form') ||
+                               router.url.includes('/users/user-accounts') ||
+                               router.url.includes('/transactions/commision-disbursement') ||
+                               router.url.includes('/website-management/blogs') ||
+                               router.url.includes('/transactions/disbursement-form') ||
+                               router.url.includes('/website-management/blogedit') ||
+                               router.url.includes('/website-management/idx-page-edit') ||
+                               router.url.includes('/website-management/communityedit')||
+                               router.url.includes('/hrms/agent-detail-formtab')||
+                               router.url.includes('/hrms/contract-oodo-form-tab')||
+                               router.url.includes('/hrms/emp-detail')||
+                               router.url.includes('/hrms/emp-detail')||   
+                               router.url.includes('/hrms/position-oodo-form-tab')||                           
+                               router.url.includes('/hrms/attendance-oodo-form-tab')||   
+                               router.url.includes('/hrms/reminder-oodo-form-tab')|| 
+                               router.url.includes('/hrms/department-oodo-form-tab') ||
+                               router.url.includes('/hrms/application-oodo-form-tab') || 
+                               router.url.includes('/hrms/announcement-oodo-form-tab') ||
+                               router.url.includes('/hrms/offices-oodo-form-tab') ||
+                               router.url.includes('/hrms/transfer-oodo-form-tab') ||
+                               router.url.includes('/hrms/commision-oodo-form-tab') ||
+                               router.url.includes('/hrms/attendance') ||
+                               router.url.includes('/dashboard/main-dashboard')||    
+                               router.url.includes('/users/payment')||                                                                                                                           
+                               router.url.includes('/users/billing-main-page')||                                                                                                                           
+                               router.url.includes('/users/main-payment')||
+                               router.url.includes('/website-management/setting')|| 
+                               router.url.includes('/document/all-document')||  
+                               router.url.includes('/website-management/comment')|| 
+                               router.url.includes('/website-management/edit-comment')||  
+                               router.url.includes('/website-management/idx-tab') || 
+                               router.url.includes('/website-management/idx-page') ||                                                                                                                                                                                                                                                                  
+                               router.url.includes('/website-management/feature-property') || 
+                               router.url.includes('/website-management/cities') || 
+                               router.url.includes('/website-management/edit-comment')||                                                                                                                                                                                                                                                                 
+                               router.url.includes('/global-settings')|| 
+                               router.url.includes('/transactions/my-setting')|| 
+                               router.url.includes('/website-management/service-tab')||
+                               router.url.includes('/contacts/contact-page')||  
+                               router.url.includes('/subscription-quotation/mutate-quotation')||  
+                               router.url.includes('/sales-team/mutate-salesteam')||  
+                               router.url.includes('/invoicing/mutate-invoice')||  
+                               router.url.includes('/all-subscription/mutate-allsubs')||  
+                               router.url.includes('/users/billing-history')|| 
+                               router.url.includes('/users/team')||   
+                               router.url.includes('/security/security-detail')||
+                               router.url.includes('/contacts/lead-management')||
+                               router.url.includes('/playbook/add-playbook') )"
+          (click)="openAddNewModal(pageData.name)">Add New</ion-button>
+        <ion-button
+          *ngIf="router.url.includes('/users/payment') || router.url.includes('/users/main-payment') ||router.url.includes('/users/billing-main-page') || router.url.includes('/users/billing-main-page') "
+          (click)="openAddNewModal(pageData.name)" class="btn-add-new">
+          Add Card
+        </ion-button>
+
+        <p-menu class="drop-uploads" #menu [popup]="true" [model]="items">
+        </p-menu>
+        <button *ngIf="!parsedDocData&& router.url.includes('/document/all-document')"
+          style="overflow:hidden;border-radius:5px;" class="dropdown-btn btn-add-new" type="button" pButton
+          label="Add New" (click)="menu.toggle($event)">
+        </button>
+
+        <ion-button class="btn-add-new" *ngIf="router.url.includes('/tasks/tasks')" (click)=" openAddPopUp()">
+          Add New
+        </ion-button>
+        <ion-button class="btn-add-new" *ngIf="router.url.includes('/contacts/tags')" (click)=" openAddTagPopUp()">
+          Add New
+        </ion-button>
+        <ion-button class="btn-add-new" *ngIf="router.url.includes('/contacts/groups')" (click)=" openAddGRoupPopUp()">
+          Add New
+        </ion-button>
+        <ion-button class="btn-add-new" *ngIf="router.url.includes('/website-management/blogs')" (click)="changeLink()">
+          Add New
+        </ion-button>
+        <ion-button class="btn-add-new" *ngIf="router.url.includes('/website-management/community')"
+          (click)="changeCommunityLink()">
+          Add New
+        </ion-button>
+        <ion-button class="btn-add-new" *ngIf="router.url.includes('/website-management/idx-page')"
+          (click)="changeIdxLink()">
+          Add New
+        </ion-button>
+        <img *ngIf="router.url.includes('/property-details') || 
+                 router.url.includes('/view-template') || 
+                 router.url.includes('/transactions/transaction-profile') ||
+                 router.url.includes('/contacts/view-providers') || 
+                 router.url.includes('/contacts/view-contacts') ||
+                 router.url.includes('/program-detail')" src="../../../assets/images/edit.svg" pTooltip="Edit"
+          tooltipPosition="right" alt=""
+          (click)="updateViewState(router.url.includes('/property-details') || router.url.includes('/contacts/service-edit'));"
+          class="edit-icon">
+        <img *ngIf="
+          router.url.includes('/group-detail')" src="../../../assets/images/edit.svg" pTooltip="Edit"
+          tooltipPosition="right" alt="" (click)="openGroupModal()" class="edit-icon">
+      </div>
+    </div>
+    <div class="col-md-6 text-right right-header">
+      <ul *ngIf="!parsedDocData" class="header-icon">
+        <li (click)="clickedInside($event)">
+          <span class="headerIcon">
+            <img (click)="showAddNotificationPop()" src="assets/images/header/plus.svg" alt="">
+          </span>
+          <div *ngIf="showAddNotification" class="show-add-notification">
+            <ul>
+              <li (click)="openAddNotificationPopup('addContact'); showAddNotification = !showAddNotification;"><img
+                  alt="" src="assets/images/add-team.svg"><span>Add
+                  Contact</span></li>
+              <li (click)="openAddNotificationPopup('note'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/add-note.svg"><span>Add Note</span>
+              </li>
+              <li (click)="openAddNotificationPopup('task'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/add-task.svg"><span>Add Task</span>
+              </li>
+              <li (click)="openAddNotificationPopup('email'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/send-email.svg"><span>Send
+                  Email</span></li>
+              <li (click)="openAddNotificationPopup('message'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/add-send-message.svg"><span>Send
+                  SMS</span></li>
+            </ul>
+          </div>
+        </li>
+        <li class="position-relative" style="cursor:pointer;" (click)="clickedInside($event)">
+          <span (click)="showSearchFieldPop()" class="headerIcon">
+            <img src="assets/images/header/search.svg" alt="">
+            <span class="input-field-search" [ngClass]="showSearchField ? 'success'  : ''">
+              <img src="assets/images/header/search.svg" alt=""><input placeholder="Search "></span>
+          </span>
+        </li>
+        <li id="menu" (click)="clickedInside($event)">
+          <span class="headerIcon">
+            <img (click)="showNotificationPopUp()" src="assets/images/header/notification.svg" alt="">
+          </span>
+          <div *ngIf="showNotification" class="notification">
+            <div class="notification-header">
+              <span [routerLink]="['/user-notification/alert']"
+                (click)="appService.updateHeaderName({ name: 'User Notification' }); showNotification = !showNotification;">
+                User Notifications
+              </span>
+              <span>{{unread}} New</span>
+            </div>
+            <div class="row subheader-wrapper">
+              <div class="col-12">
+                <ul>
+                  <li (click)="activeTab(1)">
+                    <span [ngClass]="{'underline': tab==='tab1'}" class="profile-tab">Alerts</span>
+                  </li>
+                  <li>
+                    <span [ngClass]="{'underline': tab==='tab2'}" class="profile-tab">Events</span>
+                  </li>
+                  <li>
+                    <span [ngClass]="{'underline': tab==='tab3'}" class="profile-tab">Logs</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p5">
+              <div class="row notification-item changeDisplay" *ngFor="let item of alertData">
+                <div class="iconplace">
+                  <img alt="" src="../../../assets/images/power.svg">
+                  <div class="notificationName inner-data-notification">
+                    {{item.alert}}
+                  </div>
+                </div>
+                <div class="text-right durationplace">
+                  {{item.ago_duration}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li (click)="clickedInside($event)">
+          <span class="headerIcon">
+            <img src="assets/images/header/actions.svg" alt="" (click)="showAddActionsPopUp()">
+          </span>
+          <div *ngIf="showAddActions" class="notification action-data">
+            <div class="notification-header">
+              <h3>Quick Actions Shortcuts</h3>
+            </div>
+            <div class="notification-body">
+              <div class="row m-0">
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/company-lead.svg" alt="company-lead" />
+                    <h4>Company Leads</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/transactions.svg" alt="Transactions" />
+                    <h4>Transactions</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/property.svg" alt="Property" />
+                    <h4>Property</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/Layer_1.svg" alt="Reports" />
+                    <h4>Reports</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/transactions.svg" alt="Transactions" />
+                    <h4>Transactions</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/property.svg" alt="Property" />
+                    <h4>Property</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="headerIcon">
+            <img (click)="openSettingSidebar(true)" src="assets/images/header/quick-panel.svg" alt="">
+          </span>
+        </li>
+        <li (click)="clickedInside($event)">
+          <span class="headerIcon">
+            <img (click)="showHelpDataPopUp()" src="assets/images/header/help.svg" alt="">
+          </span>
+          <div *ngIf="showHelpData" class="show-add-notification help-data">
+            <ul>
+              <li><img alt="" src="../../../assets/images/training.svg"><span>Review &
+                  Training</span></li>
+              <li><img alt="" src="../../../assets/images/forum.svg"><span>Forum</span>
+              </li>
+              <li><img alt="" src="../../../assets/images/give-feedback.svg"><span>Give
+                  Feedback</span>
+              </li>
+              <li><img alt="" src="../../../assets/images/question.svg"><span>Ask
+                  Question</span></li>
+              <li><img alt="" src="../../../assets/images/contact-icon.svg"><span>Contact Us</span></li>
+              <li><img alt="" src="../../../assets/images/support.svg"><span>Support
+                  Ticket</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="hover-none">
+          <div class="dropdown">
+            <p class="pr-0" data-toggle="dropdown">Hi, {{userName}}
+              <span class="user-initial" *ngIf="imageUrl === ''">
+                {{userInitial}}
+              </span>
+              <img class="user-initial" [src]="imageUrl" *ngIf="imageUrl !==''" alt="">
+            </p>
+            <div class="dropdown-menu">
+              <div class="notification-header">
+                <span class="user-initial">{{userInitial}}</span>
+                <span class="userName">{{userName}}</span>
+                <button class="btn user-message">24 messages</button>
+              </div>
+              <div class="my-profile" routerLinkActive="active" [routerLink]="['/profile/overview']"><img alt=""
+                  class="notification-bell-icon" src="assets/images/notification-bell.svg"> My Profile
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Messages
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Activities
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Task
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Billing
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Listings
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Calender
+              </div>
+              <div class="my-profile" [routerLink]="['/transactions/my-setting']" routerLinkActive="active"><img alt=""
+                  class="notification-bell-icon" src="assets/images/summary-dashboard.svg"> My Settings
+              </div>
+              <div class="signout-wrapper d-flex justify-content-between align-items-center">
+                <a class="upgrade-plans" [routerLink]="['/users/upgrade-plans']" routerLinkActive="active">Upgrade
+                  Plan</a>
+                <a class="dropdown-item d-flex sign-item p-0" style="width:auto">
+                  <ion-button class="btn-dangers m-0 p-0" style="font-weight:400;height:29px" (click)="signOut()">Sign
+                    Out</ion-button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <ul *ngIf="parsedDocData" class="header-icon">
+        <li>
+          <span class="headerIcon">
+            <a (click)="updatePageTitle(parsedDocData.document_name)" pTooltip="Print" tooltipPosition="top">
+              <img src="assets/images/print.svg" alt="">
+            </a>
+          </span>
+
+        </li>
+
+        <li>
+          <span class="headerIcon">
+            <a pTooltip="Download" tooltipPosition="top" href="{{parsedDocData.document_s3_url}}">
+              <img src="assets/images/download.svg" alt="">
+            </a>
+          </span>
+        </li>
+        <li (click)="clickedInside($event)">
+          <span class="headerIcon">
+            <img (click)="showAddNotificationPop()" src="assets/images/more.svg" alt="">
+          </span>
+          <div *ngIf="showAddNotification" class="show-add-notification">
+            <ul>
+              <!-- <li (click)="appService.onMoreOptionDocSource({type: 'SHARE'})">
+                <img alt="" src="assets/images/select-icons/assign-grey.svg"><span>
+                  Share
+                </span></li> -->
+              <li (click)="appService.onMoreOptionDocSource({type: 'MOVE_TO'})">
+                <img alt="" src="assets/images/add-team.svg"><span>
+                  Move to
+                </span></li>
+              <li (click)="appService.onMoreOptionDocSource({type: 'STAR'})">
+                <img *ngIf="(parsedDocData.favorites_docs)" alt="" style="width:12px; left:-5px;position: relative;"
+                  src="assets/images/star_20dp.png">
+                <span style="margin-left: 0px;" *ngIf="(!parsedDocData.favorites_docs)"
+                  class="hStar pi pi-star-o"></span>
+                <span style="margin-left: 4px;">
+                  Starred
+                </span></li>
+              <li (click)="appService.onMoreOptionDocSource({type: 'EDIT'})">
+                <img alt="" src="assets/images/edit.svg"><span>
+                  Edit
+                </span></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 text-right mobile-header">
+      <ul *ngIf="!parsedDocData" class="header-icon">
+
+        <li style="background: transparent;" class="position-relative" style="cursor:pointer;"
+          (click)="clickedInside($event)">
+          <span (click)="showSearchFieldPop()" class="headerIcon">
+            <img src="assets/images/header/search.svg" alt="">
+            <span class="input-field-search" [ngClass]="showSearchField ? 'success'  : ''">
+              <img src="assets/images/header/search.svg" alt=""><input placeholder="Search "></span>
+          </span>
+        </li>
+        <li class="position-relative" style="background: transparent;">
+          <span class="headerIcon mobile-header-logo">
+            <img (click)="showAbsoluteHeader()" src="../../../assets/images/more-mobile.svg" alt="header-more"
+              style="width:4px;">
+          </span>
+          <!-- mobile absolute profile starts -->
+          <span *ngIf="headerData == true" class="header-profile mobile-absolute-header">
+        <li class="common-mobile-menu" (click)="clickedInside($event)">
+          <span class="headerIcon mr-0">
+            <img (click)="showAddNotificationPop()" src="assets/images/header/plus.svg" alt="">
+          </span>
+          <div *ngIf="showAddNotification" class="show-add-notification">
+            <ul>
+              <li (click)="openAddNotificationPopup('addContact'); showAddNotification = !showAddNotification;"><img
+                  alt="" src="assets/images/add-team.svg"><span>Add
+                  Contact</span></li>
+              <li (click)="openAddNotificationPopup('note'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/add-note.svg"><span>Add Note</span>
+              </li>
+              <li (click)="openAddNotificationPopup('task'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/add-task.svg"><span>Add Task</span>
+              </li>
+              <li (click)="openAddNotificationPopup('email'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/send-email.svg"><span>Send
+                  Email</span></li>
+              <li (click)="openAddNotificationPopup('message'); showAddNotification = !showAddNotification;"><img alt=""
+                  src="assets/images/add-send-message.svg"><span>Send
+                  SMS</span></li>
+            </ul>
+          </div>
+        </li>
+        <li class="position-relative common-mobile-menu" style="cursor:pointer;" (click)="clickedInside($event)">
+          <span (click)="showSearchFieldPop()" class="headerIcon mr-0">
+            <img src="assets/images/header/search.svg" alt="">
+            <span class="input-field-search" [ngClass]="showSearchField ? 'success'  : ''">
+              <img src="assets/images/header/search.svg" alt=""><input placeholder="Search "></span>
+          </span>
+        </li>
+        <li id="menu" class="common-mobile-menu" (click)="clickedInside($event)">
+          <span class="headerIcon  mr-0">
+            <img (click)="showNotificationPopUp()" src="assets/images/header/notification.svg" alt="">
+          </span>
+          <div *ngIf="showNotification" class="notification">
+            <div class="notification-header">
+              <span [routerLink]="['/user-notification/alert']"
+                (click)="appService.updateHeaderName({ name: 'User Notification' }); showNotification = !showNotification;">
+                User Notifications
+              </span>
+              <span>{{unread}} New</span>
+            </div>
+            <div class="row subheader-wrapper">
+              <div class="col-12">
+                <ul>
+                  <li (click)="activeTab(1)">
+                    <span [ngClass]="{'underline': tab==='tab1'}" class="profile-tab">Alerts</span>
+                  </li>
+                  <li>
+                    <span [ngClass]="{'underline': tab==='tab2'}" class="profile-tab">Events</span>
+                  </li>
+                  <li>
+                    <span [ngClass]="{'underline': tab==='tab3'}" class="profile-tab">Logs</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p5">
+              <div class="row notification-item changeDisplay" *ngFor="let item of alertData">
+                <div class="iconplace">
+                  <img alt="" src="../../../assets/images/power.svg">
+                  <div class="notificationName inner-data-notification">
+                    {{item.alert}}
+                  </div>
+                </div>
+                <div class="text-right durationplace">
+                  {{item.ago_duration}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="common-mobile-menu" (click)="clickedInside($event)">
+          <span class="headerIcon  mr-0">
+            <img src="assets/images/header/actions.svg" alt="" (click)="showAddActionsPopUp()">
+          </span>
+          <div *ngIf="showAddActions" class="notification action-data">
+            <div class="notification-header">
+              <h3>Quick Actions Shortcuts</h3>
+            </div>
+            <div class="notification-body">
+              <div class="row m-0">
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/company-lead.svg" alt="company-lead" />
+                    <h4>Company Leads</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/transactions.svg" alt="Transactions" />
+                    <h4>Transactions</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/property.svg" alt="Property" />
+                    <h4>Property</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/Layer_1.svg" alt="Reports" />
+                    <h4>Reports</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/transactions.svg" alt="Transactions" />
+                    <h4>Transactions</h4>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0">
+                  <div class="action-wrapper">
+                    <img src="../../../assets/images/property.svg" alt="Property" />
+                    <h4>Property</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="headerIcon  mr-0">
+            <img (click)="openSettingSidebar(true)" src="assets/images/header/quick-panel.svg" alt="">
+          </span>
+        </li>
+        <li class="common-mobile-menu" (click)="clickedInside($event)">
+          <span class="headerIcon">
+            <img (click)="showHelpDataPopUp()" src="assets/images/header/help.svg" alt="">
+          </span>
+          <div *ngIf="showHelpData" class="show-add-notification help-data">
+            <ul>
+              <li><img alt="" src="../../../assets/images/training.svg"><span>Review &
+                  Training</span></li>
+              <li><img alt="" src="../../../assets/images/forum.svg"><span>Forum</span>
+              </li>
+              <li><img alt="" src="../../../assets/images/give-feedback.svg"><span>Give
+                  Feedback</span>
+              </li>
+              <li><img alt="" src="../../../assets/images/question.svg"><span>Ask
+                  Question</span></li>
+              <li><img alt="" src="../../../assets/images/contact-icon.svg"><span>Contact Us</span></li>
+              <li><img alt="" src="../../../assets/images/support.svg"><span>Support
+                  Ticket</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="hover-none">
+          <div class="dropdown">
+            <p class="pr-0" data-toggle="dropdown">Hi, {{userName}}
+              <span class="user-initial" *ngIf="imageUrl === ''">
+                {{userInitial}}
+              </span>
+              <img class="user-initial" [src]="imageUrl" *ngIf="imageUrl !==''" alt="">
+            </p>
+            <div class="dropdown-menu">
+              <div class="notification-header">
+                <span class="user-initial">{{userInitial}}</span>
+                <span class="userName">{{userName}}</span>
+                <button class="btn user-message">24 messages</button>
+              </div>
+              <div class="my-profile" routerLinkActive="active" [routerLink]="['/profile/overview']"><img alt=""
+                  class="notification-bell-icon" src="assets/images/notification-bell.svg"> My Profile
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Messages
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Activities
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Task
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Billing
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Listings
+              </div>
+              <div class="my-profile" routerLinkActive="active"><img class="notification-bell-icon" alt=""
+                  src="assets/images/summary-dashboard.svg"> My Calender
+              </div>
+              <div class="my-profile" [routerLink]="['/transactions/my-setting']" routerLinkActive="active"><img alt=""
+                  class="notification-bell-icon" src="assets/images/summary-dashboard.svg"> My Settings
+              </div>
+              <!-- <div (click)="openSettingSidebar(true)" class="my-profile" routerLinkActive="active"><img alt=""
+                    class="notification-bell-icon" src="assets/images/summary-dashboard.svg"> My Settings
+                </div> -->
+              <div class="signout-wrapper d-flex justify-content-between align-items-center">
+                <a class="upgrade-plans" [routerLink]="['/users/upgrade-plans']" routerLinkActive="active">Upgrade
+                  Plan</a>
+                <a class="dropdown-item d-flex sign-item p-0" style="width:auto">
+                  <ion-button class="btn-dangers m-0 p-0" style="font-weight:400;height:29px" (click)="signOut()">Sign
+                    Out</ion-button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+        </span>
+        <!-- mobile absolute profile -->
+        </li>
+
+      </ul>
+
+      <ul *ngIf="parsedDocData" class="header-icon">
+        <li>
+          <span class="headerIcon">
+            <a (click)="updatePageTitle(parsedDocData.document_name)" pTooltip="Print" tooltipPosition="top">
+              <img src="assets/images/print.svg" alt="">
+            </a>
+          </span>
+        </li>
+        <li>
+          <span class="headerIcon">
+            <a pTooltip="Download" tooltipPosition="top" href="{{parsedDocData.document_s3_url}}">
+              <img src="assets/images/download.svg" alt="">
+            </a>
+          </span>
+        </li>
+        <li (click)="clickedInside($event)">
+          <span class="headerIcon">
+            <img (click)="showAddNotificationPop()" src="assets/images/more.svg" alt="">
+          </span>
+          <div *ngIf="showAddNotification" class="header-add-notification show-add-notification">
+            <ul>
+              <!-- <li (click)="appService.onMoreOptionDocSource({type: 'SHARE'})">
+                <img alt="" src="assets/images/select-icons/assign-grey.svg"><span>
+                  Share
+                </span></li> -->
+              <li (click)="appService.onMoreOptionDocSource({type: 'MOVE_TO'})">
+                <img alt="" src="assets/images/add-team.svg"><span>
+                  Move to
+                </span></li>
+              <li (click)="appService.onMoreOptionDocSource({type: 'STAR'})">
+                <img *ngIf="(parsedDocData.favorites_docs)" alt="" style="width:12px; left:-5px;position: relative;"
+                  src="assets/images/star_20dp.png">
+                <span style="margin-left: 0px;" *ngIf="(!parsedDocData.favorites_docs)"
+                  class="hStar pi pi-star-o"></span>
+                <span style="margin-left: 4px;">
+                  Starred
+                </span></li>
+              <li (click)="appService.onMoreOptionDocSource({type: 'EDIT'})">
+                <img alt="" src="assets/images/edit.svg"><span>
+                  Edit
+                </span></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+<app-subs-plan [fromHeader]="true" [calenderData]="openCalendarMsg" *ngIf="openSubPlan"
+  (closeCalendar)='handlePlanClose($event)'>
+</app-subs-plan>
+<app-subs-product [fromHeader]="true" [calenderData]="openCalendarMsg" *ngIf="openSubProduct"
+  (closeCalendar)='handleProductClose($event)'>
+</app-subs-product>
+<app-add-tag *ngIf="modal.addTag" [taskMode]="'SAVE'" (modalState)="updateModalState($event)"></app-add-tag>

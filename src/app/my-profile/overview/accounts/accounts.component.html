@@ -1,0 +1,30 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-3 scroll-bar">
+      <ul class="my-profile-sidebar">
+        <!-- <li class="content-list-left" routerLink="info" routerLinkActive="active">Contact Information</li>
+        <li class="content-list-left" routerLink="change-pic" routerLinkActive="active">Change Photo</li>
+        <li class="content-list-left" routerLink="public-info" routerLinkActive="active">Public Information</li>
+        <li class="content-list-left" routerLink="realtor-memberships" routerLinkActive="active">Realtor Membership</li>
+        <li class="content-list-left" routerLink="service-areas" routerLinkActive="active">Service Areas</li>
+        <li class="content-list-left" routerLink="company-info" routerLinkActive="active">Company Information</li>
+        <li class="content-list-left" routerLink="change-password" routerLinkActive="active">Change Password</li>
+        <li class="content-list-left" routerLink="general-settings" routerLinkActive="active">General Settings</li>
+        <li class="content-list-left" routerLink="social-links" routerLinkActive="active">Social Media Links</li> -->
+        <div *ngIf = "(group_name == 'HR') || (group_name == 'HR-Recruiter')"> 
+          <li class="content-list-left"  [ngClass]="{'errorClass': (item.noErrorClass === false), 'linkActive': (item.id === formId)}" routerLinkActive="active"  [routerLink]="item.routerlink"  *ngFor="let item of hrItems;let i = index">         
+           {{item.label}}
+         </li>
+        </div>
+        <div  *ngIf = "(group_name !== 'HR') && (group_name !== 'HR-Recruiter')">
+        <li class="content-list-left"  [ngClass]="{'errorClass': (item.noErrorClass === false), 'linkActive': (item.id === formId)}" routerLinkActive="active"  [routerLink]="item.routerlink"  *ngFor="let item of items;let i = index">         
+          {{item.label}}
+        </li>
+      </div>
+      </ul>
+    </div>
+    <div class="col-md-9 pr-0" style="padding-left:20px;">
+      <router-outlet></router-outlet>
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,39 @@
+.maintaince-wrapper{
+    background:#F3F8FC;
+    margin-left:-215px;
+    height:100vh;
+.container{
+    max-width:1366px;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height:100%;
+}
+figure{
+        margin-right:45px;
+    }
+.main-text-wrapper{    
+    span{
+        color:#56352F;
+        font-size:33px;
+        font-weight: 700;
+        letter-spacing: 1;
+    }
+    button{
+        display: flex;
+        width:280px;
+        font-weight: 700;
+        letter-spacing: 2.6px;
+        text-transform: uppercase;
+        height:63px;
+        justify-content: center;
+        border-radius: 5px;
+        align-items: center;
+        background:#207EBB;
+        color:#fff;
+        font-size:26px;
+    }
+}
+}
+

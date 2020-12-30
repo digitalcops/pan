@@ -1,0 +1,11 @@
+<ion-app>
+  <div [class.full-view]="fullView" class="d-flex">
+    <app-sidebar   [myInput]="makeSidebarVisible" *ngIf="isSidebarVisible && !urlToOpen" [navState]="fullView" [totalCount]="totalCount"></app-sidebar>
+    <div style="width: 100%;" [ngClass]="{'app-content': !urlToOpen}" class="app-content">
+      <app-header  (myOutput)="getData($event)" [rolesList]="rolesList"></app-header>
+      <router-outlet></router-outlet>
+      <app-footer *ngIf="!urlToOpen"></app-footer>
+     
+    </div>
+  </div>
+</ion-app>

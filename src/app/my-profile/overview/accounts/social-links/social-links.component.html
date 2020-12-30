@@ -1,0 +1,94 @@
+<div class="main-content right-side-content">
+  <form [formGroup]="socialLinksForm" (ngSubmit)="updateSocialLinksInfo()" style="padding-left:10px;">
+    <h5 class="heading">Social Media Links</h5>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6  ">
+          <label>
+            Facebook URL
+          </label>
+          <input class="form-control" name="facebook_url" formControlName="facebook_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+        <div class="col-md-6  ">
+          <label>
+            Twitter URL
+          </label>
+          <input class="form-control" name="twitter_url" formControlName="twitter_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6  ">
+          <label>
+            Linkedin URL
+          </label>
+          <input class="form-control" name="linkedin_url" formControlName="linkedin_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+        <div class="col-md-6  ">
+          <label>
+            Pinterest URL
+          </label>
+          <input class="form-control" name="pinterest_url" formControlName="pinterest_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            YouTube URL
+          </label>
+          <input class="form-control" name="youtube_url" formControlName="youtube_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+        <div class="col-md-6 ">
+          <label>
+            Instagram URL
+          </label>
+          <input class="form-control" name="instagram_url" formControlName="instagram_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Google + URL
+          </label>
+          <input class="form-control" name="google_plus_url" formControlName="google_plus_url" type="text"
+            maxlength="200" placeholder="http://www.mywebsite.com">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Wordpress URL
+          </label>
+          <input class="form-control" name="wordpress_url" formControlName="wordpress_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Blog URL
+          </label>
+          <input class="form-control" name="blog_url" formControlName="blog_url" type="text" maxlength="200"
+            placeholder="http://www.mywebsite.com">
+        </div>
+        <div class="col-md-6">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn-cancel" type="button" (click)="cancelButtonClicked()">Cancel</button>
+      <button class="btn-save">Save</button>
+    </div>
+  </form>
+</div>

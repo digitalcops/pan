@@ -1,0 +1,289 @@
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-header
+  .ui-table-scrollable-header-box
+  .ui-table-scrollable-header-table
+  .ui-table-thead
+  > tr
+  > th:nth-child(1) {
+  width: 120px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-body
+  .ui-table-scrollable-body-table
+  .ui-table-tbody
+  > tr
+  > td:nth-child(1) {
+  width: 120px !important;
+}
+
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-header
+  .ui-table-scrollable-header-box
+  .ui-table-scrollable-header-table
+  .ui-table-thead
+  > tr
+  > th:nth-child(2) {
+  width: 180px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-body
+  .ui-table-scrollable-body-table
+  .ui-table-tbody
+  > tr
+  > td:nth-child(2) {
+  width: 180px !important;
+}
+
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-header
+  .ui-table-scrollable-header-box
+  .ui-table-scrollable-header-table
+  .ui-table-thead
+  > tr
+  > th:nth-child(3) {
+  width: 270px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-body
+  .ui-table-scrollable-body-table
+  .ui-table-tbody
+  > tr
+  > td:nth-child(3) {
+  width: 270px !important;
+}
+
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-header
+  .ui-table-scrollable-header-box
+  .ui-table-scrollable-header-table
+  .ui-table-thead
+  > tr
+  > th:nth-child(4) {
+  width: 181px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-body
+  .ui-table-scrollable-body-table
+  .ui-table-tbody
+  > tr
+  > td:nth-child(4) {
+  width: 181px !important;
+}
+
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-header
+  .ui-table-scrollable-header-box
+  .ui-table-scrollable-header-table
+  .ui-table-thead
+  > tr
+  > th:nth-child(5) {
+  width: 140px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-body
+  .ui-table-scrollable-body-table
+  .ui-table-tbody
+  > tr
+  > td:nth-child(5) {
+  width: 140px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-header
+  .ui-table-scrollable-header-box
+  .ui-table-scrollable-header-table
+  .ui-table-thead
+  > tr
+  > th:nth-child(6) {
+  width: 140px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-body
+  .ui-table-scrollable-body-table
+  .ui-table-tbody
+  > tr
+  > td:nth-child(6) {
+  width: 140px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-header
+  .ui-table-scrollable-header-box
+  .ui-table-scrollable-header-table
+  .ui-table-thead
+  > tr
+  > th:last-child {
+  text-align: left !important;
+  width: 100px !important;
+}
+::ng-deep
+  .user-account-modify.ui-table
+  .ui-table-scrollable-wrapper
+  .ui-table-scrollable-view
+  .ui-table-scrollable-body
+  .ui-table-scrollable-body-table
+  .ui-table-tbody
+  > tr
+  > td:last-child {
+  text-align: left !important;
+  width: 100px !important;
+}
+.p-dropdown-top {
+  .ui-dropdown {
+    min-width: 105px;
+    border: 1px solid #808080 !important;
+  }
+}
+.name_texts {
+  width: 83px;
+}
+.user-initial-emp {
+  background-color: #dedede;
+  color: #595d6e;
+  width: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  height: 50px;
+  margin-right:5px;
+  display: inline-block;
+  text-align: center;
+  line-height: 48px;
+  border-radius: 100%;
+  position: relative;
+}
+.cursorP {
+  cursor: pointer !important;
+}
+.edit-wrapper {
+  position: relative;
+
+  .show-box {
+    position: absolute;
+    right: 0;
+    top: 119%;
+    background: white;
+    z-index: 6567676545;
+    width: 111px;
+    text-align: left;
+
+    .upload-menu {
+      padding: 9px 0px;
+      box-shadow: 0px 1px 6px #00000029;
+      border-radius: 3px;
+      opacity: 1;
+
+      span {
+        display: flex;
+        align-items: center;
+        padding: 1.5px 4px 1.5px 12px;
+        font-size: 10px;
+        color: #808080;
+        cursor: pointer;
+
+        img {
+          margin-right: 7px;
+          width: 12px;
+          height: 10px;
+        }
+
+        &:hover {
+          background: #F6F7FD;
+          color: #808080;
+        }
+      }
+    }
+  }
+
+  .show-more-notification {
+    margin-top: 0px;
+    box-shadow: 0px 1px 6px rgba(64, 64, 64, 0.2);
+    border: 0px !important;
+    padding: 0px;
+    right: 0px;
+    top: 18px;
+    background-color: #ffffff;
+    position: absolute;
+    padding: 0px;
+    padding-bottom: 0px !important;
+    max-width: 130px;
+    width: 130px;
+    z-index: 99;
+
+    li {
+      display: block !important;
+      color: #808080;
+      position: relative;
+      font-size: 12px;
+      height: 30px;
+      line-height: normal;
+      padding: 8px 0 0 11px;
+      margin-right: 0 !important;
+      text-align: left;
+      cursor: pointer;
+
+      img {
+        height: 10px !important;
+        width: 10px !important;
+      }
+
+      span {
+        margin-left: 11px;
+        position: absolute;
+        top: 9px;
+      }
+    }
+  }
+
+  .delete-icon {
+    margin-top: 0px;
+  }
+
+  .delete-playbook-wrapper {
+    margin-bottom: 0px;
+
+    li:hover {
+      background-color: #f2f3f7;
+    }
+  }
+
+  .ui-table-tbody>tr>td {
+    overflow: visible !important;
+  }
+}

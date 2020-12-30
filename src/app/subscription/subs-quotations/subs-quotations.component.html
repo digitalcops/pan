@@ -1,0 +1,114 @@
+<div class="page-wrapper contact-page-wrapper">
+  <div class="table-wrapper">
+    <app-filter (selectedFilters)="getFilterData($event)" [filter]="'sub-quotation'">
+    </app-filter>
+    <div class="more-filter">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="more-filter-left">
+            <p style="display:inline-block;"><a><img src="../../assets/images/noun_filter.svg" alt="more filter">More Filters + </a></p>
+          </div>
+        </div>
+        <div class="col-md-6 text-right">
+          <ul class="more-filter-right table-board">
+            <button [ngClass]="activeTransaction==1?'active':''" class="table-btn">Table</button>
+            <button [ngClass]="activeTransaction==2?'active':''" class="board-btn">Board</button>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- admin -->
+    <div  *ngIf="activeTransaction==1"> 
+         <p-table (onLazyLoad)="loadTransactions($event)" [resizableColumns]="true" columnResizeMode="expand"
+      [columns]="viewsAndActivityColoumns" scrollWidth="100%" [paginator]="true" [rows]="rows" [rowsPerPageOptions]="[10,25,50, 100]"
+      [lazy]="true" [totalRecords]="total" [value]="viewsAndActivityData" [scrollable]="true"
+      styleClass="sales-quot-table custom-dataTable table-striped">
+      <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+          <col *ngFor="let col of viewsAndActivityColoumns">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr class="activity-rows">
+          <th *ngFor="let col of viewsAndActivityColoumns ">
+            <ng-container *ngIf="col.field === 'is_active'">
+              <p-checkbox
+                styleClass="custom-checkbox" binary="true"></p-checkbox>
+            </ng-container>
+            <ng-container>
+              {{col.header}} 
+            </ng-container>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+        <tr class="activity-data">
+          <td *ngFor="let col of viewsAndActivityColoumns">
+            <ng-container *ngIf="col.field === 'is_active'">
+              <p-checkbox styleClass="custom-checkbox"
+                name="selectContacts" id="selectAllChkBx" binary="true">
+              </p-checkbox>
+              {{rowData.status_label | titlecase}}
+            </ng-container>
+            <ng-container *ngIf="col.field === 'referenceNumber'">
+              <span class="blue-properties">
+                {{rowData.sale_order_id}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'customer'">
+              <span style="display: block;">
+                {{rowData.customer ? rowData.customer.name : ''}}
+              </span>
+              <span style="display: block;">
+                {{rowData.customer ? rowData.customer.email : ''}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'creationDate'">
+              <span style="display: block;" *ngIf="rowData.delivery_date">{{rowData.delivery_date}}</span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'expirationDate'">
+              <span style="display: block;" *ngIf="rowData.quotation_expiry_date">{{rowData.quotation_expiry_date}}</span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'salesPerson'">
+              <span>
+                {{rowData.sales_person ? rowData.sales_person.name : ''}}
+              </span>
+            </ng-container>
+            <ng-container *ngIf="col.field === 'total'"><span>{{rowData.total_with_taxes  | currency: 'USD'}}</span>
+            </ng-container>
+            
+            <ng-container *ngIf="col.field === 'edit'">
+              <div class="edit-wrapper">
+                <span (click)="onEditTransactionData(rowData)" class="edit-tooltip" pTooltip="Edit"
+                  tooltipPosition="top">
+                  <img class="edit-icons" src="../../assets/images/edit.svg" alt="">
+                </span>
+                <p-menu appendTo="body" #menu [popup]="true" [model]="items"></p-menu>
+                <span class="position-relative">
+                  <span (click)="toggleMenu(menu, $event, rowData)" class="more-tooltip" pTooltip="More" tooltipPosition="top">
+                    <img src="../../assets/images/more.svg"
+                      class="more-icon" alt="more icon" />
+                  </span>
+                </span>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-viewsAndActivityData>
+        <tr class="no-data">
+          <td class="no-record" [attr.colspan]="viewsAndActivityColoumns.length == 0">
+            <ng-container>
+              <span>No Record found</span>
+            </ng-container>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- admin  ends-->
+
+<p class="paginate_data" >
+      Showing {{total < 1 ? 0 : rowNumber}} - {{(pageSize > total) ? total : pageSize}} of {{total}} </p>
+    </div>
+<div class="row  d-flex justify-content-between" style="margin:0 5px 0 -10px !important;" *ngIf="activeTransaction==2"> 
+</div>

@@ -1,0 +1,1592 @@
+<div class="user-interaction-bar filter-date-wrapper filter-wrapper mobile-wrapper">
+  <div class="row w-100 align-items-center h100">
+    <ng-container *ngIf="filter === 'blogs'">
+      <div class="col-md-9 subheader-wrapper blogsubheader">
+        <div class="social-images">
+          <ul class="filter-bar-wrap">
+            <li>
+              <div (click)="appService.openCallPopUp({state:true, moduleType: availableType[filter]});"
+                class="social-inner social-contact" pTooltip="Call" tooltipPosition="top">
+                <img src="../../../assets/images/active-call.svg" class="default defaulter" alt="active call" />
+                <img src="../../../assets/images/active-call-white.svg" class="white" alt="active call" />
+              </div>
+            </li>
+            <li>
+              <div class="social-inner social-contact" pTooltip="Upload" tooltipPosition="top">
+                <img src="../../../assets/images/upload.svg" class="default defaulter" alt="active call" />
+                <img src="../../../assets/images/upload-white.svg" class="white" alt="active call" />
+              </div>
+            </li>
+            <li>
+              <div class="social-inner social-contact" pTooltip="Download" tooltipPosition="top">
+                <img src="../../../assets/images/download.svg" class="default defaulter" alt="active call" />
+                <img src="../../../assets/images/download-white.svg" class="white" alt="active call" />
+              </div>
+            </li>
+            <li>
+              <div class="social-inner subheader-wrapper" pTooltip="Assign To" tooltipPosition="top">
+                <img src="../../../assets/images/select-icons/assign-grey.svg"
+                  class="assign-grey default defaulter assign-header-grey" alt="active call" />
+                <img src="../../../assets/images/select-icons/assign-white.svg"
+                  class="white assign-grey assign-header-grey" alt="active call" />
+              </div>
+            </li>
+            <li>
+              <div class="social-inner social-contact" pTooltip="Fax" tooltipPosition="top">
+                <img src="../../../assets/images/fax.svg" class="default defaulter" alt="active call" />
+                <img src="../../../assets/images/fax-white.svg" class="white" alt="active call" />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="(filter === 'blogedit')">
+      <div class="col-md-9 subheader-wrapper blogsubheader">
+      </div>
+    </ng-container>
+    <ng-container *ngIf="(filter === 'idxPageEdit')">
+      <div class="col-md-9 subheader-wrapper blogsubheader">
+        <div class="social-images">
+          <ul class="filter-bar-wrap">
+            <li>
+              <div class="social-inner social-contact blogsButton" pTooltip="More" tooltipPosition="top">
+                <img src="../../../assets/images/add-black.svg" class="default defaulter" alt="active call" />
+                <img src="../../../assets/images/add-white.svg" class="white" alt="active call" />
+              </div>
+            </li>
+            <li>
+              <div class="social-inner subheader-wrapper blogsButton" pTooltip="Information" tooltipPosition="top">
+                <img src="../../../assets/images/info1.svg" class="assign-grey default defaulter assign-header-grey"
+                  alt="active call" />
+                <img src="../../../assets/images/info-white.svg" class="white assign-grey assign-header-grey fixIcon"
+                  alt="active call" />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!(filter === 'property-details' || filter === 'blogedit' || filter === 'idxPageEdit')">
+      <div class="col-md-9" *ngIf="!showFilters">
+        <div class="interaction-bar-inner-left date-custom-style d-flex">
+          <ul>
+            <li *ngIf="filter === 'Lead_provider'">
+              <div class="form-group">
+                <input type="text" [disabled]="true" name="" autocomplete="off" class="input-area" placeholder="Search"
+                  name="search" [(ngModel)]="sortModel.search_keyword" (keyup)="filterInput($event, 'USER')">
+                <img class="search-icon" src="../../../assets/images/search.svg" alt="#">
+              </div>
+            </li>
+            <li *ngIf="filter === 'Lead_provider'" class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="tableList" placeholder="Table Type"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="sortModel.property_table"
+                (onChange)="selectedPropertyTable.emit(sortModel.property_table)">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'calendar-board'" class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="calenderTypeList" placeholder="Table Type"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="calenderType"
+                (onChange)="selectedPropertyTable.emit($event)">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'Lead_provider'" class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="propertyStatusList" placeholder="Status"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="sortModel.property_status"
+                (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'Lead_provider'">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #duedateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en" placeholder="Date Listing Contract" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); duedateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(duedateRangeRef, 'dueDateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li
+              *ngIf="!(filter === 'group-detail' ||  filter === 'dashboard' || filter === 'Lead_provider' ||  filter ==='blogedit' || filter ==='idxPageEdit') &&  !cardOptions">
+              <div class="form-group">
+                <input type="text" name="search" autocomplete="off" class="input-area" placeholder="{{inputText}}"
+                  name="search" [(ngModel)]="sortModel.search_keyword" (keyup)="filterInput($event, 'USER')">
+                <img class="search-icon" src="../../../assets/images/search.svg" alt="#">
+              </div>
+            </li>
+            <li *ngIf="filter === 'document-page'" class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="docViewTypeList" placeholder="Table Type"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="docViewType"
+                (onChange)="selectedPropertyTable.emit({type: 'WORKSPACE', event: $event})">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'dmsTag'" class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="listGlobalTag" placeholder="Global Tag"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="sortModel.is_global" (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+            <li *ngIf="((filter === 'document-page') && (docViewType === 'Default Workspace'))"
+              class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="docSearchTypeList" placeholder="Search Type"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="docSearchType"
+                (onChange)="selectedPropertyTable.emit({type: 'SEARCH_TYPE', event: $event})">
+              </p-dropdown>
+            </li>
+            <li *ngIf="((filter === 'document-page') && (docViewType === 'User Workspace'))"
+              class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="docListTypeList" placeholder="Table Type"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="docListType"
+                (onChange)="selectedPropertyTable.emit({type: 'DOC_TYPE', event: $event})">
+              </p-dropdown>
+            </li>
+            <li [ngClass]="{'filtering-status' : filter === 'job_position'}" *ngIf="!(filter === 'contact'     ||
+                       filter === 'service'       ||
+                       filter === 'agent-management' ||
+                        filter === 'managemnet-requested' ||
+                        filter === 'offer-management' ||
+                       filter === 'checklist'     ||
+                       filter === 'group'         ||
+                       filter === 'group-detail'  ||
+                       filter === 'tasks'         ||
+                       filter === 'ticket'        ||
+                       filter === 'programRoles'  ||
+                       filter === 'Lead_provider' ||
+                       filter === 'employees'     ||
+                       filter === 'websiteblog'   ||
+                       filter === 'websitecommunity'   ||
+                       filter === 'websiteBuilding'   ||
+                       filter === 'websitetags'   ||
+                       filter === 'websitecategory'   ||
+                       filter === 'websiteProperty'   ||
+                       filter === 'taglink'       ||
+                       filter === 'announcement'  ||
+                       filter === 'reminder'      ||
+                       filter === 'contract'      ||
+                       filter === 'job_position'  ||
+                       filter === 'applicant'     ||
+                       filter === 'transfer'      ||
+                       filter === 'document-page' ||
+                       filter === 'dashboard'     ||
+                       filter === 'calendar-board'|| 
+                       filter ===  'billing-main' ||
+                       filter ===  'sub-products' ||
+                       filter ===  'sub-plans' ||
+                       filter ===  'sub-quotation' ||
+                       filter ===  'sub-invoices' ||
+                       filter ===  'sub-subMgmt' ||
+                       
+                       filter === 'commision-disbusement'|| 
+                       filter === 'billing-main'|| 
+                       filter === 'templates' ) &&  !cardOptions">
+              <p-dropdown name="statusOptions" appendTo="body" [options]="userStatusOptions" placeholder="Status"
+                [(ngModel)]="sortModel.status" (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sub-invoices'" class="selected-contact-data">
+              <p-dropdown class="posStatusTran" (onChange)="createFilterData()" [options]="statusInvoiceAllOptions" appendTo="body" placeholder="Status"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="sortModel.status">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sub-subMgmt'" class="selected-contact-data">
+              <p-dropdown class="posStatusTran" (onChange)="createFilterData()" [options]="statusSubscripAllOptions" appendTo="body" placeholder="Status"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="sortModel.status">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sub-quotation'" class="selected-contact-data">
+              <p-dropdown class="posStatusTran" (onChange)="createFilterData()" [options]="statusSaleAllOptions" appendTo="body" placeholder="Status"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="sortModel.status">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sub-plans'" class="selected-contact-data">
+              <p-dropdown class="posStatusTran" (onChange)="createFilterData()" [options]="userPlanOptions" appendTo="body" placeholder="Status"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="sortModel.status">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'user' || filter === 'securityRoles'">
+              <p-dropdown name="Role" appendTo="body" [options]="rolesList" placeholder="Role"
+                [(ngModel)]="sortModel.groups" (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+           
+            <li *ngIf="filter === 'contact' || filter === 'service'">
+              <p-dropdown name="statusOption" name="contactStatus" appendTo="body" [options]="statusOptions"
+                placeholder="Status" [(ngModel)]="sortModel.status" (onChange)="createFilterData()"></p-dropdown>
+            </li>
+            <li
+              *ngIf="filter === 'agent-management' || filter === 'managemnet-requested' || filter === 'offer-management'">
+              <p-dropdown appendTo="body" [options]="statusLeadType" placeholder="Status" [(ngModel)]="sortModel.status"
+                (onChange)="createFilterData()"></p-dropdown>
+            </li>
+            <li
+              *ngIf="filter === 'agent-management' || filter === 'managemnet-requested' || filter === 'offer-management'">
+              <p-dropdown [(ngModel)]="sortModel.leadType" (onChange)="createFilterData()" name="viewStatus"
+                appendTo="body" [options]="agentViewOption" placeholder="Contacted">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'agent-management' && sortModel.leadType === 'Writing an Offer'">
+              <p-dropdown [(ngModel)]="sortModel.offerType" (onChange)="createFilterData()" name="typeViewOption"
+                appendTo="body" [options]="typeViewOption" placeholder="Type">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'playbook'">
+              <p-dropdown name="plabook_state" class="playbookStatus" name="playbookStatus" appendTo="body"
+                [options]="playbookOptions" placeholder="Playbook Status" [(ngModel)]="sortModel.plabook_state"
+                (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'employees'" class="assigned_wrapper">
+              <p-dropdown name="statusOption" (onChange)="createFilterData()" [(ngModel)]="sortModel.department"
+                appendTo="body" [options]="departmentType" placeholder="Department"></p-dropdown>
+            </li>
+            <li *ngIf="filter === 'service'">
+              <p-dropdown name="service_type" (onChange)="createFilterData()" [(ngModel)]="sortModel.service_type"
+                appendTo="body" [options]="providerType" placeholder="Provider">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'agent-management' && sortModel.leadType === 'Contact an Agent'"
+              class="financal-info assigned_wrapper">
+              <p-dropdown [(ngModel)]="sortModel.financialInfo" (onChange)="createFilterData()" name="statusOption"
+                appendTo="body" [options]="financialInfoList" placeholder="Financial Info"></p-dropdown>
+            </li>
+            <li
+              *ngIf="filter === 'agent-management' || filter === 'managemnet-requested' || filter === 'offer-management'"
+              class="assigned_wrapper">
+              <p-dropdown name="statusOption" (onChange)="createFilterData()" [(ngModel)]="sortModel.assigned_to"
+                appendTo="body" [options]="assigneesList" placeholder="Assigned to" filter="true"></p-dropdown>
+            </li>
+            <li *ngIf="filter === 'commision'" class="assigned_wrapper">
+              <p-dropdown name="statusOption" (onChange)="createFilterData()" [(ngModel)]="sortModel.assigned_to"
+                appendTo="body" [options]="list_limit" placeholder="Limit"></p-dropdown>
+            </li>
+            <li *ngIf="filter === 'commision'" class="assigned_wrapper">
+              <p-dropdown name="statusOption" (onChange)="createFilterData()" [(ngModel)]="sortModel.commission_type"
+                appendTo="body" [options]="list_commission_type" placeholder="Plan Type"></p-dropdown>
+            </li>
+            <li *ngIf="filter === 'employees' || filter === 'department'" class="assigned_wrapper">
+              <p-dropdown name="designationOption" (onChange)="createFilterData()" [(ngModel)]="sortModel.assigned_to"
+                appendTo="body" [options]="assigneesList" placeholder="Supervisor"></p-dropdown>
+            </li>
+            <li *ngIf="filter === 'employees'" class="assigned_wrapper">
+              <p-dropdown name="designationOption" (onChange)="createFilterData()" [(ngModel)]="sortModel.designation"
+                appendTo="body" [options]="designationList" placeholder="Designation"></p-dropdown>
+            </li>
+            <li *ngIf="filter === 'templates' || filter === 'programRoles'">
+              <p-dropdown name="types" appendTo="body" [options]="templateTypes" placeholder="Type"
+                [(ngModel)]="sortModel.types" (onChange)="createFilterData()"></p-dropdown>
+            </li>
+            <li *ngIf="((filter === 'sub-products') || (filter === 'sub-plans'))"
+              class="selected-contact-data">
+              <p-dropdown class="posStatusTran" name="createdBy" appendTo="body" [options]="userList"
+                placeholder="Created By"
+                styleClass="filter-dropdown owned-by" filter="true" [(ngModel)]="sortModel.created_by"
+                (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'playbook'" class="selected-contact-data">
+              <p-dropdown name="createdBy" appendTo="body" [options]="userList" placeholder="Created By"
+                styleClass="filter-dropdown owned-by" filter="true" [(ngModel)]="sortModel.created_by"
+                (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sub-products'" class="selected-contact-data">
+              <p-dropdown [options]="productTypeOption" class="posStatusTran" appendTo="body" placeholder="Product Type"
+                styleClass="filter-dropdown owned-by" (onChange)="createFilterData()" [(ngModel)]="sortModel.product_type">
+              </p-dropdown>
+            </li>
+            <li *ngIf="((filter === 'sub-quotation') || (filter === 'sub-subMgmt'))" class="selected-contact-data">
+              <p-dropdown [options]="listSalePerson" class="posStatusTran" appendTo="body" placeholder="Sales Person"
+                styleClass="filter-dropdown owned-by" (onChange)="createFilterData()" filter="true" [(ngModel)]="sortModel.sales_person">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sales-team'" class="selected-contact-data">
+              <p-dropdown [options]="listSalePerson" class="posStatusTran" appendTo="body" placeholder="Leader Name"
+                styleClass="filter-dropdown owned-by" (onChange)="createFilterData()" filter="true" [(ngModel)]="sortModel.sales_person">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sub-products'" class="selected-contact-data">
+              <p-dropdown (onChange)="createFilterData()" [options]="listSubscriptionPlan" class="posStatusTran" appendTo="body" placeholder="Subscription Plan "
+                styleClass="filter-dropdown owned-by" filter="true" [(ngModel)]="sortModel.subscription_plan">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'sub-quotation' || filter === 'sub-invoices'">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en"
+                placeholder="{{filter === 'sub-invoices' ? 'Invoice Date' : 'Delivery Date'}}" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'due_date__range')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li class="position-relative" *ngIf="filter === 'sub-quotation' || filter === 'sub-invoices'">
+              <p-calendar id="created-date" appendTo="body" name="dateRange" [(ngModel)]="dateRange"
+                selectionMode="range" [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef
+                [readonlyInput]="true" [locale]="en" 
+                placeholder="{{filter === 'sub-invoices' ? 'Due Date' : 'Quotation Expiry Date'}}"
+                [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li class="position-relative" *ngIf="filter === 'sub-subMgmt'">
+              <p-calendar id="created-date" appendTo="body" name="dateRange" [(ngModel)]="dateRange"
+                selectionMode="range" [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef
+                [readonlyInput]="true" [locale]="en" 
+                placeholder="Next Invoice Date"
+                [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'sub-subMgmt'">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en"
+                placeholder="Created Date" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'due_date__range')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            
+            <li class="position-relative"
+              *ngIf="filter === 'user' || filter === 'agent-management'  || filter === 'offer-management' || filter === 'comment' || filter === 'reviews-page' ||
+               filter === 'reviews-page' || filter === 'transactions' || filter === 'idxpage' || filter === 'contact' || 
+              filter === 'checklist' || filter === 'employees' || filter === 'websiteblog' || filter === 'websiteBuilding' 
+              || filter === 'websitecommunity' || filter === 'websitecategory' || filter === 'websitetags' ||
+               filter === 'websiteProperty' || filter === 'sub-plans' || filter === 'sub-products' || filter === 'service' || filter === 'tasks' || filter === 'templates' ||
+               filter === 'programRoles' || filter === 'playbook' || filter==='commision-disbusement'  || filter==='billing-main'">
+              <p-calendar id="created-date" appendTo="body" name="dateRange" [(ngModel)]="dateRange"
+                selectionMode="range" [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef
+                [readonlyInput]="true" [locale]="en" placeholder="Created Date" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li class="position-relative" *ngIf="filter === 'managemnet-requested'">
+              <p-calendar id="created-date" appendTo="body" name="dateRange" [(ngModel)]="dateRange"
+                selectionMode="range" [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef
+                [readonlyInput]="true" [locale]="en" placeholder="Showing Date" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>la
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li
+              *ngIf="filter === 'document-page' && (docViewType === 'User Workspace') && !cardOptions && (docListType === 'RECENT')"
+              class="selected-contact-data selected_property_type">
+              <p-dropdown name="createdBy" appendTo="body" [options]="docRangeTypeList" placeholder="Table Type"
+                styleClass="filter-dropdown owned-by" [(ngModel)]="docRangeType"
+                (onChange)="selectedPropertyTable.emit({type: 'RECENT_RANGE', event: $event})">
+              </p-dropdown>
+            </li>
+            <li *ngIf="filter === 'document-page' && !cardOptions && (docListType !== 'RECENT')">
+              <p-calendar appendTo="body" name="dateRange" [(ngModel)]="dateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef [readonlyInput]="true"
+                [locale]="en" placeholder="Date Range" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li
+              *ngIf="filter === 'contract' || filter === 'transfer' ||
+            filter === 'announcement' || filter === 'job_position' || filter === 'applicant' || filter === 'calendar-board'">
+              <p-calendar appendTo="body" name="dateRange" [(ngModel)]="dateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en"
+                placeholder="{{(filter === 'applicant') ? 'Creation Date' : 'Created Date'}}" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'lead-contacts'">
+              <p-calendar appendTo="body" name="dateRange" [(ngModel)]="dateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en" placeholder="01/10/2019-03/10/2020" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'attendance'">
+              <p-calendar appendTo="body" name="dateRange" [(ngModel)]="dateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en" placeholder="Check In" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'contract' || filter === 'transfer' || filter === 'announcement' || filter === 'job_position'">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en"
+                placeholder="{{(filter === 'job_position') ? 'Closed Date' : 'End Date'}}" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'due_date__range')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'attendance'">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en" placeholder="Check Out" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'due_date__range')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'reminder' || filter === 'offices' || filter === 'sales-team'">
+              <p-calendar appendTo="body" name="dateRange" [(ngModel)]="dateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en" placeholder="Created  Date" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dateRange', 'created_at__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'dateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'reminder' || filter === 'offices' || filter === 'sales-team' ">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en"
+                placeholder="{{(filter === 'reminder') ? 'Updated Date' : 'Updated Date'}}" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'due_date__range')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="((filter === 'checklist') || (filter === 'transactions'))">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #dateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en"
+                placeholder="{{(filter === 'checklist') ? 'Updated Date' : 'Estimated Closing Date'}}"
+                [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); dateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(dateRangeRef, 'due_date__range')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+            <li *ngIf="filter === 'tasks'">
+              <p-calendar appendTo="body" name="dueDateRange" [(ngModel)]="dueDateRange" selectionMode="range"
+                [numberOfMonths]="2" (onSelect)="onDateSelect('dueDateRange')" #duedateRangeRef [readonlyInput]="true"
+                styleClass="p-calendar" [locale]="en" placeholder="Due Date" [showIcon]="true">
+                <p-footer class="calendar-footer">
+                  <div>
+                    <span class="date-data">{{dueDateText}}</span>
+                  </div>
+                  <div>
+                    <a class="cancel mt-0"
+                      (click)="clearDate('dueDateRange', 'due_date__range'); duedateRangeRef.overlayVisible = false">Cancel</a>
+                    <a class="save" (click)="updateDateRange(duedateRangeRef, 'dueDateRange')">Save</a>
+                  </div>
+                </p-footer>
+              </p-calendar>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="(filter === 'property-details')">
+      <div class="col-md-9">
+        <div class="profile-datas">
+          <ul>
+            <li (click)="activeTab(1)">
+              <span [ngClass]="{'active': tab==='tab1'}" class="profile-tab">Criteria</span>
+            </li>
+            <li (click)="activeTab(2);">
+              <span [ngClass]="{'active': tab==='tab2'}" class="profile-tab">Map</span>
+            </li>
+            <li (click)="activeTab(3);">
+              <span [ngClass]="{'active': tab==='tab3'}" class="profile-tab">Results</span>
+            </li>
+          </ul>
+        </div>
+        <div class="interaction-bar-inner-left property-detals">
+          <ul>
+            <li>
+              <p-dropdown name="statusOptions" appendTo="body" [options]="propertyOptions" placeholder="Display"
+                [(ngModel)]="sortModel.is_active" (onChange)="createFilterData()">
+              </p-dropdown>
+            </li>
+            <li>
+              <span>
+                Checked (0)
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!(filter === 'property-details')">
+      <div class="col-md-9" *ngIf="showFilters">
+
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'playbook'">
+          <li>
+            <p class="selected-text">{{length}} Playbook{{(length > 1) ? 's' : ''}} Selected:</p>
+          </li>
+          <li><button type="button" (click)="deleteRecords()" class="btn-delete-all-enabled">Delete</button></li>
+          <li><button type="button" (click)="bulkOperationsPlaybooksPopup('CLONE')"
+              class="btn-update-fetched-enabled">Create Clone </button></li>
+          <li><button type="button" (click)="bulkOperationsPlaybooksPopup('STATUS')"
+              class="btn-update-status-enabled">Update Status </button></li>
+          <li><button type="button" (click)="bulkOperationsPlaybooksPopup('STATE')"
+              class="btn-update-fetched-enabled">Update Playbook Status </button></li>
+        </ul>
+
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'websiteblog'">
+          <li>
+            <p class="selected-text">{{length}} Blog{{(length > 1) ? 's' : ''}} Selected:</p>
+          </li>
+          <li><button type="button" (click)="filterService.deleteWebsiteBlogs(selectedContactsList)"
+              class="btn-delete-all-enabled">Delete</button></li>
+          <li><button type="button" (click)="websiteBlogModify()" class="btn-update-status-enabled">Update Status
+            </button></li>
+          <!-- <li><button type="button" (click)="websiteBlogTag()"
+              class="btn-update-fetched-enabled">Update Tag </button></li> -->
+          <li>
+            <p class="selected-all-records">Select all 600 Records</p>
+          </li>
+        </ul>
+
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'websitetags'">
+          <li>
+            <p class="selected-text">{{length}} Tag{{(length > 1) ? 's' : ''}} Selected:</p>
+          </li>
+          <li><button type="button" (click)="filterService.deleteWebsiteTag(selectedContactsList)"
+              class="btn-delete-all-enabled">Delete</button></li>
+          <li><button type="button" (click)="websiteTagModify()" class="btn-update-status-enabled">Update Status
+            </button></li>
+          <li>
+            <p class="selected-all-records">Select all 600 Records</p>
+          </li>
+        </ul>
+
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'websiteProperty'">
+          <li>
+            <p class="selected-text">{{length}} Propertie{{(length > 1) ? 's' : ''}} Selected:</p>
+          </li>
+          <li><button type="button" (click)="filterService.deleteWebsiteProperty(selectedContactsList)"
+              class="btn-delete-all-enabled">Delete</button></li>
+          <li><button type="button" (click)="websitePropertyModify()" class="btn-update-status-enabled">Update Status
+            </button></li>
+          <li>
+            <p class="selected-all-records">Select all 600 Records</p>
+          </li>
+        </ul>
+
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'websiteBuilding'">
+          <li>
+            <p class="selected-text">{{length}} Building{{(length > 1) ? 's' : ''}} Selected:</p>
+          </li>
+          <li><button type="button" (click)="filterService.deleteWebsiteBuilding(selectedContactsList)"
+              class="btn-delete-all-enabled">Delete</button></li>
+          <li><button type="button" (click)="websiteBuildingModify()" class="btn-update-status-enabled">Update Status
+            </button></li>
+          <li>
+            <p class="selected-all-records">Select all 600 Records</p>
+          </li>
+        </ul>
+
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'websitecategory'">
+          <li>
+            <p class="selected-text">{{length}} Categorie{{(length > 1) ? 's' : ''}} Selected:</p>
+          </li>
+          <li><button type="button" (click)="filterService.deleteWebsiteCategory(selectedContactsList)"
+              class="btn-delete-all-enabled">Delete</button></li>
+          <li><button type="button" (click)="websiteCategoryModify()" class="btn-update-status-enabled">Update Status
+            </button></li>
+          <li>
+            <p class="selected-all-records">Select all 600 Records</p>
+          </li>
+        </ul>
+
+        <ul class="contact-subheader filter-max" *ngIf="((filter === 'applicant') || (filter === 'calendar-board'))">
+          <li>
+            <p class="selected-text">
+              {{selectedTransactions}}
+              {{(filter === 'calendar-board') ? 'Meeting' : 'Application'}}{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+          </li>
+          <li><button type="button" (click)="removeTransactions.emit()" class="btn-delete-all-enabled">
+              {{(filter === 'calendar-board') ? 'Delete' : 'Update Status'}}
+            </button>
+          </li>
+        </ul>
+        <ul class="contact-subheader filter-max" *ngIf="((filter === 'department') || (filter === 'transfer'))">
+          <li>
+            <p class="selected-text">
+              {{selectedTransactions}}
+              {{(filter === 'transfer') ? 'Employee Transfer' : 'Department'}}{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+          </li>
+          <li><button type="button" (click)="removeTransactions.emit()" class="btn-delete-all-enabled">Delete</button>
+          </li>
+        </ul>
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'job_position'">
+          <li>
+            <p class="selected-text">{{selectedTransactions}} Job Position{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+          </li>
+          <li><button type="button" (click)="removeTransactions.emit()" class="btn-delete-all-enabled">Delete</button>
+          </li>
+        </ul>
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'document-page'">
+          <li>
+            <p class="selected-text">{{selectedTransactions || cardOptions}}
+              Item{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+          </li>
+          <li><button type="button" (click)="removeTransactions.emit({type:'DELETE'})"
+              class="btn-delete-all-enabled">Delete</button>
+          <li><button type="button" (click)="removeTransactions.emit({type:'STAR'})" class="btn-update-status-enabled">
+              Starred
+            </button>
+          </li>
+          <li class="mr-0">
+            <span class="w-12-wrapper position-relative" (click)="$event.stopPropagation();hideVisibleCard()"
+              pTooltip="More" tooltipPosition="top">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" alt="more">
+              <div class="show-box menu-items-left" style="width:197px" *ngIf="cardActive">
+                <div class="upload-menu">
+                  <div class="top-list">
+                    <span><img alt="" src="../../../.../../assets/images/save-drive.svg">Add Shortcut to Drive</span>
+                    <span><img alt="" src="../../../.../../assets/images/move-to.svg">Move To</span>
+                    <span><img alt="" src="../../../.../../assets/images/starred-icon.svg">Add To Starred</span>
+                    <span><img alt="" src="../../assets/images/edit.svg">Rename</span>
+                    <span><img alt="" src="../../assets/images/color-fill.svg">Change Color</span>
+                    <span><img alt="" src="../../assets/images/edit.svg">View Details</span>
+                    <span><img alt="" src="../../assets/images/download.svg">Download</span>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </li>
+        </ul>
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'contract'">
+          <li>
+            <p class="selected-text">{{selectedTransactions}} Contract{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+          </li>
+          <li><button type="button" (click)="removeTransactions.emit()" class="btn-delete-all-enabled">Delete</button>
+          </li>
+        </ul>
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'offices'">
+          <li>
+            <p class="selected-text">{{selectedTransactions}} Office{{(selectedTransactions > 1) ? 's' : ''}} Selected:
+            </p>
+          </li>
+          <li><button type="button" (click)="removeTransactions.emit()" class="btn-delete-all-enabled">Delete</button>
+          </li>
+        </ul>
+        <ul class="contact-subheader filter-max" *ngIf="filter === 'commision'">
+          <li>
+            <p class="selected-text">{{selectedTransactions}} Commision{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+          </li>
+          <li><button type="button" (click)="removeTransactions.emit()" class="btn-delete-all-enabled">Update
+              Status</button></li>
+        </ul>
+
+        <ul class="contact-subheader filter-max " *ngIf="((filter !== 'playbook') && 
+                                                          (filter !== 'websiteblog') && 
+                                                          (filter !== 'websitetags') && 
+                                                          (filter !== 'websiteProperty') && 
+                                                          (filter !== 'websiteBuilding') &&         
+                                                          (filter !== 'websitecategory') &&        
+                                                          (filter !== 'applicant') &&
+                                                          (filter !== 'calendar-board') &&
+                                                          (filter !== 'department') &&
+                                                          (filter !== 'job_position') &&
+                                                          (filter !== 'offices') &&
+                                                          (filter !== 'transfer') &&
+                                                          (filter !== 'commision') &&
+                                                          (filter !== 'document-page') &&
+                                                          (filter !== 'contract')  
+                                                          )">
+          <li>
+            <p *ngIf="filter !== 'employees' &&  filter !== 'transactions' &&  filter !== 'checklist' &&  filter !== 'tasks'"
+              class="selected-text">{{length}}
+              {{availableFilterType[filter]}}{{(length > 1) ? 's' : ''}} Selected:</p>
+            <p *ngIf="filter === 'employees'" class="selected-text">
+              {{selectedTransactions}} {{availableFilterType[filter]}}{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:
+
+            </p>
+            <p *ngIf="filter === 'transactions'" class="selected-text">{{selectedTransactions}}
+              Transaction{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+
+          </li>
+          <li>
+            <p *ngIf="filter === 'tasks'" class="selected-text">{{selectedTransactions}}
+              {{availableFilterType[filter]}}{{(selectedTransactions > 1) ? 's' : ''}} Selected:</p>
+          </li>
+          <li>
+            <p *ngIf="filter === 'checklist'" class="selected-text">{{selectedTransactions}}
+              Checklist{{(selectedTransactions > 1) ? 's' : ''}}
+              Selected:</p>
+          </li>
+
+          <li (click)="sendTextMessage()">
+            <span class="w-13-wrapper" pTooltip="Send SMS" tooltipPosition="top">
+              <img class="w-13" src="../../../assets/images/send-message.svg" alt="Send SMS" />
+            </span>
+          </li>
+          <li (click)="sendMailPopUp()">
+            <span class="w-13-wrapper" pTooltip="Send Email" tooltipPosition="top">
+              <img alt="" class="w-13" src="../../../assets/images/Mail-big.svg" />
+            </span>
+          </li>
+          <li (click)="assign()">
+            <span class="w-12-wrapper" pTooltip="Assign To" tooltipPosition="top">
+              <img class="w-12 assign_to_pop" src="../../../assets/images/select-icons/assign-grey.svg"
+                alt="Assign To" />
+            </span>
+          </li>
+          <li
+            *ngIf="filter !== 'tasks' && filter !== 'templates' && filter!=='group' && filter!=='employees' && filter!=='group' 
+            && filter!=='tag' && filter!=='ticket' && filter!=='programRoles' && filter!=='transactions' && filter!=='checklist'">
+            <span (click)="filterService.deleteContactsStatus(selectedContactsList)" class="w-12-wrapper"
+              pTooltip="Delete" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'tasks'">
+            <span (click)="filterService.deleteTaskStatus(selectedTasksList)" class="w-12-wrapper" pTooltip="Delete"
+              tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'group'">
+            <span (click)="filterService.deleteGroupssStatus(selectedGroupsList)" class="w-12-wrapper" pTooltip="Delete"
+              tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'employees'">
+            <span (click)="filterService.deleteEmployeeStatus(listSelectedData)" class="w-12-wrapper" pTooltip="Delete"
+              tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'tag'">
+            <span (click)="filterService.deleteTagsStatus(selectedTagList)" class="w-12-wrapper" pTooltip="Delete"
+              tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'ticket'">
+            <span (click)="filterService.deleteTicketStatus(selectedTicketList)" class="w-12-wrapper" pTooltip="Delete"
+              tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'programRoles'">
+            <span (click)="filterService.deleteCampaign(selectedProgramsList)" class="w-12-wrapper" pTooltip="Delete"
+              tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'transactions'">
+            <span (click)="filterService.deleteTransaction(listSelectedData)" class="w-12-wrapper 123" pTooltip="Delete"
+              tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'templates'">
+            <span (click)="filterService.deleteTemplate(selectedTemplatesList);" class="w-12-wrapper 123"
+              pTooltip="Delete" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter === 'checklist'">
+            <span (click)="filterService.deleteTransactionCheckList(listSelectedData)" class="w-12-wrapper 123"
+              pTooltip="Delete" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li *ngIf="filter ==='document-page'">
+            <span (click)="removeTransactions.emit()" class="w-12-wrapper" pTooltip="Delete" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Delete.svg" alt="Delete" />
+            </span>
+          </li>
+          <li (click)="sendCallMessage()">
+            <span class="w-12-wrapper" pTooltip="Call" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/call.svg" alt="call" />
+            </span>
+          </li>
+          <li>
+            <span class="w-12-wrapper" pTooltip="Snooze" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/snooze.svg" alt="snooze" />
+            </span>
+          </li>
+          <li>
+            <span class="w-12-wrapper" pTooltip="Star" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/star.svg" alt="star" />
+            </span>
+          </li>
+          <li>
+            <span class="w-12-wrapper" pTooltip="Move To" tooltipPosition="top">
+              <img class="w-12" src="../../../assets/images/select-icons/Arrow to right.svg" alt="Arrow to right" />
+            </span>
+          </li>
+          <li class="openMoreOption" *ngIf="filter !== 'group' && filter !== 'user' && filter !== 'Lead_provider'
+             && filter !== 'tag' && filter !== 'ticket' && filter !== 'programRoles'
+           && filter !== 'tasks' && filter !== 'employees' && filter !== 'service' && filter !== 'templates' && filter !== 'transactions'
+            && filter !== 'checklist'" (click)="clickedInside($event)">
+            <span class="w-13-wrapper" (click)="openMoreOptionPopUp()"
+              [ngClass]="{'active': openMoreOptionData === true}">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" alt="more" />
+            </span>
+            <div *ngIf="openMoreOptionData" class="more-option-menu">
+              <ul>
+                <li (click)="openAddPopUp()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" />
+                    Add Task
+                  </div>
+                </li>
+                <li (click)="openAddToGroupPopUp()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/group.svg" alt="task" />
+                    Add to group
+                  </div>
+                </li>
+                <li (click)="assignTag()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/Tag.svg" alt="task" />
+                    Add Tags
+                  </div>
+                </li>
+                <li (click)="addTicket()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/ticket.svg" alt="task" />
+                    Add Ticket
+                  </div>
+                </li>
+                <li (click)="assignModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="modifySourcePopUp()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Source
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Type
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Owner
+                  </div>
+                </li>
+                <li (click)="modifyFollowDate()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Follow up date
+                  </div>
+                </li>
+                <li (click)="mergeContacts()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/merge.svg" alt="task" />
+                    Merge
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/export.svg" alt="task" />
+                    Export
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="openMoreOption" *ngIf="filter === 'user'">
+            <span class="w-13-wrapper" (click)="openMoreOptionPopUp()"
+              [ngClass]="{'active': openMoreOptionData === true}">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" alt="more" />
+            </span>
+          </li>
+          <li class="openMoreOption"
+            *ngIf="filter === 'group' || filter === 'programRoles' || filter === 'Lead_provider'"
+            (click)="clickedInside($event)">
+            <span class="w-13-wrapper" (click)="openMoreOptionPopUp()"
+              [ngClass]="{'active': openMoreOptionData === true}">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" alt="more" />
+            </span>
+            <div *ngIf="openMoreOptionData" class="more-option-menu">
+              <ul>
+                <li *ngIf="filter === 'Lead_provider'" (click)="serviceTypeLead()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Modify Service Type
+                  </div>
+                </li>
+                <li (click)="contactModify()" *ngIf="filter === 'group'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/group.svg" alt="task" />
+                    Modify Contact
+                  </div>
+                </li>
+                <li (click)="groupProgramsModify()" *ngIf="filter === 'programRoles'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/group.svg" alt="task" />
+                    Add to Group
+                  </div>
+                </li>
+                <li *ngIf="filter === 'programRoles'" (click)="scheduleProgram()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/ticket.svg" alt="task" />
+                    Modify Schedule
+                  </div>
+                </li>
+                <li (click)="activeModify()" *ngIf="filter === 'group'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="activePropertyModify()" *ngIf="filter === 'Lead_provider'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="descriptionModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Description
+                  </div>
+                </li>
+                <li (click)="listingexperdateModify()" *ngIf="filter === 'Lead_provider'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Listing Exp Date
+                  </div>
+                </li>
+
+                <li (click)="openhouseModify()" *ngIf="filter === 'Lead_provider'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Open House Date
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Owner
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Follow up date
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/merge.svg" alt="task" />
+                    Merge
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/export.svg" alt="task" />
+                    Export
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="openMoreOption" *ngIf="filter === 'tag' || filter === 'transactions' || filter === 'checklist'"
+            (click)="clickedInside($event)">
+            <span class="w-13-wrapper" (click)="openMoreOptionPopUp()"
+              [ngClass]="{'active': openMoreOptionData === true}">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" alt="more" />
+            </span>
+            <div *ngIf="openMoreOptionData" class="more-option-menu">
+              <ul>
+                <li *ngIf="filter === 'transactions'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Add Task
+                  </div>
+                </li>
+                <li *ngIf="filter === 'transactions'" (click)="saleTypeModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Modify Sale Type
+                  </div>
+                </li>
+                <li *ngIf="filter === 'checklist'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Add Task
+                  </div>
+                </li>
+                <li *ngIf="filter === 'checklist'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Add Contact
+                  </div>
+                </li>
+                <li *ngIf="filter === 'checklist'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/Tag.svg" alt="task" />
+                    Add Tags
+                  </div>
+                </li>
+                <li (click)="brokerageStatusModify()" *ngIf="filter === 'transactions'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/ticket.svg" alt="task" />
+                    Modify Brokerage Status
+                  </div>
+                </li>
+                <li (click)="publishedStatusModify()" *ngIf="filter === 'transactions'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/ticket.svg" alt="task" />
+                    Modify Published Status
+                  </div>
+                </li>
+                <li (click)="activeTagModify()" *ngIf="filter === 'tag'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="activeTransactionModify()" *ngIf="filter === 'transactions'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="checkListTransactionModify()" *ngIf="filter === 'checklist'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="descriptionTagModify()" *ngIf="filter === 'tag'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Description
+                  </div>
+                </li>
+                <li *ngIf="filter === 'checklist'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Description
+                  </div>
+                </li>
+                <li (click)="transactionStatusModify()" *ngIf="filter === 'transactions'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Transaction Status
+                  </div>
+                </li>
+                <li (click)="slugTagModify()" *ngIf="filter === 'tag'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Slug
+                  </div>
+                </li>
+                <li (click)="transactionTypeModify()" *ngIf="filter === 'transactions'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Type
+                  </div>
+                </li>
+                <li *ngIf="filter === 'checklist'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Type
+                  </div>
+                </li>
+
+                <li *ngIf="filter === 'transactions'" (click)="transactionActualDateModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Actual Closed Date
+                  </div>
+                </li>
+
+                <li *ngIf="filter === 'checklist'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/merge.svg" alt="task" />
+                    Merge
+                  </div>
+                </li>
+                <li *ngIf="filter === 'transactions'" (click)="transactionEstimateDateModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/export.svg" alt="task" />
+                    Estimate Closed Date
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="openMoreOption" *ngIf="filter === 'ticket'" (click)="clickedInside($event)">
+            <span class="w-13-wrapper" (click)="openMoreOptionPopUp()"
+              [ngClass]="{'active': openMoreOptionData === true}">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" alt="more" />
+            </span>
+            <div *ngIf="openMoreOptionData" class="more-option-menu">
+              <ul>
+                <li (click)="openAddPopUp()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Add Task
+                  </div>
+                </li>
+                <li (click)="assignTypeTag()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/Tag.svg" alt="task" />
+                    Modify Type
+                  </div>
+                </li>
+                <li (click)="prioritymodify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/ticket.svg" alt="task" />
+                    Modify Priority
+                  </div>
+                </li>
+                <li (click)="activeTicketModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="exportAllData()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/export.svg" alt="task" />
+                    Export
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="openMoreOption" *ngIf="filter === 'employees' || filter === 'service' || filter === 'templates'"
+            (click)="clickedInside($event)">
+            <span class="w-13-wrapper" (click)="openMoreOptionPopUp()"
+              [ngClass]="{'active': openMoreOptionData === true}">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" alt="more" />
+            </span>
+            <div *ngIf="openMoreOptionData" class="more-option-menu">
+              <ul>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Add Task
+                  </div>
+                </li>
+                <li (click)="contactModify()" *ngIf="filter === 'employees'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/group.svg" alt="task" />
+                    Add Contact
+                  </div>
+                </li>
+                <li (click)="serviceGroupModify()" *ngIf="filter === 'service'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/group.svg" alt="task" />
+                    Add to Group
+                  </div>
+                </li>
+                <li (click)="supervisorModify(listSelectedData)" *ngIf="filter === 'employees'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/Tag.svg" alt="task" />
+                    Modify Supervisor
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/ticket.svg" alt="task" />
+                    Modify Priority
+                  </div>
+                </li>
+                <li (click)="activeServiceModify()" *ngIf="filter === 'service'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="activeEmployeeModify()" *ngIf="filter === 'employees'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="descriptionTagModify()" *ngIf="filter === 'employees'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Description
+                  </div>
+                </li>
+                <li (click)="feeServiceModify()" *ngIf="filter === 'service'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify fee
+                  </div>
+                </li>
+                <li (click)="TypeTemplateModify()" *ngIf="filter === 'templates'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Type
+                  </div>
+                </li>
+                <li (click)="sheredTemplateModify()" *ngIf="filter === 'templates'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Shared With
+                  </div>
+                </li>
+                <li (click)="slugTagModify()" *ngIf="filter === 'employees'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Slug
+                  </div>
+                </li>
+                <li (click)="addWebsite()" *ngIf="filter === 'service'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Add to Website
+                  </div>
+                </li>
+                <li *ngIf="filter === 'employees'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Owner
+                  </div>
+                </li>
+                <li *ngIf="filter === 'service'" (click)="addVendor()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Approved Vendor
+                  </div>
+                </li>
+                <li *ngIf="filter === 'service'" (click)="serviceTags()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/merge.svg" alt="task" />
+                    Add Tags
+                  </div>
+                </li>
+                <li *ngIf="filter === 'employees'">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/merge.svg" alt="task" />
+                    Merge
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/export.svg" alt="task" />
+                    Export
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="openMoreOption" *ngIf="filter === 'tasks'" (click)="clickedInside($event)">
+            <span class="w-13-wrapper" (click)="openMoreOptionPopUp()"
+              [ngClass]="{'active': openMoreOptionData === true}">
+              <img class="w-13" src="../../../assets/images/select-icons/more.svg" class="task-icons-delete"
+                alt="more" />
+            </span>
+            <div *ngIf="openMoreOptionData" class="more-option-menu">
+              <ul>
+                <li (click)="openAddPopUp()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/task.svg" alt="task" /> Add Task
+                  </div>
+                </li>
+                <li (click)="assignTypeTasks()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/Tag.svg" alt="task" />
+                    Modify Type
+                  </div>
+                </li>
+                <li (click)="priorityTasksmodify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/ticket.svg" alt="task" />
+                    Modify Priority
+                  </div>
+                </li>
+                <li (click)="activeTaskModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Status
+                  </div>
+                </li>
+                <li (click)="descriptionTagModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Description
+                  </div>
+                </li>
+                <li (click)="remDateModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Reminder Date
+                  </div>
+                </li>
+                <li (click)="remTimeModify()">
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Reminder Time
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/modify.svg" alt="task" />
+                    Modify Follow up date
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/merge.svg" alt="task" />
+                    Merge
+                  </div>
+                </li>
+                <li>
+                  <div class="icon-data">
+                    <img src="../../../assets/images/Interaction-bar/export.svg" alt="task" />
+                    Export
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <p (click)="showAllContacts.emit()" style="cursor: pointer;" class="en-selected-all-records">Show All
+              Records</p>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+    <div class="col-md-3 text-right pr-0">
+      <ul class="interaction-bar-inner-right"
+        *ngIf="!(filter === 'group-detail') && !(filter === 'blogedit') && !(filter === 'idxPageEdit')">
+        <li (click)="sendCallMessage()"
+          *ngIf="(filter !== 'tasks') &&  (filter !== 'tag') &&  (filter !== 'websiteblog') &&  (filter !== 'websitecategory') &&  (filter !== 'websitetags') && (filter !== 'document-page') && (filter !== 'team-main') &&  (filter !== 'group') && !(filter === 'blogedit')  && !(filter === 'reminder') && !(filter === 'announcement')">
+          <div class="box" pTooltip="Call" tooltipPosition="top">
+            <img alt="" src="../../../assets/images/active-call.svg" class="default">
+            <img alt="" src="../../../assets/images/active-call-white.svg" class="white">
+          </div>
+        </li>
+        <li
+          *ngIf="((filter !== 'commision') && (filter !== 'transactions') && (filter !== 'websiteblog') &&  (filter !== 'websitecategory')  &&  (filter !== 'websitetags') && (filter !== 'team-main'))">
+          <div (click)="file.click()" class="box" style=" position: relative;top: -2px;" pTooltip="Import"
+            tooltipPosition="top">
+            <input type="file" class="hidethis" (change)="importData.emit($event)" accept=".csv" #file>
+            <img src="../../../assets/images/upload.svg" class="default" alt="">
+            <img src="../../../assets/images/upload-white.svg" class="white" alt="">
+          </div>
+        </li>
+        <li *ngIf="filter === 'transactions'">
+          <div (click)="importData.emit($event)" class="box" style=" position: relative;" pTooltip="Import"
+            tooltipPosition="top">
+            <img src="../../../assets/images/upload.svg" class="default" alt="">
+            <img src="../../../assets/images/upload-white.svg" class="white" alt="">
+          </div>
+        </li>
+        <li (click)="exportAllData()">
+          <div class="box" pTooltip="Export" tooltipPosition="top">
+            <img src="../../../assets/images/download.svg" class="default" alt="">
+            <img src="../../../assets/images/download-white.svg" class="white" alt="">
+          </div>
+        </li>
+        <li *ngIf="((filter !== 'websitetags') &&  (filter !== 'websitecategory'))">
+          <div class="box" pTooltip="Print" tooltipPosition="top">
+            <img alt="" src="../../../assets/images/print.svg" (click)="print()" class="default print">
+            <img alt="" src="../../../assets/images/print-white.svg" (click)="print()" class="white">
+          </div>
+        </li>
+        <li>
+          <div [routerLink]="['/transactions/my-setting']" routerLinkActive="active" class="box" pTooltip="Settings"
+            tooltipPosition="top">
+            <img alt="" src="../../../assets/images/settings.svg" class="default">
+            <img alt="" src="../../../assets/images/settings-white.svg" class="white">
+          </div>
+        </li>
+        <li>
+          <div class="box" style="position: relative;" (click)="$event.stopPropagation();hideVisible()" pTooltip="More"
+            tooltipPosition="top">
+            <img alt="" src="../../../assets/images/more.svg" class="default">
+            <img alt="" src="../../../assets/images/more-white.svg" class="white">
+            <div class="show-box more-filter-drop" *ngIf="active">
+              <div class="upload-menu">
+                <div class="top-list">
+                  <span *ngIf="((filter !== 'commision') && (filter !== 'transactions'))" (click)="importSample()"><img
+                      alt="" src="../../../assets/images/download.svg">Sample Import File</span>
+                  <span *ngIf="(filter === 'transactions')" (click)="importTransactionsSample()"><img alt=""
+                      src="../../../assets/images/download.svg">Sample Import File</span>
+                  <span (click)="sendMailPopUp()"><img alt="" src="../../../assets/images/Mail-big.svg">Email</span>
+                  <span (click)="sendTextMessage()"><img src="../../../assets/images/send-message.svg"
+                      class="light-opc-icon" alt="Send SMS">Send SMS</span>
+                  <span (click)="sendCallMessage()"><img src="../../../assets/images/select-icons/call.svg" alt="call"
+                      class="light-opc-icon">Call</span>
+                  <span><img alt="" src="../../../assets/images/Activity.svg" class="light-opc-icon">Add Activity</span>
+                  <span (click)="openAddNotificationPopup('note')"><img alt="" src="assets/images/add-note.svg"
+                      class="light-opc-icon">Add Note</span>
+                  <span (click)="openAddPopUp()"><img alt="" src="../../../.../../assets/images/more/Task.svg">Add
+                    Tasks</span>
+                  <span><img alt="" src="../../../assets/images/Appointment.svg" class="light-opc-icon">Add
+                    Appointment</span>
+                  <span><img alt="" src="../../../assets/images/Campaign.svg" class="light-opc-icon">Start
+                    Campaign</span>
+                  <span><img alt="" src="../../../assets/images/Rating.svg" class="light-opc-icon">Edit Rating</span>
+                  <span><img alt="" src="../../../assets/images/Source.svg" class="light-opc-icon">Edit Source</span>
+                  <span><img src="../../../assets/images/Interaction-bar/modify.svg" alt="task">Edit Status</span>
+                  <span><img src="../../../assets/images/Interaction-bar/group.svg" alt="task">Edit Group</span>
+                  <span><img alt="" src="../../../.../../assets/images/more/Add-User.svg">Edit Assigned User</span>
+                  <span><img alt="" src="../../../assets/images/List.svg" class="light-opc-icon">Add to List</span>
+                  <span (click)="openTagPopup()"><img src="../../../assets/images/Interaction-bar/Tag.svg"
+                      alt="task">Add Tags</span>
+                  <span><img src="../../../assets/images/select-icons/Delete.svg" alt="Delete"
+                      class="more-light">Delete</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="interaction-bar-inner-right d-flex  bar-edit inter-bar-right metronic-design"
+        style="position:relative;right:15px;" *ngIf="(filter === 'blogedit' || filter === 'idxPageEdit')">
+        <li><button class="button_slide slide_right" (click)="saveBlog()">Draft</button></li>
+        <li><button class="button_slide slide_right" (click)="submitapprovalBlog()"> Submit </button></li>
+        <li><button class="button_slide slide_right" (click)="savePublishBlog()" style="margin-right:0;"> Publish
+          </button></li>
+      </ul>
+      <ul class="interaction-bar-inner-right" *ngIf="filter === 'group-detail'">
+        <li>
+          <div class="box" pTooltip="Print" tooltipPosition="top">
+            <img alt="" src="../../../assets/images/print.svg" (click)="print()" class="default print">
+            <img alt="" src="../../../assets/images/print-white.svg" (click)="print()" class="white">
+          </div>
+        </li>
+        <li>
+          <div class="box" pTooltip="Settings" tooltipPosition="top">
+            <img alt="" src="../../../assets/images/settings.svg" class="default">
+            <img alt="" src="../../../assets/images/settings-white.svg" class="white">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<app-setting-sidebar></app-setting-sidebar>

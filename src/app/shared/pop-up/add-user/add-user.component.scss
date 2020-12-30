@@ -1,0 +1,40 @@
+.add-user {
+  
+  .content {
+  }
+
+  .ui-dialog-top .ui-dialog {
+    margin-top: 0 !important;
+  }
+
+  
+  ::ng-deep p-footer {
+    width: 100%;
+    text-align: right;
+    float: right;
+    position: relative;
+  }
+  ::ng-deep .ui-dialog-top .ui-dialog,
+  .ui-dialog-bottom .ui-dialog,
+  .ui-dialog-left .ui-dialog,
+  .ui-dialog-right .ui-dialog,
+  .ui-dialog-topleft .ui-dialog,
+  .ui-dialog-topright .ui-dialog,
+  .ui-dialog-bottomleft .ui-dialog,
+  .ui-dialog-bottomright .ui-dialog {
+    margin: 100px 0;
+    position: relative;
+  }
+
+  ::ng-deep .ui-shadow {
+    height: auto !important;
+  }
+
+  .p-dropdown-top {
+    margin-top: 25px !important;
+  }
+  ::ng-deep .ui-dropdown-label {
+    position: relative;
+    top: -2px;
+  }
+}

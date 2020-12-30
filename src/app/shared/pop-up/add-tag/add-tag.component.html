@@ -1,0 +1,50 @@
+<div *ngIf="taskMode === 'SAVE' || taskMode === 'UPDATE'">
+  <p-dialog position="top" [draggable]="false"  [visible]="true" class="add-tag custom-popup common-popup-css"
+  [modal]="true">
+  <p-header>{{taskMode === 'UPDATE' ? 'Edit' : 'Add'}} tag <span class="close-pop" (click)="modalState.emit('addTag')"> <img
+        src="../../../../assets/images/close.svg" alt="close" /></span></p-header>
+  <form #addTagForm="ngForm">
+    <div class="content">
+      <div class="p-modal-content form-element">
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label" position="floating">Tag <span class="required-field">*</span></ion-label>
+            <ion-input type="text" #tag_name="ngModel" name="name" [(ngModel)]="addTag.tag_name" required>
+            </ion-input>
+          </ion-item>
+          <div class="vaiidate-field" *ngIf="tag_name.errors && ( tag_name.touched || addTagForm.submitted)">
+            <p [hidden]="!tag_name.errors.required">Tag name is required</p>
+          </div>
+        </div>
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label" position="floating">Description</ion-label>
+            <ion-input type="text" #description="ngModel" name="description" [(ngModel)]="addTag.description">
+            </ion-input>
+          </ion-item>
+        </div>
+        <div class="vaildation-area">
+          <ion-item>
+            <ion-label class="label" position="floating">Slug</ion-label>
+            <ion-input type="text" #slug="ngModel" name="slug" [(ngModel)]="addTag.slug">
+            </ion-input>
+          </ion-item>
+        </div>
+        <div *ngIf="isGlobalView" class="vaildation-area mtTop">
+          <ion-label class="label" position="floating">Global Tag</ion-label>
+          <div style="margin-top: 7px;">
+            <p-inputSwitch #is_global="ngModel" name="is_global" [(ngModel)]="addTag.is_global"></p-inputSwitch>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <ion-button class="btn-cancel" type="button" (click)="modalState.emit('addTag')">Cancel</ion-button>
+      <ion-button class="btn-save" *ngIf="taskMode === 'SAVE'" (click)="saveTag(addTag)" type="submit" [disabled]="!addTagForm.valid || validateName(addTag)">Save
+      </ion-button>
+      <ion-button class="btn-save" *ngIf="taskMode === 'UPDATE'" type="submit" (click)="updateTag()">Update
+      </ion-button>
+    </p-footer>
+  </form>
+</p-dialog>
+</div>

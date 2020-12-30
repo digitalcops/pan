@@ -1,0 +1,562 @@
+<div class="view-page-wrapper view-checklist-wrapper ">
+  <div class="view-template-wrapper checklist-wrapper">
+    <div class="menu-link">
+      <div class="row">
+        <div class="col-md-10 d-flex align-items-center">
+          <ul>
+            <li [routerLink]="['/subscription/subscription-quotation']" class="default">Subscription Quotaions</li>
+            <li class="active"> {{(saleOrderId === 0) ? 'Add' : 'Edit'}} Quotaion
+            </li>
+          </ul>
+        </div>
+        <div class="head-btn-wrap col-md-2 save_right_move">
+          <ion-button [routerLink]="['/subscription/subscription-quotation']" class="btn-cancel btn-cancel-head"
+            type="button">
+            Cancel
+          </ion-button>
+          <ion-button (click)="addUpdateChecklist()" class="btn-save btn-save-head" type="button">
+            {{(saleOrderId === 0) ? 'Save' : 'Update'}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="Office-listing">
+        <form *ngIf="subscriptionService.saleOrderDataForm" [formGroup]="subscriptionService.saleOrderDataForm">
+          <div class="Listing">
+            <div class="row user-data">
+              <div class="col-sm-12">
+                <div class="staWrap form-group user-field selected-contact-data">
+                    <ion-button [disabled]="activeIndex >= i" (click)="changeStatusSub(item)" 
+                        [ngClass]="{'stHighlight': subscriptionService.saleOrderDataForm.value.status === item.value,
+                        disbBtn: (activeIndex >= i), modStatusBtn: !(activeIndex >= i)}" 
+                      *ngFor="let item of statusOptions; let i=index" class="btn-save-status" type="button">
+                      {{item.label}}
+                    </ion-button>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Customer<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [filter]="true" [options]="customerList" formControlName="customer" placeholder="Select"
+                      appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['customer'].invalid &&  (subscriptionService.saleOrderDataForm.controls['customer'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['customer'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['customer'].errors.required">
+                      Customer is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Sales Team<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown (onChange)="onSalesTeamChange($event)" [filter]="true" [options]="salesTeamList" formControlName="sales_team"
+                      placeholder="Select" appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['sales_team'].invalid &&  (subscriptionService.saleOrderDataForm.controls['sales_team'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['sales_team'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['sales_team'].errors.required">
+                      Sales Team is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Sales Person<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [filter]="true" [options]="salesPersonList" formControlName="sales_person"
+                      placeholder="Select" appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['sales_person'].invalid &&  (subscriptionService.saleOrderDataForm.controls['sales_person'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['sales_person'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['sales_person'].errors.required">
+                      Sales Person is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="row user-data">
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Payment Terms<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [options]="paymentsOptions" formControlName="payment_terms" placeholder="Select"
+                      appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['payment_terms'].invalid &&  (subscriptionService.saleOrderDataForm.controls['payment_terms'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['payment_terms'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['payment_terms'].errors.required">
+                      Payment Terms is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Quotation Date<span class="required">*</span></ion-label>
+                  <div class="contact-visit-section search_ico drpdwn-wrap">
+                    <p-calendar class="fullcW" formControlName="quotation_date" appendTo="body" [readonlyInput]="true"
+                      styleClass="p-calendar" placeholder="Quotation Date" [showIcon]="true">
+                    </p-calendar>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['quotation_date'].invalid &&  (subscriptionService.saleOrderDataForm.controls['quotation_date'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['quotation_date'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['quotation_date'].errors.required">
+                      Quotation Date is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Expected Delivery Date</ion-label>
+                  <div class="contact-visit-section search_ico drpdwn-wrap">
+                    <p-calendar class="fullcW" formControlName="expected_delivery_date" appendTo="body"
+                      [readonlyInput]="true" styleClass="p-calendar" placeholder="Expiration Date" [showIcon]="true">
+                    </p-calendar>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Billing Address<span class="required">*</span>
+                  </ion-label>
+                  <div style="margin-top:6px !important;" class="add_ico">
+                    <p-dropdown [filter]="true" placeholder="Select" [options]="billingList" formControlName="billing_address"
+                      class="multiple-select">
+                    </p-dropdown>
+                    <span (click)="addAddressItem('billing')" style="margin-top:0px !important;"></span>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['billing_address'].invalid &&  (subscriptionService.saleOrderDataForm.controls['billing_address'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['billing_address'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['billing_address'].errors.required">
+                      Billing Address is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label align-item-center">Shipping Address<span class="required">*</span>
+                  </ion-label>
+                  <div style="margin-top:6px !important;" class="add_ico">
+                    <p-dropdown [filter]="true" placeholder="Select" [options]="shippingList" formControlName="shipping_address"
+                      class="multiple-select">
+                    </p-dropdown>
+                    <span (click)="addAddressItem('shipping')" style="margin-top:0px !important;"></span>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['shipping_address'].invalid &&  (subscriptionService.saleOrderDataForm.controls['shipping_address'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['shipping_address'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['shipping_address'].errors.required">
+                      Shipping Address is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group user-field selected-contact-data">
+                  <ion-label class="label">Source<span class="required">*</span></ion-label>
+                  <div class="search_ico drpdwn-wrap">
+                    <p-dropdown [options]="sourceOptions" formControlName="source" placeholder="Select" appendTo="body">
+                    </p-dropdown>
+                  </div>
+                  <ng-container *ngIf="subscriptionService.saleOrderDataForm.controls['source'].invalid &&  (subscriptionService.saleOrderDataForm.controls['source'].dirty
+                     || subscriptionService.saleOrderDataForm.controls['source'].touched)">
+                    <p class="vaiidate-field"
+                      *ngIf="subscriptionService.saleOrderDataForm.controls['source'].errors.required">
+                      Source is required!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <ul style="padding:0 0px" class="tabbing-location tabbing-accordians d-flex">
+          <li [ngClass]="activeCategory==1?'active':''" (click)="activeCategory = 1"><a>
+              Order Lines</a></li>
+          <li [ngClass]="activeCategory==3?'active':''" (click)="activeCategory = 3">
+            <a>Other Info</a>
+          </li>
+        </ul>
+        <div class="tab-content min-scroll" *ngIf="activeCategory==1">
+          <div class="Listing calendar-list-wrapper">
+            <div *ngIf="selectedchecklistItem === 0" class="row user-data">
+              <div class="col-sm-8">
+                <div style="margin-top: 0px !important;" class="btn-wrapper">
+                  <ion-button (click)="addChecklistItem()" class="btn-save add-item-btn" type="button">Add Item
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="selectedchecklistItem > 0" class="row user-data">
+              <div class="col-sm-8">
+                <div style="margin-top: 8px !important;" class="btn-wrapper">
+                    <ul class="contact-subheader">
+                      <li>
+                        <p class="selected-text">{{selectedchecklistItem}} Order
+                          Line{{(selectedchecklistItem > 1) ? 's' : ''}} Selected</p>
+                      </li>
+                      <li><button type="button" (click)="deleteChecklistItem()"
+                          class="btn-delete-all-enabled">Delete</button>
+                      </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <p-table [resizableColumns]="true" (onLazyLoad)="loadChecklistItem($event)" columnResizeMode="expand"
+                [columns]="checklistCols" scrollWidth="100%" [rows]="rows" [rowsPerPageOptions]="[10,25,50, 100]"
+                [lazy]="true" [totalRecords]="total" [value]="checklistData" [scrollable]="true"
+                styleClass="order-line-table custom-dataTable table-striped">
+                <ng-template pTemplate="colgroup" let-columns>
+                  <colgroup>
+                    <col *ngFor="let col of columns">
+                  </colgroup>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                  <tr class="activity-rows">
+                    <th *ngFor="let col of columns">
+                      <span class="d-flex align-items-start align-left-documents">
+                        <ng-container *ngIf="col.field === 'doc'">
+                          <p-checkbox (onChange)="onAllEmployeeSelected($event)" styleClass="custom-checkbox"
+                            id="selectAllChkBx" binary="true">
+                          </p-checkbox>
+                        </ng-container>
+                        <ng-container>
+                          <span class="header_data own-header_checklist">
+                            {{col.header}}
+                          </span>
+                        </ng-container>
+                      </span>
+                    </th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex" let-columns="columns">
+                  <tr class="activity-data">
+                    <td *ngFor="let col of columns">
+                      <ng-container *ngIf="col.field !== 'doc' && col.field !== 'notes'
+                            && col.field !== 'responsibility' && col.field !== 'common'
+                            && col.field !== 'mandatory' && col.field !== 'duedate' 
+                            && col.field !== 'snooze'">{{rowData[col.field]}}
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'doc'">
+                        <div class="d-flex align-items-center t-body-wrap">
+                          <span class="align-left-documents">
+                            <p-checkbox [(ngModel)]="rowData.selected" (onChange)="onSingleChecklistSelected()"
+                              styleClass="custom-checkbox" binary="true">
+                            </p-checkbox>
+                            {{rowData.product ? rowData.product.product_name : ''}}
+                          </span>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'notes'">
+                        <span class="d-flex">
+                          {{rowData.description}}
+                        </span>
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'responsibility'">
+                        <span class="d-flex group responsible-drpdwn">
+                          {{rowData.responsibility}}
+                        </span>
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'mandatory'">
+                        <span class="d-flex group">
+                          {{rowData.quantity}}
+                        </span>
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'common'">
+                        <span class="d-flex group">
+                          {{rowData.unit_price}}
+                        </span>
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'duedate'">
+                        <div class="name_text name_texs">
+                          {{rowData.tax && rowData.tax.tax_name ? rowData.tax.tax_name : ''}}
+                        </div>
+                        <div class="name_text name_texs">
+                          {{rowData.tax && rowData.tax.tax_value ? 
+                            (rowData.tax.tax_value) + (rowData.tax.tax_type === 'percentage' ? '%' : '')  
+                            : ''}}
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'snooze'">
+                        <div class="name_text name_texs modify_top">
+                          {{rowData.subtotal_without_tax}}
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="col.field === 'edit'">
+                        <div class="edit-wrapper">
+                          <span class="edit-tooltip" (click)="onEditTransactionData(rowData)" pTooltip="Edit"
+                            tooltipPosition="top">
+                            <img class="edit-icons" src="../../assets/images/edit.svg" alt="">
+                          </span>
+                          <span (click)="deleteChecklistItem(rowData)" class="edit-tooltip" pTooltip="Delete" tooltipPosition="top">
+                            <img class="edit-icons" src="../../assets/images/delete.svg" alt="">
+                          </span>
+
+                        </div>
+                      </ng-container>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+            <div class="Listing">
+              <div class="row user-data">
+                <div class="col-sm-8">
+                  <div class="form-group user-field selected-contact-data">
+                    <ion-label class="label">Terms and Conditions</ion-label>
+                    <textarea style="width: 100%;border: 1px solid #dedede;"
+                      maxlength="1500" [rows]="2" [cols]="34" autoResize="autoResize">
+                        </textarea>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group user-field selected-contact-data">
+                    <div style="margin-top:19px;border-top: 1px solid #dedede;" class="col-sm-12">
+                      <div style="margin-bottom: 2px !important;"
+                        class="form-group user-field selected-contact-data dflx">
+                        <div class="setlf">
+                          <ion-label class="label">Untaxed Amount:
+                          </ion-label>
+                        </div>
+                        <ion-label class="label">
+                          {{(allData && allData.total_without_taxes) ? allData.total_without_taxes : '0' }}
+                        </ion-label>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div style="margin-bottom: 2px !important;"
+                        class="form-group user-field selected-contact-data dflx">
+                        <div class="setlf">
+                          <ion-label class="label">Taxes:
+                          </ion-label>
+                        </div>
+                        <ion-label class="label">
+                          {{(allData && allData.tax_amount) ? allData.tax_amount : '0' }}
+                        </ion-label>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div style="margin-bottom: 2px !important;"
+                        class="form-group user-field selected-contact-data dflx">
+                        <div class="setlf">
+                          <ion-label class="label">Total:
+                          </ion-label>
+                        </div>
+                        <ion-label class="label">
+                          {{(allData && allData.total_with_taxes) ? allData.total_with_taxes : '0' }}
+                        </ion-label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content" *ngIf="activeCategory==3">
+          <form *ngIf="subscriptionService.saleOrderDataForm" [formGroup]="subscriptionService.saleOrderDataForm">
+
+            <div class="Listing calendar-list-wrapper">
+              <div class="Listing">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5 class="heading">Sales</h5>
+                  </div>
+                </div>
+                <div class="row user-data">
+                  <div class="col-sm-4">
+                    <div class="form-group user-field selected-contact-data">
+                      <ion-label class="label">Quotation Expiry Date</ion-label>
+                      <div class="contact-visit-section search_ico drpdwn-wrap">
+                        <p-calendar class="fullcW" formControlName="quotation_expiry_date" appendTo="body"
+                          [readonlyInput]="true" styleClass="p-calendar" placeholder="Quotation Expiry Date"
+                          [showIcon]="true">
+                        </p-calendar>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="contact-visit-section form-group user-field selected-contact-data">
+                      <ion-label style="margin-bottom: 6px;" class="label">Delivery Date</ion-label>
+                      <p-calendar class="fullcW" formControlName="delivery_date" appendTo="body" [readonlyInput]="true"
+                        styleClass="p-calendar" placeholder="Delivery Date" [showIcon]="true">
+                      </p-calendar>
+                    </div>
+                  </div>
+                  <div class="col-md-4 ">
+                    <div class="form-group user-field selected-contact-data">
+                      <ion-label class="label">Tags</ion-label>
+                      <tag-input  (onAdd)="onTagAdd($event)" (onRemove)="onTagRemove($event)"
+                        formControlName="tags" class="editContactTag native-input sc-ion-input-md user-input"
+                        [onlyFromAutocomplete]="false" [separatorKeyCodes]="[188]" [placeholder]="'Tag'"
+                        [secondaryPlaceholder]="'Tag'">
+                        <tag-input-dropdown  [autocompleteItems]="tags" [showDropdownIfEmpty]="true" [focusFirstElement]="true"
+                          [displayBy]="'value'" [identifyBy]="'id'">
+                          <ng-template let-item="item" let-index="index">
+                            {{ item.value }}
+                          </ng-template>
+                        </tag-input-dropdown>
+                      </tag-input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <p-dialog position="center" [draggable]="false" [visible]="addOrderLine"
+      class="popup-element custom-popup add-contact add-contact-wrapper" [modal]="true">
+      <p-header>Add/Edit Sale Order Line
+        <span class="close-pop" (click)="addOrderLine = false;"><img src="assets/images/close.svg" alt="close" /></span>
+      </p-header>
+      <div class="Listing">
+        <div class="row user-data">
+          <div class="col-sm-12">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Product<span class="required">*</span></ion-label>
+                <p-dropdown [filter]="true" [(ngModel)]="saleData.product" [options]="productsList" placeholder="Select"
+                  appendTo="body">
+                </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Description<span class="required">*</span></ion-label>
+              <div class="search_ico">
+                <ion-input [(ngModel)]="saleData.description" class="user-input" type="text" autocomplete="off">
+                </ion-input>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Tax<span class="required">*</span></ion-label>
+                <p-dropdown [filter]="true" [options]="taxList" [(ngModel)]="saleData.tax" placeholder="Select" appendTo="body">
+                </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Quantity<span class="required">*</span></ion-label>
+              <div class="search_ico">
+                <ion-input [(ngModel)]="saleData.quantity" class="user-input" type="number" autocomplete="off">
+                </ion-input>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Unit Price<span class="required">*</span></ion-label>
+              <div class="search_ico">
+                <ion-input [(ngModel)]="saleData.unit_price" class="user-input" type="number" autocomplete="off">
+                </ion-input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p-footer class="btns-sale">
+        <ion-button class="btn-save" (click)="addToTable()">Save</ion-button>
+        <ion-button class="btn-cancel" (click)="addOrderLine = false">Cancel</ion-button>
+      </p-footer>
+    </p-dialog>
+    <p-dialog position="center" [draggable]="false" [visible]="addAddress"
+      class="popup-element custom-popup add-contact add-contact-wrapper" [modal]="true">
+      <p-header>Add Address
+        <span class="close-pop" (click)="addAddress = false;"><img src="assets/images/close.svg" alt="close" /></span>
+      </p-header>
+      <div class="Listing">
+        <div class="row user-data">
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Customer</ion-label>
+              <p-dropdown [filter]="true" class="user-input" [(ngModel)]="addressData.contact" [options]="customerList"
+                placeholder="Select" appendTo="body">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Address Type</ion-label>
+              <p-dropdown [appendTo]="'body'" class="user-input" [(ngModel)]="addressData.address_type"
+                [options]="addressList" placeholder="Select" appendTo="body">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">Country</ion-label>
+              <p-dropdown [appendTo]="'body'" [(ngModel)]="addressData.country" placeholder="Select" [options]="countriesData" filter="true"
+                (onChange)="getStates($event)">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group user-field selected-contact-data">
+              <ion-label style="margin-bottom: 6px;" class="label">State</ion-label>
+              <p-dropdown [appendTo]="'body'" [(ngModel)]="addressData.state" placeholder="Select" [options]="states" filter="true">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Street 1</ion-label>
+              <ion-input [(ngModel)]="addressData.street1" class="user-input" type="number" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Street 2</ion-label>
+              <ion-input [(ngModel)]="addressData.street2" class="user-input" type="number" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 10px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">Zip Code<Code></Code></ion-label>
+              <ion-input [(ngModel)]="addressData.zip" class="user-input" type="text" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="margin-bottom: 20px;" class="form-group user-field selected-contact-data">
+              <ion-label class="label">City <Code></Code></ion-label>
+              <ion-input [(ngModel)]="addressData.city" class="user-input" type="text" autocomplete="off">
+              </ion-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p-footer class="btns-sale">
+        <ion-button class="btn-save" (click)="addAddressToTable()">Save</ion-button>
+        <ion-button class="btn-cancel" (click)="addAddress = false">Cancel</ion-button>
+      </p-footer>
+    </p-dialog>
+  </div>

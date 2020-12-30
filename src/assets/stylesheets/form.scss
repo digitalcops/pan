@@ -1,0 +1,119 @@
+.form-element {
+  ion-item {
+    --inner-padding-end: 0px;
+    --padding-start: 0px;
+    --font-size: 13px;
+    --min-height: 50px;
+    --background-activated: #fff;
+    --background-focused: #fff;
+    --background-hover: #fff;
+    --background-activated-opacity: #fff;
+    --background-focused-opacity: #fff;
+    --background-hover-opacity: #fff;  
+    &:hover {
+      --background-activated: #fff;
+      --background-focused: #fff;
+      --background-hover: #fff;
+      --background-activated-opacity: #fff;
+      --background-focused-opacity: #fff;
+      --background-hover-opacity: #fff;  
+    }
+
+    ion-label {
+      font-size: 13px;
+      color: #808080;
+      margin: -11px 0 0 0;
+    }
+    ion-input {
+      --padding-bottom: 0px;
+      --padding-top: 20px;
+      --border-width: 1px;
+      --border-style: solid;
+      --border-color: rgba(var(--ion-text-color-rgb, 216, 216, 216), 0.51);
+      &:focus {
+        --border-width: 1px;
+        --border-style: solid;
+        --border-color: #207ebb;
+      }
+    }
+    ion-textarea {
+      --padding-bottom: 0px;
+      --padding-top: 20px;
+      --border-width: 1px;
+      --border-style: solid;
+      --border-color: rgba(var(--ion-text-color-rgb, 216, 216, 216), 0.51);
+      &:focus {
+        --border-width: 1px;
+        --border-style: solid;
+        --border-color: #207ebb;
+      }
+    }
+  }
+  .item-has-focus.label-floating.sc-ion-label-md-h,
+  .item-has-focus .label-floating.sc-ion-label-md-h,
+  .item-has-placeholder.label-floating.sc-ion-label-md-h,
+  .item-has-placeholder .label-floating.sc-ion-label-md-h,
+  .item-has-value.label-floating.sc-ion-label-md-h,
+  .item-has-value .label-floating.sc-ion-label-md-h {
+    -webkit-transform: translate3d(0, 15px, 0);
+    transform: translate3d(0, 15px, 0);
+    font-size: 10px;
+    color: #207ebb;
+  }
+}
+
+.popup-element {
+  ion-button {
+    float: right;
+  }
+  ::ng-deep .ui-dialog {
+    z-index: 999999 !important;
+  }
+  ::ng-deep .ui-dialog-wrapper {
+    z-index: 999999 !important;
+  }
+
+  ::ng-deep .ui-dialog-resizable {
+    max-width: 500px;
+  }
+  ::ng-deep tag-input-form {
+    width: 130px;
+    padding: 0;
+    .ng2-tag-input__text-input {
+      width: 130px;
+      padding: 0 !important;
+      font-size: 13px;
+    }
+  }
+}
+
+.ui-dialog-wrapper {
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999999 !important;
+}
+.new-tag-popup {
+  text-align: center;
+  position: relative;
+  padding: 12px;
+  h5 {
+    font-size: 20px !important;
+    color: #404040 !important;
+    font-weight: 400 !important;
+  }
+  ::ng-deep .ui-dialog-titlebar {
+    display: none;
+  }
+  .btns {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+  }
+  ::ng-deep span::before {
+    display: none;
+  }
+  ::ng-deep div[role="dialog"] {
+    height: 135px;
+    background-color: #fff !important;
+  }
+}

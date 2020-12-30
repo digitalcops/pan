@@ -1,0 +1,25 @@
+<div class="main-content right-side-content">
+  <form [formGroup]="generalSettingsEditForm" style="padding-left:10px;" (ngSubmit)="updateGeneralSettingsInfo()">
+    <h5 class="heading">General Settings</h5>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Time Zone
+          </label>
+          <p-dropdown [options]="zone" placeholder="Select" name="state" formControlName="time_zone"></p-dropdown>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Set Time
+          </label>
+          <p-dropdown [options]="mode" placeholder="Select" name="state" formControlName="set_time"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn-cancel" type="button" (click)="cancelButtonClicked()">Cancel</button>
+      <button class="btn-save">Save</button>
+    </div>
+  </form>
+</div>

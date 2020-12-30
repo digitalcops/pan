@@ -1,0 +1,39 @@
+<form #loginForm="ngForm" (ngSubmit)="login(loginModel)" class="animated flipInX">
+  <div class="login">
+    <div class="login-header">
+      <img src="../../../assets/images/logo.png" alt="logo">
+      <h4>Sign In To Admin </h4>
+    </div>
+    <div class="vaildation-area">
+      <ion-item class="no-padding">
+        <ion-label class="label" position="floating">Email</ion-label>
+        <ion-input type="email" required #email="ngModel" name="email" [(ngModel)]="loginModel.email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"></ion-input>
+      </ion-item>
+      <div class="vaiidate-field" *ngIf="email.errors && ( email.touched || loginForm.submitted)">
+        <p [hidden]="!email.errors.required">Email is required</p>
+        <p [hidden]="!email.errors.pattern">Please enter a valid email</p>
+      </div>
+    </div>
+    <div class="vaildation-area">
+      <ion-item>
+        <ion-label class="label" position="floating">Password</ion-label>
+        <ion-input type="password" required #password="ngModel" name="password" [(ngModel)]="loginModel.password">
+        </ion-input>
+      </ion-item>
+      <div class="vaiidate-field" *ngIf="password.errors && ( password.touched || loginForm.submitted)">
+        <p [hidden]="!password.errors.required">Password is required</p>
+      </div>
+    </div>
+    <ion-item class="last-border-remove">
+      <ion-label class="remember-me">Remember me </ion-label>
+      <a class="sign-in-btn" [routerLink]="['/forgot']">Forgot Password?</a>
+      <ion-checkbox id="remember_me" name="remember_me" [(ngModel)]="loginModel.remember_me" ng slot="start"></ion-checkbox>
+    </ion-item>
+    <div class="center-data">
+      <div class="capthcha">
+        <p-captcha #recaptcha siteKey="{{env.captcha}}" (onResponse)="onCaptchaSuccess($event)" (onExpire)="onCaptchaExpire()"></p-captcha>
+      </div>
+      <ion-button class="btn-main margin-top" type="submit" [disabled]="!loginForm.valid || (env.production && !captchaEnabled)">Sign in</ion-button>
+    </div>
+  </div>
+</form>

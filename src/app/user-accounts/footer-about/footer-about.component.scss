@@ -1,0 +1,143 @@
+.about-footer{
+.main-setting{
+    height: calc(100vh - 118px);
+    overflow: auto;
+    overflow-x: hidden;
+    background: white;
+    margin: 0 15px;
+    padding:20px 20px 20px 20px;
+}
+
+.top-menu {
+  display: flex;
+  background: white;
+  padding: 0 15px;
+    li{
+        margin-right:30px;
+         a {
+    color: #404040;
+    font-size: 13px;
+    display: inline-block;
+    padding: 10px 0;
+    position: relative;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+   
+    }
+    a.active{
+      border-bottom: 2px solid #207ebb;
+      color:#207ebb;
+    }
+  }
+}
+.heading{
+    text-align: left;
+    font-size: 20px;
+    color: #404040;
+    padding: 0 0 12px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+.main-content .ui-dropdown{
+    height: 30px;
+}
+.header-modified{
+  color:#404040;
+  font-size: 24px;
+}
+.policy-menu{
+  margin-bottom: 10px ;
+  li{
+   font-size: 13px;
+   color:#404040;
+   padding-left:16px;
+   position: relative;
+   margin-bottom:10px;
+   &:after{
+    position: absolute;
+    content:"";
+    width:7px;
+    height:12px;
+    border-right:2px solid #808080;
+    border-bottom:2px solid #808080;
+    border-left:2px solid transparent;
+    border-top:2px solid transparent;
+    transform: rotate(45deg);
+    left:0;
+    top:2px;
+   }
+  }
+}
+.header-para{
+  margin-bottom:20px;
+  color:#404040;
+  font-size:14px ;
+}
+.form-wrapper{
+  width:67%;
+}
+.right-side-section{
+  width:30%;
+  figure{
+    height:262px;
+    margin-bottom:21px;
+  }
+}
+
+
+.important-policies{
+  h3{
+    font-size:24px;
+    color:#404040;
+    font-weight:400;
+    margin-bottom:10px;
+  }
+  p{
+    color:#404040;
+    font-size: 14px;
+    margin-bottom:20px;
+    line-height: 22px;
+  }
+  
+     }
+  
+  .services-wrapper{
+    width:30%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:30px;
+    padding:20px;
+    background: #FFF8F1;
+    border-radius: 5px;
+    &:nth-child(2),&:nth-child(3){
+      background: #F5FBFF;
+    }
+    h4{
+      font-size:16px;
+      font-weight: 700;
+      color:#404040;
+      margin-bottom:10px;
+    }
+    p{
+      color:#404040;
+      font-size:14px;
+      margin-bottom:0;
+    }
+    
+  }
+  .slider-wrapper{
+    margin:0 -18px 42px -18px;
+    .ui-carousel-dots-container{
+      display: none;
+    }
+    .ui-carousel-container{
+      background: none;
+    }
+  }
+  .slider-wrapper .p-grid.p-nogutter.ng-star-inserted{
+    padding:15px;
+  }
+  .ui-carousel-dots-container{
+    display: none !important;
+  }
+}

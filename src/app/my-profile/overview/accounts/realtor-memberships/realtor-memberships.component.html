@@ -1,0 +1,140 @@
+<div class="main-content realtor-member right-side-content">
+  <form [formGroup]="realtorInfoEditForm" (ngSubmit)="updateRealtorInfo()" style="padding-left:10px;">
+    <h5 class="heading">Realtor Membership</h5>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            International REALTOR<span>&reg;</span>/Membership Name
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="membership_name"
+            name="membership_name">
+        </div>
+        <div class="col-md-6">
+          <label>
+            Membership ID
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="membership_id" name="membership_id">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            National Association of REALTORS<span>&reg;</span> ID
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="national_association_realtor_id"
+            name="national_association_realtor_id">
+        </div>
+        <div class="col-md-6">
+          <label>
+            State Association of REALTORS<span>&reg;</span>
+          </label>
+          <div class="vaildation-area p-dropdown-top custom-multiselect">
+            <div class="angualr2-wrapper">
+              <p class="selected-text modifiedMsg"
+                *ngIf="realtorInfoEditForm.value.state_association_realtor.length > 0">
+                {{realtorInfoEditForm.value.state_association_realtor.length}} State Association Selected
+              </p>
+              <angular2-multiselect [data]="stateAssociationList" class="modifiedMultiselect"
+                [(ngModel)]="realtorInfoEditForm.value.state_association_realtor" name="state_association_realtor"
+                formControlName="state_association_realtor" [settings]="settings">
+                <c-item>
+                  <ng-template let-item="item">
+                    <label class="item-name multi-item">{{item.itemName}}</label>
+                  </ng-template>
+                </c-item>
+              </angular2-multiselect>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Local Association/Board of REALTORS<span>&reg;</span>
+          </label>
+          <div class="vaildation-area p-dropdown-top custom-multiselect realtor-multiselect">
+            <div class="angualr2-wrapper">
+              <p class="selected-text modifiedMsg"
+                *ngIf="realtorInfoEditForm.value.local_association_realtor.length > 0">
+                {{realtorInfoEditForm.value.local_association_realtor.length}} Local Association/Board Selected
+              </p>
+              <angular2-multiselect [data]="localAssociationList" class="modifiedMultiselect"
+                name="local_association_realtor" formControlName="local_association_realtor" [settings]="settings">
+                <c-item>
+                  <ng-template let-item="item">
+                    <label class="item-name multi-item">{{item.itemName}}</label>
+                  </ng-template>
+                </c-item>
+              </angular2-multiselect>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>
+            MLS Provider
+          </label>
+          <div class="vaildation-area p-dropdown-top  realtor-multiselect custom-multiselect">
+            <div class="angualr2-wrapper">
+              <p class="selected-text modifiedMsg" *ngIf="realtorInfoEditForm.value.mls_provider.length > 0">
+                {{realtorInfoEditForm.value.mls_provider.length}} MLS Provider Selected
+              </p>
+              <angular2-multiselect [data]="MLSProviderList" name="mls_provider" class="modifiedMultiselect"
+                formControlName="mls_provider" [settings]="settings">
+                <c-item>
+                  <ng-template let-item="item">
+                    <label class="item-name multi-item">{{item.itemName}}</label>
+                  </ng-template>
+                </c-item>
+              </angular2-multiselect>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            MLS Public ID
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mls_public_id" name="mls_public_id">
+        </div>
+        <div class="col-md-6">
+          <label>
+            MLS Public ID2
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mls_public_id2"
+            name="mls_public_id2">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            MLS Public ID3
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mls_public_id3"
+            name="mls_public_id3">
+        </div>
+        <div class="col-md-6" *ngIf="false">
+          <label>
+            Set Up MLS IDX Feed
+          </label>
+          <input class="form-control" type="text" maxlength="100" formControlName="mls_feed_id" name="mls_feed_id">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn-cancel" type="button" (click)="cancelButtonClicked()">Cancel</button>
+      <button class="btn-save">Save</button>
+    </div>
+  </form>
+</div>
